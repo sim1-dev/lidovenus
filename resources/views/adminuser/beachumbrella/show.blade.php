@@ -27,7 +27,7 @@
     @method('PUT')
     <p> Umbrella id: {{ $bu->id}}</p>
     <p>This is a <b>{{ $bu->type}}</b> default <br>
-      <select name="type">
+      <select class="form-control" name="type">
         @php
         $typeofumbrella = ['normal umbrella','big umbrella','Palm','gazebo'];
         @endphp
@@ -38,7 +38,7 @@
         <option value="{{ $element }}">{{ $element }}</option>
         @endif
         @endforeach
-      </select> 
+      </select>
     </p>
     <p> Umbrella created_at: {{ $bu->created_at}}</p>
     <p> Umbrella updated_at: {{ $bu->updated_at}}</p>
@@ -89,10 +89,10 @@
     {{ $theordersumbrella->links() }}
   </div>
 
-  
+
   @endif
 
-  
+
 
 
 

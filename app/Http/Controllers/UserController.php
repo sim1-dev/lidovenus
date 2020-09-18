@@ -30,7 +30,8 @@ class UserController extends Controller
         */
 
         $umbrellas = BeachUmbrella::orderBy('id','ASC')->get();
-        return view('adminuser.user.index',compact('umbrellas'));
+        $users = User::orderBy('id','ASC')->get();
+        return view('adminuser.user.index',compact('umbrellas', 'users'));
     }
 
     /**
@@ -120,7 +121,7 @@ class UserController extends Controller
         $user->address = $req->address;
         $user->name = $req->name;
         $user->updated_at = now();
-        
+
         //change orders umbrella:
         if ($user->idumbrella != $req->umbrella) {
             $user->idumbrella = $req->umbrella;
@@ -134,8 +135,8 @@ class UserController extends Controller
             }
         }
         $user->save();
-        
-        
+
+
         return redirect(route('user.show',$id))->with('success','changes made to the user');
     }
 
@@ -194,17 +195,17 @@ class UserController extends Controller
                         $orderdelete->products()->attach($prodottoid,['quantity' => $value['quantity']]);
                     }
                     //una volta completato l'inserimento provvedo alla cancellazione:
-                    
+
                     //tra order e product
                     $orders->products()->detach();
                     //tra order e umbrella
                     $orders->umbrellas()->detach();
                     //tra ordini e user
                     $orders->users()->detach();
-                    //cancello quest'ordine                    
+                    //cancello quest'ordine
                     $orders->delete();
-                    
-                    
+
+
                 }
 
                 //tra subscription e user
@@ -253,5 +254,5 @@ class UserController extends Controller
         }
     }
 
-    
+
 }

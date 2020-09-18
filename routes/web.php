@@ -22,6 +22,10 @@ use Illuminate\Http\Request;
 /* Route Users: */
 Route::get('/home', 'HomeController@index')->name('home')->middleware('is_user');
 
+Route::get('/index', function () {
+	return view('welcome');
+})->name('index');
+
 /* Redirect sul panel control: */
 /* Route Admin: */
 Route::get('/', function () {
@@ -52,61 +56,12 @@ Auth::routes([
 	'register' => false
 ]);
 
-
-//search prodotti
-/*
-Route::get ( '/search', function (Request $req) {
-    $q = $req->product;
-    if($q != ""){
-    $product = Product::where ( 'name', 'LIKE', '%' . $q . '%' )->paginate(12);
-    
-    if (count ( $product ) > 0)
-        return view ('adminuser.order.edit_order',compact('product'));
-    }
-        return back()->with(['error'=>'Prodotto non esiste']);
-} );
-*/
-/*
-    ->setPath( '' )
-     $pagination = $product->appends ( array (
-                'q' => $req->product 
-        ) );
-
-$q = $req->product;
-    if($q != ""){
-    $product = Product::where ( 'name', 'LIKE', '%' . $q . '%' )->paginate(12);
-    
-    if (count ( $product ) > 0)
-        return view ('adminuser.order.edit_order',compact('product'));
-    }
-        return back()->with(['error'=>'Prodotto non esiste']);
-
-        */
-
-
-
-//serach prodotti with ajax
-/*Route::post ( '/searchproduct', function (Request $req) {
-
-    $q = $req->searchproduct;
-    if($q != ""){
-    $product = Product::where ( 'name', 'LIKE', '%' . $q . '%' )->paginate(12);
-    
-    if (count ( $product ) > 0)
-        return response()->redirect()->view ('adminuser.order.edit_order',compact('product'));
-    }
-        return response()->json ( $req->searchproduct );
-
-})->name('searchproduct');*/
-
-/* esempio carrello: */
 Route::get('caricacarello', function() {
 
     $product = Product::find(1);// assuming you have a Product model with id, name, description & price
 	$rowId = $product->id; // generate a unique() row ID
 	 // the user ID to bind the cart contents
 
-// add the product to cart
 	\Cart::clear();
 	\Cart::add(array(
 		'id' => $rowId,
@@ -117,15 +72,12 @@ Route::get('caricacarello', function() {
 		'associatedModel' => 'Product'
 	));
 	$cart = \Cart::getContent();
-	
+
 	$carrello = $cart->toJson();
-	//$carrello = $cart;
 
 	//\Cart::session($user->id)->remove(3);
 	\Cart::clear();
 
-
-	//aggiorno cart sul db dell'user
 	$user = User::find(2);
 	//$userID = $user->id;
 	$user->cart = $carrello;
@@ -133,7 +85,7 @@ Route::get('caricacarello', function() {
 
 
 	return redirect('/');
-	
+
 });
 
 

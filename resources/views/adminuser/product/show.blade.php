@@ -42,11 +42,11 @@
 
 		<label>Change Image:</label>
 		<div class="form-group">
-			
+
 			<img src="{{ url('images_products/',$product->img) }} " width="100px" height="100px">
 			<input type="file" name="image">
 		</div>
-		
+
 		<label>Price:</label>
 		<div class="form-group">
 			<input type="number" step="0.01" name="price" value="{{ $product->price}}">
@@ -55,7 +55,7 @@
 		<label>Brand:</label>
 		<div class="form-group">
 			Default brand: <a href="{{ route('brand.show',$product->brand) }}">{{ $product->brand }}</a><br>
-			<select name="brand">
+			<select class="form-control" name="brand">
 				@foreach ($brand as $element)
 				@if ($element->id == $product->brand)
 				<option selected value="{{ $element->id }}">{{ $element->name }}</option>
@@ -69,7 +69,7 @@
 
 		<div class="form-group">
 			Category:<br>
-			<select name="category">
+			<select class="form-control" name="category">
 				@php
 				$category = ['Drinks','Ice creams','Pizzas','Desk'];
 				@endphp
@@ -79,18 +79,18 @@
 				@else
 				<option value="{{ $element }}">{{ $element }}</option>
 				@endif
-				
+
 				@endforeach
 			</select>
 		</div>
-		
+
 		<label>Timestamp:</label>
 		<div class="form-group">
 			<b>created_at:</b>&nbsp;&nbsp;{{ $product->created_at}}<br>
 			<b>updated_at:</b>&nbsp;&nbsp;{{ $product->updated_at}}
 		</div>
 
-		
+
 
 		<input type="submit" class="btn btn-info" style="float: right;" value="Update">
 	</form>
@@ -99,9 +99,9 @@
 <br><br><br><br>
 
 <div class="container" style="background-color: #fff;width: auto;text-align: center;">
-	
 
-	
+
+
 
 
 

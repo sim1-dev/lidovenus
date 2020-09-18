@@ -10,14 +10,14 @@
 @include('layouts.alert')
 
 <div class="row">
-  <!-- 1 -->   
+  <!-- 1 -->
   <div class="col-sm-4">
-  
+
     <form id="registerumbrella" class="px-2 py-2" action="{{ route('beachumbrella.store') }}" method="POST">
       @csrf
       <div class="form-group"><br>
         <label>Create</label><br>
-        <select name="type">
+        <select class="form-control" name="type">
           <option value="normal umbrella">normal umbrella</option>
           <option value="big umbrella">big umbrella</option>
         </select>
@@ -47,19 +47,19 @@
       @csrf
       <div class="form-group">
         <label>Delete</label><br>
-        
+
         <input type="text" class="form-control" min="1" id="idumbrelladelete" name="idumbrelladelete" placeholder="Insert id umbrella">
       </div>
       <button id="buttonumbrelladelete" type="submit" style="float: right;" class="btn btn-primary">Delete</button>
     </form>
   </div>
 </div>
-</div> 
+</div>
 <br>
 
 <div class="row">
-  
-</div> 
+
+</div>
 
 
 
@@ -96,7 +96,7 @@
     var id = $("#idumbrella").val();
     $ciao = $("#showumbrella").attr("action",linkbasic+"/"+id);
 
-  }; 
+  };
 })( jQuery );
 
 </script>
@@ -117,7 +117,7 @@
     }
   });
 
-  
+
 
 
 

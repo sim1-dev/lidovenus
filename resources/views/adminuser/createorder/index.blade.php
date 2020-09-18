@@ -9,67 +9,67 @@
 @section('content')
 @include('layouts.alert')
 
-<div class="container text-center" style="background-color: #fff;width: auto;">   
+<div class="container text-center" style="background-color: #fff;width: auto;">
   <h4>Choose product :</h4>
   <form action="{{ route('createorder.store') }}" method="POST" name="insertorder">
     @csrf
     &nbsp;
 
 
-    <select required="" name="users" id="users">
+    <select class="form-control" required="" name="users" id="users">
       <option value="">Select User</option>
       @foreach ($users as $element)
       <option value="{{ $element->id }}">{{ $element->name }}</option>
-      @endforeach  
+      @endforeach
     </select>
 
 
-    <select required="" name="umbrella" id="umbrella">
+    <select class="form-control" required="" name="umbrella" id="umbrella">
       <option value="">Umbrella</option>
       @foreach ($umbrellas as $element)
       <option value="{{ $element->id }}">{{ $element->id }}</option>
-      @endforeach  
+      @endforeach
     </select>
 
 
-    <select required="" name="product" id="product">
+    <select class="form-control" required="" name="product" id="product">
       <option value="">Select product</option>
       @foreach ($products as $element)
       <option value="{{ $element->id }}">{{ $element->name }}</option>
-      @endforeach  
+      @endforeach
     </select>
 
-    
+
     <!-- In base a cosa seleziono sulla select product_id_name -->
-    <select required="" name="quantity" id="quantity">
+    <select class="form-control" required="" name="quantity" id="quantity">
       <option value="">Quantity</option>
     </select>
 
-    
+
 
     <br>
     <small>Choose another product or not :</small><br>
     &nbsp;
 
-    <select name="product2" id="product2">
+    <select class="form-control" name="product2" id="product2">
       <option value="">Select product</option>
       @foreach ($products as $element)
       <option value="{{ $element->id }}">{{ $element->name }}</option>
-      @endforeach  
+      @endforeach
     </select>
 
     <!-- In base a cosa seleziono sulla select product_id_name -->
-    <select name="quantity2" id="quantity2">
+    <select class="form-control" name="quantity2" id="quantity2">
       <option value="">Quantity</option>
     </select>
 
-    
+
 
     <br>
     <br>
     <input type="submit" class="btn btn-primary" name="create" id="create" value="Create">
   </form>
-  
+
 </div>
 
 

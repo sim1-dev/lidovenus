@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Api;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Order;
 use App\Product;
@@ -15,14 +16,7 @@ class OrderController extends Controller
      */
     public function index()
     {
-        $order = Order::orderBy('created_at','ASC')->where('delivered',"!=", 1)->first();
-        if ($order) {
-            return redirect(route('order.show',$order->id));
-            //return view('adminuser.order.cyclinganorder')->with('order',$order);
-        }
-        return redirect('admin/panelcontrol')->with('success','The orders are finished.');
-        
-        
+
     }
 
     /**
@@ -32,6 +26,18 @@ class OrderController extends Controller
      */
     public function create()
     {
+      //Capisco di quale order si sta parlando:
+      $order = Order::find(request('orderid'));
+      $cartOrder = json_decode($order->id_products,true);
+      if (!empty($cartOrder)) {
+        \Cart::session(1)->add($cartOrder);
+      }
+
+      //Passo alla pagina:
+      $cart = \Cart::session(1)->getContent();
+      $cart_total = \Cart::session(1)->getTotal();
+      
+      return response()->json(['cart' => $cart,'cart_total' => $cart_total]);
 
     }
 
@@ -43,14 +49,37 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
+      $product = Product::find($request->product);
+      //Se c e già nel carrello:
+      if (\Cart::session(1)->get($product->id)) { 
+      }
+      //Non c'é nel carrello:
+      else{
+        \Cart::session(1)->add(array(
+          'id' => $product->id,
+          'name' => $product->name,
+          'price' => $product->price,
+          'quantity' => 1,
+          //'attributes' => array(),
+          'associatedModel' => 'Product'
+        ));
 
-        $order = Order::find($request->idorder);
-        $order->delivered = 1;
+        $product->quantitystock = $product->quantitystock - 1;
+        $product->save();
+
+        $order = Order::find($request->orderid);
+        $cart = \Cart::session(1)->getContent();
+        $order->id_products = $cart->toJson();
         $order->save();
-        return redirect('/admin/panelcontrol')->with('success','Order closed');
-        //return redirect()->route('panelcontrol')
-        
+      }
+
+      
+
+      $cart = \Cart::session(1)->getContent();
+      $cart_total = \Cart::session(1)->getTotal();
+      return response()->json(['cart' => $cart,'cart_total' => $cart_total]);
     }
+
 
     /**
      * Display the specified resource.
@@ -60,11 +89,7 @@ class OrderController extends Controller
      */
     public function show($id)
     {
-        $order = Order::find($id);
-        if ($order) {
-            return view('adminuser.order.cyclinganorder',compact('order'));
-        }
-        return redirect('/admin/panelcontrol')->with('error','non exist order');
+        //
     }
 
     /**
@@ -75,21 +100,7 @@ class OrderController extends Controller
      */
     public function edit($id)
     {
-        \Cart::clear();
-        \Cart::session(1)->clear();//cart default
-        \Cart::session(2)->clear();//cart for alteration
-
-        $order = Order::find($id);
-        if ($order) {
-            $carrello =json_decode($order->id_products, true);
-            $orderid = $order->id;
-            $delivered = $order->delivered;
-            
-            return view('adminuser.order.edit_order',compact('orderid','delivered'));
-        }
-        else{
-            return redirect('/admin/panelcontrol')->with('error','non exist order');
-        }
+        //
     }
 
     /**
@@ -101,27 +112,89 @@ class OrderController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $order = Order::find($id);
-        $order->delivered = $request->delivered;
-        $order->save();
-        return redirect()->route('order.index');//return redirect()->route('order.index');
-    }
+      $product = Product::find($id);
+      $productQuantityOnDb = $product->quantitystock;
+      $productInput = $request->numberproduct;
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+      $productOnCart = \Cart::session(1)->get($id);
+      $productOnCartArray = $productOnCart->toArray();
+
+      $order = Order::find($request->orderid);
+      
+      if ($productQuantityOnDb > 0 || $productInput < $productOnCartArray['quantity'] ) {
+      
+      if ($productInput > 0) {
+      
+      switch ($productInput) {
+        //$productInput == $itemproduct->quantity GESTITO DA VUE
+        case $productInput > $productOnCartArray['quantity']:
+          $result = $productInput - $productOnCartArray['quantity'];
+          \Cart::session(1)->update($id, array(
+            'quantity' => $result, // so if the current product has a quantity of 4, another 2 will be added so this will result to 6
+          ));
+
+          $product->quantitystock = $product->quantitystock - $result;
+          $product->save();
+          break;
+
+          case $productInput < $productOnCartArray['quantity']:
+            $result = $productInput - $productOnCartArray['quantity'];
+            // you may also want to update a product by reducing its quantity, you do this like so:
+            \Cart::session(1)->update($id, array(
+              'quantity' => $result, // so if the current product has a quantity of 4, it will subtract 1 and will result to 3
+            ));
+  
+            $product->quantitystock = $product->quantitystock + abs($result);
+            $product->save();
+            break;
+
+          
+        default:
+          break;
+      }
+      $cart = \Cart::session(1)->getContent();
+      $order->id_products = $cart->toJson();
+      $order->save();
+    }
+  }
+      $cart = \Cart::session(1)->getContent();
+      $cart_total = \Cart::session(1)->getTotal();
+      return response()->json(['cart' => $cart,'cart_total' => $cart_total]);
+  }
+
+    
+    public function deleteproduct(Request $request, $id)
     {
-        //
+
+      \Cart::session(1)->remove($id);
+      $cart = \Cart::session(1)->getContent();
+      $cart_total = \Cart::session(1)->getTotal();
+
+      $product = Product::find($id);
+      $product->quantitystock = $product->quantitystock + $request->quantity;
+      $product->save();
+
+      $order = Order::find($request->orderid);
+      $order->id_products = $cart->toJson();
+      $order->save();
+      return response()->json(['cart' => $cart,'cart_total' => $cart_total]);
+    
     }
 
-    public function ciao(){
-
-        $cart = \Cart::getContent();
-        $cart2 = Product::select('category')->distinct('category')->get();
-        return $cart2;
+    public function SaveOrder(Request $request, $id)
+    {
+      $order = Order::find($id);
+      $order->delivered = $request->delivered;
+      $order->save();
+      return true;
     }
 }
+
+
+
+
+
+
+
+
+

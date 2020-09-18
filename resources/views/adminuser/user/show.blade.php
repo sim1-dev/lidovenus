@@ -30,7 +30,7 @@
   <p> User id: {{ $user->id }}</p>
   <hr>
   <p> Registered by: {{ $user->created_at}}</p>
-  
+
 
   <form action="{{ route('user.update',$user->id) }}" method="POST">
     @csrf
@@ -48,11 +48,11 @@
     <label>Address:</label><br>
     <input type="text" name="address" style="width: 66%" value="{{ $user->address }}"><br>
 
-    
+
     {{--
       @if ($user->idumbrella)
     <label>Current umbrella: {{ $user->idumbrella }}&nbsp;&nbsp;</label>
-      <select name="umbrella">
+      <select class="form-control" name="umbrella">
       <option value="{{ $user->idumbrella }}">{{ $user->idumbrella }}</option>
       @foreach ($umbrellass as $element)
       <option value="{{ $element->id }}">{{ $element->id }}</option>
@@ -60,7 +60,7 @@
     </select>
      @else
     <label>No umbrella Assigned</label>
-    <select name="umbrella">
+    <select class="form-control" name="umbrella">
       <option value="">Select umbrella</option>
       @foreach ($umbrellass as $element)
       <option value="{{ $element->id }}">{{ $element->id }}</option>
@@ -69,7 +69,7 @@
     @endif
 
     --}}
-    
+
 
 
 
@@ -100,7 +100,7 @@
 
 
         @foreach ($orders as $element){{-- Avere l'id users && Id ombrellone --}}
-        
+
         <tr role="row">
           <td><a href="{{ route('order.show',$element->id) }}">{{ $element->id }}</a></td>
           <td>
@@ -117,11 +117,11 @@
 
             $productNumber = 0;
             $totalOrder = 0;
-            foreach ($items as $key=>$value) { 
+            foreach ($items as $key=>$value) {
               $productNumber += $value->quantity;
               $totalOrder = $value->quantity * $value->price;
               echo $value->name."(".$value->quantity.")";
-            } 
+            }
             @endphp
 
           </td>
@@ -147,7 +147,7 @@
           </td>
         </tr>
 
-        
+
         @endforeach
       </ul>
     </tbody>
@@ -184,23 +184,23 @@
     <tbody>
       <ul>
         @foreach ($subscriptions as $element){{-- Avere l'id users && Id ombrellone --}}
-        
+
         <tr role="row">
           <td>{{ $element->id }}</td>
           <td><a href="{{ route('beachumbrella.show',$element->idumbrella) }}">{{ $element->idumbrella }}</a></td>
           <td>{{ $element->from }}</td>
           <td>{{ $element->to }}</td>
-          
+
 
           <td class="text-center">
             <a style="display:inline;float:left" href="">
               <img width="20px" height="20px" src="{{ asset('img/search.png') }}">
             </a>
-            
+
           </td>
         </tr>
 
-        
+
         @endforeach
       </ul>
     </tbody>
@@ -233,7 +233,7 @@
     var id = $("#ordernumber").val();
     $ciao = $("#search").attr("action",linkbasic+"/"+id);
 
-  }; 
+  };
 })( jQuery );
 
 </script>

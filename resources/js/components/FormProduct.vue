@@ -20,7 +20,7 @@
             </div>
 
             <div>
-                <select v-model="category_name" style="width: 20%">
+                <select class="form-control" v-model="category_name" style="width: 20%">
                     <option value="">All product</option>
                     <option v-for="cat in category" :value="cat.category">
                         {{ cat.category }}
@@ -93,10 +93,10 @@
             Delivered [v]
         </label>
         <label v-else>
-            Delivered 
+            Delivered
         </label>
         <br>
-        
+
 
 
     </div>
@@ -188,7 +188,7 @@ export default {
         search_product(value) {
             this.getResults();
         },
-        
+
     },
 
     methods: {
@@ -203,7 +203,7 @@ export default {
         },
         // Our method to GET results from a Laravel endpoint
         getResults(page = 1) {
-            axios.get('/api/product?page=' + page 
+            axios.get('/api/product?page=' + page
                 + '&category_name=' + this.category_name
                 + '&sort_field=' + this.sort_field
                 + '&sort_direction=' + this.sort_direction
@@ -230,8 +230,8 @@ export default {
 
 
 
-        
-        
+
+
          //index
         /*checkMaxQuantity: function(event){
 
@@ -240,19 +240,19 @@ export default {
 
             }).then(response => {
                 console.log(response);
-                
+
             }).catch(error => {
                 console.log(error);
 
             });
         },*/
 
-        
+
 
         //post store
         add_product_to_cart(id){
             //console.log(id.target.value);
-            
+
             axios.post('/orderedit', {
                 product:id.target.value,
                 //orderid:this.orderid,
@@ -288,7 +288,7 @@ export default {
 
             });
 
-            
+
         },
 
         //delete
@@ -324,8 +324,8 @@ export default {
             }).then(response => {
                 //console.log(response);
                 window.location.href = '/admin/order/'+this.orderid+'/edit';
-                
-                
+
+
             }).catch(function (error) {
 
                 console.log(error)
@@ -334,7 +334,7 @@ export default {
 
         },
 
-        
+
     }
 }
 </script>

@@ -12,6 +12,10 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/login.js') }}" defer></script>
+    <script
+    src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+    integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
+    crossorigin="anonymous"></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -20,70 +24,99 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/animate/animate.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/css-hamburgers/hamburgers.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/animsition/css/animsition.min.css') }}" rel="stylesheet">
     <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet">
-     <link href="{{ asset('css/util.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/themify-icons/themify-icons.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/util.css') }}" rel="stylesheet">
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/theme_style.css') }}" rel="stylesheet">
+
+
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    <img src="{{ asset('img/3263.jpg') }}" style="max-width:88px">
-                    {{ config('app.name', 'Lido Venus') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav mr-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ml-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li class="nav-item">
-                                <a class="nav-link book_btn d-none d-lg-block" href="{{ route('login') }}">{{ __('Login') }}</a>
-                            </li>
-                            @if (Route::has('register'))
-                                <li class="nav-item book_btn d-none d-lg-block">
-                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                                </li>
-                            @endif
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+        <header class="header_area "style="position:relative !important">
+            <div class="header-top">
+              <div class="container">
+                <div class="d-flex align-items-center">
+                  <div id="logo">
+                    <a href="{{ url('/') }}"><img src="{{ asset('img/3263.jpg') }}" style="max-width:88px" alt="" title="" /></a>
+                  </div>
+                  <h2 class="mx-2">Lido Venus</h2>
+                  <div class="ml-auto d-none d-md-block d-md-flex">
+                    <div class="media header-top-info">
+                <i class="fas fa-2x fa-phone-volume" style="padding:7px;padding-right:15px;color:#c2b280"></i>
+                      <div class="media-body">
+                        <p>Hai bisogno di informazioni?</p>
+                        <p>Chiamaci: <a href="tel:+12 365 5233">+39 345 523 3133</a></p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        </nav>
 
-        <main class="py-4">
+
+            <div class="main_menu">
+              <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                  <!-- Brand and toggle get grouped for better mobile display -->
+                  <!-- <a class="navbar-brand logo_h" href="index.html"><img src="img/logo.png" alt=""></a> -->
+                  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                  aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                  </button>
+                  <!-- Collect the nav links, forms, and other content for toggling -->
+                  <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav">
+                    <li class="nav-item active"><a class="nav-link" href="{{ url('/index') }}">Home</a></li>
+                      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+                      <li class="nav-item"><a class="nav-link" href="properties.html">Properties</a></li>
+                      <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                      <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                        aria-expanded="false">Blog</a>
+                        <ul class="dropdown-menu">
+                          <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                          <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog Details</a></li>
+                        </ul>
+                      </li>
+                    <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Login</a></li>
+                    </ul>
+                  </div>
+
+                  <ul class="social-icons ml-auto">
+                    <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
+                    <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-google-plus-g"></i></a></li>
+                    <li><a href="#"><i class="fas fa-rss"></i></a></li>
+                  </ul>
+                </div>
+              </nav>
+
+              <!-- <div class="search_input" id="search_input_box">
+                <div class="container">
+                  <form class="d-flex justify-content-between">
+                    <input type="text" class="form-control" id="search_input" placeholder="Search Here">
+                    <button type="submit" class="btn"></button>
+                    <span class="lnr lnr-cross" id="close_search" title="Close Search"></span>
+                  </form>
+                </div>
+              </div> -->
+            </div>
+            </header>
+
+        <main>
             @yield('content')
         </main>
-    </div>
+
+</div>
 </body>
 </html>

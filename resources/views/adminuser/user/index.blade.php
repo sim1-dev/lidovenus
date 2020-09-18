@@ -20,7 +20,7 @@
 @endif
 
 <div class="row">
-  <!-- 1 -->   
+  <!-- 1 -->
   <div class="col-sm-4">
 
     <form id="registeruser" class="px-2 py-2" action="{{ route('user.store') }}" method="POST">
@@ -35,21 +35,22 @@
       </div>
 
       <div class="form-group" style="text-align: center;">
-        Choose umbrella, or not: <br>
-        <select id="umbrella" name="umbrella">
+        Seleziona ombrellone <br>
+        <select class="form-control" id="umbrella" name="umbrella">
 
           <option selected="" value="">Null</option>
           @foreach ($umbrellas as $umbrella)
-          <option value="{{ $umbrella->id }}">{{ $umbrella->id }}</option>
+          <option value="{{ $umbrella->id }}">Ombrellone {{ $umbrella->id }} - {{ $umbrella->type }} </option>
           @endforeach
 
         </select>
+
       </div>
 
       <div id="insertdate" style='text-align: center; visibility: hidden;'>
         inizio:<input id="dateinputdal" name='dateinputdal' placeholder="Insert date" type='text' /><br>
         fine:<input id="dateinputal" name='dateinputal' placeholder="insert date" type='text'/>
-        
+
       </div>
       <button type="submit" style="float: right;" class="btn btn-primary">Create</button>
     </form>
@@ -92,19 +93,39 @@
 
   </div>
 </div>
-</div> 
+</div>
 <br>
 
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Cognome</th>
+        <th scope="col">Email</th>
+        <th scope="col">Azioni</th>
+      </tr>
+    </thead>
+    <tbody>
+    @foreach ($users as $user)
+      <tr>
+        <th scope="row">{{ $user->id }}</th>
+        <td>{{ $user->name }}</td>
+        <td>{{ $user->surname }}</td>
+        <td>{{ $user->email }}</td>
+        <td>
+            <form action="{{ route('user.destroy','') }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <input type="number" hidden class="form-control" min="1" id="iduserdelete" name="iduserdelete" placeholder="{{ $user->id }}">
+            <button type="submit" class="btn btn-danger">Elimina</button>
+            </form>
+        </td>
+      </tr>
+    @endforeach
+    </tbody>
+  </table>
 
-{{-- 
-<div class="row">
-  <div class="col-sm-8">
-
-    <div id="chartDiv" style="width: 700px;height: 220px;margin: 0px auto"></div>
-
-  </div>
-
-  --}}
   @stop
 
   @section('css')
@@ -129,7 +150,7 @@
       $("#showuser").trigger("reset");
     });
 
-    $('#umbrella').on('input', function() { 
+    $('#umbrella').on('input', function() {
       $val = $(this).val();
       if ($val != '') {
 
@@ -147,11 +168,11 @@
       }).then(response => {
         //console.log(response);
 
-          
+
           // array to hold the range
           dateRange = [];
           //devo usare l'array adesso:
-          
+
           $.each(response, function(key,value) {
             $.each(value.subs, function(keys,values) {
               //console.log(values.id);
@@ -165,12 +186,12 @@
 
             });
           });
-          
+
           $('dateinputdal').datepicker('setDate', null);
           $('dateinputal').datepicker('setDate', null);
           $('#dateinputdal').datepicker({
 
-            // use this array 
+            // use this array
             beforeShowDay: function (date) {
               var dateString = jQuery.datepicker.formatDate('yy-mm-dd', date);
               return [dateRange.indexOf(dateString) == -1];
@@ -180,14 +201,14 @@
 
           $('#dateinputal').datepicker({
 
-            // use this array 
+            // use this array
             beforeShowDay: function (date) {
               var dateString = jQuery.datepicker.formatDate('yy-mm-dd', date);
               return [dateRange.indexOf(dateString) == -1];
             }
 
           });
-          
+
 
 
         }).catch(function (error) {
@@ -199,7 +220,7 @@
 
 
 
-{{-- 
+{{--
 
 
 disabilitare la singola data
@@ -235,7 +256,7 @@ var unavailableDates = ["9-9-2020"];
           dateFormat:'dd/mm/yy',
 
 
-        // use this array 
+        // use this array
         beforeShowDay: function (date) {
             var dateString = jQuery.datepicker.formatDate('yy-mm-dd', date);
             return [dateRange.indexOf(dateString) == -1];
@@ -280,7 +301,7 @@ var unavailableDates = ["9-9-2020"];
     var id = $("#iduser").val();
     $ciao = $("#showuser").attr("action",linkbasic+"/"+id);
 
-  }; 
+  };
 })( jQuery );
 
 </script>
@@ -328,50 +349,50 @@ var unavailableDates = ["9-9-2020"];
 <script type="text/javascript">
 
       /*
-      
-       
-var chart, 
-  chartConfig = { 
-    debug: true, 
-    type: 'calendar year solid', 
-    title: { 
-      label: { 
-        text: 'Subscription of Umbrella', 
-        style_fontSize: 14 
-      }, 
-      position: 'center'
-    }, 
-    legend: { 
-      position: 'bottom', 
-      template: '%name'
-    }, 
-    calendar: { 
-      range: ['1/1/2018', '12/31/2018'], 
-      defaultEmptyPoint: { tooltip: '%name' } 
-    }, 
-    defaultSeries: { 
-      shape_innerPadding: 0, 
-      defaultPoint_tooltip: '%name'
-    }, 
-    toolbar_visible: false
-  }; 
-  
 
-  chart = JSC.chart('chartDiv',chartConfig); 
+
+var chart,
+  chartConfig = {
+    debug: true,
+    type: 'calendar year solid',
+    title: {
+      label: {
+        text: 'Subscription of Umbrella',
+        style_fontSize: 14
+      },
+      position: 'center'
+    },
+    legend: {
+      position: 'bottom',
+      template: '%name'
+    },
+    calendar: {
+      range: ['1/1/2018', '12/31/2018'],
+      defaultEmptyPoint: { tooltip: '%name' }
+    },
+    defaultSeries: {
+      shape_innerPadding: 0,
+      defaultPoint_tooltip: '%name'
+    },
+    toolbar_visible: false
+  };
+
+
+  chart = JSC.chart('chartDiv',chartConfig);
   */
  /*
- 
- , 
-    function(c) { 
-      //This timeout will ensure the chart is rendered before processing additional year. 
-      setTimeout(function() { 
-        c.options({ 
-          calendar: { 
-            range: ['1/1/2020', '1/1/2021'] 
-          } 
-        }); 
-      }, 200); 
-    } 
+
+ ,
+    function(c) {
+      //This timeout will ensure the chart is rendered before processing additional year.
+      setTimeout(function() {
+        c.options({
+          calendar: {
+            range: ['1/1/2020', '1/1/2021']
+          }
+        });
+      }, 200);
+    }
 
     */
 

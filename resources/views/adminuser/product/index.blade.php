@@ -21,7 +21,7 @@
 
 
 <div class="row">
-  <!-- 1 -->   
+  <!-- 1 -->
   <div class="col-sm-4">
 
    <form id="registeruser" class="px-2 py-2" enctype="multipart/form-data" action="{{ route('product.store') }}" method="POST">
@@ -39,7 +39,7 @@
 
     <div class="form-group">
       Category:<br>
-      <select name="category">
+      <select class="form-control" name="category">
         @php
         $category = ['Drinks','Ice creams','Pizzas','Desk'];
         @endphp
@@ -66,11 +66,11 @@
 
     <label>Brand:</label>
     <div class="form-group">
-      <select name="brand">
+      <select class="form-control" name="brand">
         @foreach ($brand as $element)
           <option value="{{ $element->id }}">{{ $element->name }}</option>
         @endforeach
-        
+
       </select>
     </div>
 
@@ -78,7 +78,7 @@
 
 
     <button type="submit" style="float: right;" class="btn btn-primary">Create</button>
-  </form> 
+  </form>
 
 </div>
 
@@ -109,12 +109,12 @@
   </form>
 </div>
 </div>
-</div> 
+</div>
 <br>
 
 <div class="row">
 
-</div> 
+</div>
 
 
 
@@ -151,7 +151,7 @@
     var id = $("#idumbrella").val();
     $ciao = $("#showumbrella").attr("action",linkbasic+"/"+id);
 
-  }; 
+  };
 })( jQuery );
 
 </script>
@@ -172,7 +172,7 @@
     }
   });
 
-  
+
 
 
 
