@@ -18,6 +18,10 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        if (Auth::check()) {
+            return redirect('/admin/panelcontrol');
+        }
+
         if (Auth::guard($guard)->check()) {
             if (Auth()::user()->is_admin) {
                 return redirect('/admin/panelcontrol');
@@ -27,4 +31,5 @@ class RedirectIfAuthenticated
 
         return $next($request);
     }
+
 }

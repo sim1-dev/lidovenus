@@ -35,41 +35,18 @@
   <form action="{{ route('user.update',$user->id) }}" method="POST">
     @csrf
     @method('PUT')
-    <label>Name:</label><br>
-    <input type="text" name="name" style="width: 66%" value="{{ $user->name }}"><br>
-    <label>Surname:</label><br>
-    <input type="text" name="surname" style="width: 66%" value="{{ $user->surname }}"><br>
+    <label>Nomw:</label>
+    <input class="form-control" type="text" name="name" value="{{ $user->name }}">
+    <label>Cognome:</label>
+    <input class="form-control" type="text" name="surname" value="{{ $user->surname }}"><br>
     <label>Email:</label><br>
-    <input type="text" name="email" style="width: 66%" value="{{ $user->email }}"><br>
-    <label>Municipality:</label><br>
-    <input type="text" name="municipality" style="width: 66%" value="{{ $user->municipality }}"><br>
-    <label>Cap:</label><br>
-    <input type="text" name="cap" style="width: 66%" value="{{ $user->cap }}"><br>
-    <label>Address:</label><br>
-    <input type="text" name="address" style="width: 66%" value="{{ $user->address }}"><br>
-
-
-    {{--
-      @if ($user->idumbrella)
-    <label>Current umbrella: {{ $user->idumbrella }}&nbsp;&nbsp;</label>
-      <select class="form-control" name="umbrella">
-      <option value="{{ $user->idumbrella }}">{{ $user->idumbrella }}</option>
-      @foreach ($umbrellass as $element)
-      <option value="{{ $element->id }}">{{ $element->id }}</option>
-      @endforeach
-    </select>
-     @else
-    <label>No umbrella Assigned</label>
-    <select class="form-control" name="umbrella">
-      <option value="">Select umbrella</option>
-      @foreach ($umbrellass as $element)
-      <option value="{{ $element->id }}">{{ $element->id }}</option>
-      @endforeach
-    </select>
-    @endif
-
-    --}}
-
+    <input class="form-control" type="text" name="email"  value="{{ $user->email }}"><br>
+    <label>Comune:</label><br>
+    <input class="form-control" type="text" name="municipality"  value="{{ $user->municipality }}"><br>
+    <label>CAP:</label><br>
+    <input class="form-control" type="text" name="cap" value="{{ $user->cap }}"><br>
+    <label>Indirizzo:</label><br>
+    <input class="form-control" type="text" name="address"  value="{{ $user->address }}"><br>
 
 
 
@@ -99,7 +76,7 @@
       <ul>
 
 
-        @foreach ($orders as $element){{-- Avere l'id users && Id ombrellone --}}
+        @foreach ($orders as $element)
 
         <tr role="row">
           <td><a href="{{ route('order.show',$element->id) }}">{{ $element->id }}</a></td>
