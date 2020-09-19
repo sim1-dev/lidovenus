@@ -18,17 +18,17 @@
         <input class="form-control form-control-sm" id="ordernumber" placeholder="Enter for search">
     </form>
 </label>
-<table id="tableorders" class="table table-bordered table-hover dataTable" style="text-align: center;background-color: #fff">
+<table id="tableorders" class="table table-bordered table-hover dataTable table-striped" style="text-align: center;background-color: #fff">
     <thead>
         <tr role="row" style="width: 100%">
-            <th id="colonna1" style="width:5%;">Order id</th>
-            <th id="colonna1" style="width:5%;">User id</th>
-            <th id="colonna2" style="width:5%;">Umbrella</th>
-            <th id="colonna2" style="width:55%;">Products</th>
-            <th id="colonna3" style="width:10%;">Number of product</th>
-            <th id="colonna4" style="width:5%;">Total € Order</th>
-            <th id="timestamp" style="width: 10%;" class="header headerSortDown">Time stamp</th>
-            <th id="action" style="width:5%;">Action</th>
+            <th id="colonna1" style="width:5%;">ID</th>
+            <th id="colonna1" style="width:5%;">ID Utente</th>
+            <th id="colonna2" style="width:10%;">ID Ombrellone</th>
+            <th id="colonna2" style="width:45%;">Products</th>
+            <th id="colonna3" style="width:10%;">Quantità</th>
+            <th id="colonna4" style="width:10%;">Prezzo</th>
+            <th id="timestamp" style="width: 10%;" class="header headerSortDown">Data</th>
+            <th id="action" style="width:5%;">Azioni</th>
         </tr>
     </thead>
     <tbody>
@@ -92,7 +92,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <a href="{{ route('order.index') }}" class="btn btn-primary popup-trigger">Next order</a>
+    <a href="{{ route('order.index') }}" class="btn btn-primary popup-trigger w-100">Risolvi ordini</a>
 </div>
 
     @stop
