@@ -13,7 +13,7 @@
 
 
 <label>
-    Search number order
+    Cerca ID Ordine
     <form id="search" action="{{ route('order.show','') }}" onsubmit="$().showorder();">
         <input class="form-control form-control-sm" id="ordernumber" placeholder="Enter for search">
     </form>
@@ -21,10 +21,10 @@
 <table id="tableorders" class="table table-bordered table-hover dataTable table-striped" style="text-align: center;background-color: #fff">
     <thead>
         <tr role="row" style="width: 100%">
-            <th id="colonna1" style="width:5%;">ID</th>
-            <th id="colonna1" style="width:5%;">ID Utente</th>
+            <th id="colonna1" style="width:15%;">ID Ordine</th>
+            <th id="colonna1" style="width:15%;">ID Utente</th>
             <th id="colonna2" style="width:10%;">ID Ombrellone</th>
-            <th id="colonna2" style="width:45%;">Products</th>
+            <th id="colonna2" style="width:25%;">Prodotti</th>
             <th id="colonna3" style="width:10%;">Quantità</th>
             <th id="colonna4" style="width:10%;">Prezzo</th>
             <th id="timestamp" style="width: 10%;" class="header headerSortDown">Data</th>
@@ -69,7 +69,7 @@
                 }
                 @endphp
             </td>
-            <td style="border: 1px solid #819AD4; text-align: center;">{{ $productNumber }}</td>
+            <td class="bg-dark">{{ $productNumber }}</td>
             <td>{{ $totalOrder }} €</td>@php @endphp
             <td>{{ $element->created_at }} </td>
             <td class="text-center"><a style="display:inline;float:left" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}"></a>
@@ -92,7 +92,7 @@
 </div>
 
 <div class="d-flex justify-content-center">
-    <a href="{{ route('order.index') }}" class="btn btn-primary popup-trigger w-100">Risolvi ordini</a>
+    <a href="{{ route('order.index') }}" class="btn btn-primary popup-trigger w-100" style="max-width:100%">Risolvi ordini</a>
 </div>
 
     @stop
