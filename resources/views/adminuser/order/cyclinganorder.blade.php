@@ -3,46 +3,46 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>Order</h1>
+<h1 class="mb-5"><b>Ordine {{ $order->id}}</b></h1>
 @stop
 
 @section('content')
 
 
-<div class="container" style="background-color: #fff;width: auto;">
-  <p> Id ordine: {{ $order->id }}</p>
+<div class="container" style="width: auto;">
+  <h4><b>ID Ombrellone:</b> {{ $order->id }}</h4>
   <hr>
 
   @foreach ($order->umbrellas as $element)
-  <p> Umbrella: {{ $element->id }}</p>
+  <h4><b>ID Ombrellone:</b> {{ $element->id }}</h4>
   @endforeach
   <hr>
 
   @foreach ($order->users as $element)
-  <p> User id: {{ $element->id }}</p>
+  <h4><b>ID Utente:</b> {{ $element->id }}</h4>
   @endforeach
 
   <hr>
-  <p>Status:
+  <h4><b>Status:</b>
     @if ($order->delivered)
     Consegnato
     @else
     Non consegnato
     @endif
 
-  </p>
+  </h4>
   <hr>
-  <p> Timestamp {{ $order->created_at}}</p>
+  <h4><b>Data Ordine:</b> {{ $order->created_at}}</p>
   <table class="table" style="text-align: center;">
 
 
-    <label>Products number:</label>
+    <label><h3 class="mt-5">Prodotti:</h3></label>
     <thead>
       <tr role="row">
-        <th>Id Product:</th>
-        <th>Name:</th>
-        <th>Quantity:</th>
-        <th>Price:</th>
+        <th>ID Prodotto:</th>
+        <th>Nome Prodotto:</th>
+        <th>Quantità:</th>
+        <th>Prezzo:</th>
       </tr>
     </thead>
     <tbody>
@@ -66,7 +66,7 @@
           $c = $a * $b;
           $pricetotal += $c;
           @endphp
-          {{ $c }}
+          {{ $c }}€
 
         </td>
       </tr>
@@ -77,15 +77,15 @@
   <label>Totale: {{ $pricetotal }} €</label><br><br>
 
   @if (!$order->delivered)
-  <a class="btn btn-light" style="float: left;" href="{{ route('order.edit',$order->id) }}">Modifica</a><!-- LANCIO IL CREATE -->
+  <a class="btn btn-warning" style="float: left;" href="{{ route('order.edit',$order->id) }}">Modifica Ordine</a>
   <div style="float: right;">
-    <a class="btn btn-info" href="{{ route('panelcontrol') }}">Back to the orders</a>
+    <a class="btn btn-danger" href="{{ route('panelcontrol') }}">Torna al riepilogo ordini</a>
     &nbsp;
     <form action="{{ route('order.store') }}" style="display:inline;" method="POST">
       @csrf
       @method('POST')
       <input type="hidden" name="idorder" value="{{ $order->id }}">
-      <input id="backtopanel"  class="btn btn-outline-dark" type="submit"  value="Close and back to panel">
+      <input id="backtopanel"  class="btn btn-info" type="submit"  value="Chiudi ordine e torna al riepilogo">
     </form>
 
     &nbsp;
@@ -94,7 +94,7 @@
       @csrf
       @method('PUT')
       <input type="hidden" name="delivered" value="1">
-      <input id="nextorder"  class="btn btn-primary" type="submit" value="Next order">
+      <input id="nextorder"  class="btn btn-success" type="submit" value="Chiudi ordine e passa al successivo">
     </form>
 
   </div>

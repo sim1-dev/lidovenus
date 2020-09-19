@@ -11,14 +11,15 @@
 
 
 
-
-<label>
-    Cerca ID Ordine
+<div class="container-fluid">
+<label class="m-2 ml-0" style="font-size:24px">
+    Cerca Ordine</label>
     <form id="search" action="{{ route('order.show','') }}" onsubmit="$().showorder();">
-        <input class="form-control form-control-sm" id="ordernumber" placeholder="Enter for search">
+        <input class="form-control form-control-md w-25 m-2 ml-0 float-left" id="ordernumber" placeholder="Inserisci ID Ordine">
+        <button type="submit" class="btn btn-primary m-2 ml-0 float-left">Cerca</button>
     </form>
-</label>
-<table id="tableorders" class="table table-bordered table-hover dataTable table-striped" style="text-align: center;background-color: #fff">
+</div>   
+<table id="tableorders" class="table table-bordered table-hover dataTable table-striped" style="text-align: center;">
     <thead>
         <tr role="row" style="width: 100%">
             <th id="colonna1" style="width:15%;">ID Ordine</th>
@@ -65,20 +66,20 @@
                 foreach ($items as $key => $value) {
                     $productNumber++;
                     $totalOrder += $value->quantity * $value->price;
-                    echo $value->name."("."<strong>".$value->quantity."</strong>".")".'&ensp;';
+                    echo $value->name."<strong> x".$value->quantity."</strong>".'&ensp;';
                 }
                 @endphp
             </td>
-            <td class="bg-dark">{{ $productNumber }}</td>
+            <td >{{ $productNumber }}</td>
             <td>{{ $totalOrder }} €</td>@php @endphp
             <td>{{ $element->created_at }} </td>
-            <td class="text-center"><a style="display:inline;float:left" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}"></a>
+            <td class="text-center"><a style="display:inline;float:left" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}" data-toggle="tooltip" data-placement="top" title="Visualizza ordine"></a>
 
                 <form style="display:inline;float:right" action="{{ route('order.store') }}" method="POST">
                     @csrf
                     @method('POST')
                     <input type="hidden" name="idorder" value="{{ $element->id }}">
-                    <input class="ordercompleted" type="image" src="{{ asset('img/tick.png') }}" width="20" height="20">
+                    <input class="ordercompleted" type="image" src="{{ asset('img/tick.png') }}" width="20" height="20" data-toggle="tooltip" data-placement="top" title="Risolvi ordine">
                 </form>
             </td>
         </tr>
@@ -159,14 +160,14 @@
         th.headerSortUp{
 
             background-image: url('/img/up-arrow.png');
-            background-color: #819AD4;
+           /* background-color: #819AD4;*/
             background-repeat: no-repeat;
             background-position: center right;
         }
 
         th.headerSortDown{
             background-image: url('/img/down-arrow.png');
-            background-color: #819AD4;
+            /*background-color: #819AD4;*/
             background-repeat: no-repeat;
             background-position: center right;
         }
@@ -251,6 +252,10 @@
      $.fn.showorder = function() {
         var id = $("#ordernumber").val();
         $ciao = $("#search").attr("action",linkb+"/"+id);
+
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
 
     };
 })( jQuery );
