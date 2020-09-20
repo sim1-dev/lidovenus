@@ -158,9 +158,9 @@
           <div class="col-md-8">
             <!-- MAP & BOX PANE -->
             <div class="card">
-              <div class="card-header border-0">
+              <div class="card-header border-0 bg-dark">
                 <div class="d-flex justify-content-between">
-                  <h3 class="card-title">Monitor Sales with Price</h3>
+                  <h3 class="card-title">Grafico prodotti venduti per prezzo</h3>
                   <!-- <a href="javascript:void(0);">View Report</a> -->
                 </div>
               </div>
@@ -185,11 +185,11 @@
 
               <div class="d-flex flex-row justify-content-end">
                 <span class="mr-2">
-                  <i class="fas fa-square text-green"></i> This Year
+                  <i class="fas fa-square" style="color:#c2b280"></i> 2020
                 </span>
 
                 <span>
-                  <i class="fas fa-square text-gray"></i> Last Year
+                  <i class="fas fa-square text-gray"></i> 2019
                 </span>
               </div>
             </div>
@@ -199,7 +199,7 @@
           <!-- TABLE: LATEST ORDERS -->
           <div class="card collapsed-card">
             <div class="card-header border-transparent">
-              <h3 class="card-title">Latest Orders</h3>
+              <h3 class="card-title">Ultimi ordini</h3>
 
               <div class="card-tools">
                 <button type="button" class="btn btn-tool" data-card-widget="collapse">
@@ -223,62 +223,16 @@
                     </tr>
                   </thead>
                   <tbody>
+                    @foreach ($Lastest_completed_orders as $orders)
                     <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
+                      <td> {{$orders->id}} </td>
+                      <td>{{$orders->id}} </td>
                       <td><span class="badge badge-success">Shipped</span></td>
                       <td>
                         <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
                       </td>
                     </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-info">Processing</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00c0ef" data-height="20">90,80,-90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR1848</a></td>
-                      <td>Samsung Smart TV</td>
-                      <td><span class="badge badge-warning">Pending</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR7429</a></td>
-                      <td>iPhone 6 Plus</td>
-                      <td><span class="badge badge-danger">Delivered</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td><a href="pages/examples/invoice.html">OR9842</a></td>
-                      <td>Call of Duty IV</td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
-                    </tr>
+                    @endforeach
                   </tbody>
                 </table>
               </div>
@@ -286,8 +240,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
-              <a href="javascript:void(0)" class="btn btn-sm btn-info float-left">Place New Order</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">View All Orders</a>
+              <a href="{{ url('/admin/createorder') }}" class="btn btn-sm btn-info float-left">Crea nuovo ordine</a>
+              <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Visualizza ordini</a>
             </div>
             <!-- /.card-footer -->
           </div>
@@ -596,9 +550,9 @@
       borderColor         : '#000',
       pointRadius          : true,
       pointColor          : '#3b8bba',
-      pointStrokeColor    : 'rgba(60,141,188,1)',
+      pointStrokeColor    : '#c2b280',
       pointHighlightFill  : '#fff',
-      pointHighlightStroke: 'rgba(60,141,188,1)',
+      pointHighlightStroke: '#c2b280',
       borderWidth: 1.5,
         data                : month//intervallo valori
       },
@@ -705,7 +659,7 @@
           type                : 'line',
           data                : month_price,
           backgroundColor     : 'transparent',
-          borderColor         : 'green',
+          borderColor         : '#c2b280',
           pointBorderColor    : '#000',
           pointBackgroundColor: '#000',
           fill                : false

@@ -29,7 +29,7 @@
 <div class="container" style="background-color: #fff;width: auto;text-align: center;">
   <p> User id: {{ $user->id }}</p>
   <hr>
-  <p> Registered by: {{ $user->created_at}}</p>
+  <p> Data Registrazione: {{ $user->created_at}}</p>
 
 
   <form action="{{ route('user.update',$user->id) }}" method="POST">

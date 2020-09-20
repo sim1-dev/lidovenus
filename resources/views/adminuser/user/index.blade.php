@@ -3,7 +3,7 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>CRUD User</h1>
+<h1 class="mb-4"><b>Utenti</b></h1>
 @stop
 
 @section('content')
@@ -21,24 +21,24 @@
 
 <div class="row">
   <!-- 1 -->
-  <div class="col-sm-4">
+  <div class="col-md-6">
 
     <form id="registeruser" class="px-2 py-2" action="{{ route('user.store') }}" method="POST">
       @csrf
-      <div class="form-group"><br>
-        <label>Create</label><br>
-        <input type="text" class="form-control" required="" name="name" placeholder="name">
-        <input type="text" class="form-control" required="" name="surname" placeholder="surname">
+      <div class="form-group mb-4">
+        <h4><b>Crea utente</b></h4>
+        <input type="text" class="form-control w-50 float-left" required="" name="name" placeholder="Nome">
+        <input type="text" class="form-control w-50 float-left" required="" name="surname" placeholder="Cognome">
       </div>
-      <div class="form-group">
-        <input type="email" class="form-control" required="" name="email" placeholder="email@example.com">
+      <div class="form-group" style="padding-top:38px;padding-bottom:22px">
+        <input type="email" class="form-control" required="" name="email" placeholder="E-mail">
       </div>
 
-      <div class="form-group" style="text-align: center;">
-        Seleziona ombrellone <br>
+      <div class="form-group text-left">
+        <h5><b>Seleziona ombrellone</b></h5>
         <select class="form-control" id="umbrella" name="umbrella">
 
-          <option selected="" value="">Null</option>
+          <option selected="" value="">Nessun ombrellone</option>
           @foreach ($umbrellas as $umbrella)
           <option value="{{ $umbrella->id }}">Ombrellone {{ $umbrella->id }} - {{ $umbrella->type }} </option>
           @endforeach
@@ -47,19 +47,23 @@
 
       </div>
 
-      <div id="insertdate" style='text-align: center; visibility: hidden;'>
-        inizio:<input id="dateinputdal" name='dateinputdal' placeholder="Insert date" type='text' /><br>
-        fine:<input id="dateinputal" name='dateinputal' placeholder="insert date" type='text'/>
-
+      <div id="insertdate" style='visibility: hidden;'>
+        <div class="container-fluid my-2 p-0">
+          <label class="float-left w-50">Data Inizio:</label>
+          <label class="float-left w-50">Data Fine:</label>
+        </div>
+        <div class="container-fluid p-0">
+          <input class="form-control w-50 float-left" id="dateinputdal" name='dateinputdal' placeholder="Data inizio" type='text' /><br>
+          <input class="form-control w-50 float-left" id="dateinputal" name='dateinputal' placeholder="Data fine" type='text'/>
       </div>
-      <button type="submit" style="float: right;" class="btn btn-primary">Create</button>
+      </div>
+      <button type="submit" class="btn btn-primary w-100 mt-3">CREA UTENTE</button>
     </form>
 
   </div>
 
   <!-- 2 -->
-  <div class="col-sm-4">
-    <br>
+  <div class="col-md-6">
     @php
     $prova = 0;
     @endphp
@@ -68,42 +72,38 @@
       @method('GET')
       @csrf
       <div class="form-group">
-        <label>Show / Update</label><br>
-        <input type="number" class="form-control"min="1" id="iduser" name="iduser" placeholder="Insert id user">
+        <h4><b>Visualizza utente</b></h4>
+        <input type="number" class="form-control"min="1" id="iduser" name="iduser" placeholder="Inserisci ID Utente">
       </div>
-      <button type="submit" style="float: right;" class="btn btn-primary">Show</button>
+      <button type="submit" class="btn btn-success w-100">VISUALIZZA UTENTE</button>
     </form>
-
-  </div>
-  <!-- 3 -->
-  <div class="col-sm-4">
-
-
-    <br>
 
     <form id="deleteuser" class="px-2 py-2" action="{{ route('user.destroy','') }}" method="POST" >
       @method('DELETE')
       @csrf
-      <div class="form-group">
-        <label>Delete</label><br>
-        <input type="number" class="form-control" min="1" id="iduserdelete" name="iduserdelete" placeholder="Insert id user">
+      <div class="form-group" style="padding-top:22px;padding-bottom:86px">
+        <h5><b>Elimina utente</b></h5>
+        <input type="number" class="form-control" min="1" id="iduserdelete" name="iduserdelete" placeholder="Inserisci ID Utente">
       </div>
-      <button type="submit" style="float: right;" id="buttondelete" class="btn btn-primary">Delete</button>
+      <button type="submit" id="buttondelete" class="btn btn-danger w-100">ELIMINA UTENTE</button>
     </form>
 
   </div>
+
 </div>
 </div>
 <br>
 
+<h4 class="my-4"><b>Lista Utenti</b></h4>
+
 <table class="table table-striped">
-    <thead>
+    <thead class="table-dark">
       <tr>
         <th scope="col">#</th>
         <th scope="col">Nome</th>
         <th scope="col">Cognome</th>
         <th scope="col">Email</th>
-        <th scope="col">Azioni</th>
+        <!--<th scope="col">Azioni</th>-->
       </tr>
     </thead>
     <tbody>
@@ -113,14 +113,21 @@
         <td>{{ $user->name }}</td>
         <td>{{ $user->surname }}</td>
         <td>{{ $user->email }}</td>
-        <td>
-            <form action="{{ route('user.destroy','') }}" method="POST">
+    {{--    <td>
+          <form id="showuser" onsubmit="$().showuser();" action="{{ route('user.show','') }}" method="POST">
+            @method('GET')
+            @csrf
+            <input type="number" hidden class="form-control w-50 float-left"id="iduser" name="iduser" placeholder="{{ $user->id }}">
+            <button type="submit" class="btn btn-success">Visualizza</button>
+            </form>
+            <form id="deleteuser" action="{{ route('user.destroy','') }}" method="POST">
             @method('DELETE')
             @csrf
-            <input type="number" hidden class="form-control" min="1" id="iduserdelete" name="iduserdelete" placeholder="{{ $user->id }}">
+            <input type="number" hidden class="form-control w-50 float-left" id="iduserdelete" name="iduserdelete" placeholder="{{ $user->id }}">
             <button type="submit" class="btn btn-danger">Elimina</button>
             </form>
         </td>
+      --}}
       </tr>
     @endforeach
     </tbody>

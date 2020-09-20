@@ -45,9 +45,9 @@
               <div class="container">
                 <div class="d-flex align-items-center">
                   <div id="logo">
-                    <a href="{{ url('/') }}"><img src="{{ asset('img/3263.jpg') }}" style="max-width:88px" alt="" title="" /></a>
+                    <a href="{{ url('/') }}"><img src="{{ asset('img/sun.png') }}" style="max-width:88px" alt="" title="" /></a>
                   </div>
-                  <h2 class="mx-2">Lido Venus</h2>
+                  <h2 class="mx-4">Lido Venus</h2>
                   <div class="ml-auto d-none d-md-block d-md-flex">
                     <div class="media header-top-info">
                 <i class="fas fa-2x fa-phone-volume" style="padding:7px;padding-right:15px;color:#c2b280"></i>

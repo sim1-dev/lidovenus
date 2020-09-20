@@ -45,8 +45,8 @@ return [
     |
     */
 
-    'logo' => 'Lido<b>Venus</b>',
-    'logo_img' => 'vendor/adminlte/dist/img/beachicons.png',
+    'logo' => 'Lido<b> Venus</b>',
+    'logo_img' => 'vendor/adminlte/dist/img/sun.png',
     'logo_img_class' => 'brand-image img-circle elevation-3',
     'logo_img_xl' => null,
     'logo_img_xl_class' => 'brand-image-xs',
@@ -251,30 +251,37 @@ return [
         ],
 
         [
-            'text'    => 'Users',
+            'text'    => 'Utenti',
             'icon'    => 'fas fa-fw fa-user',
             'url'  => 'admin/user'
         ],
 
         [
-            'text'    => 'Beach Umbrella',
-            'icon'    => 'fas fa-fw fa-umbrella',
+            'text'    => 'Prodotti',
+            'icon'    => 'fas fa-fw fa-pizza-slice',
+            'url'  => 'admin/product'
+        ],
+
+        [
+            'text'    => 'Ombrelloni',
+            'icon'    => 'fas fa-fw fa-umbrella-beach',
             'url'  => 'admin/beachumbrella'
         ],
         [
-            'text'    => 'Product',
-            'icon'    => 'fas fa-fw fa-archive',
-            'url'  => 'admin/product'
-        ],
-        [
-            'text'    => 'Brand',
-            'icon'    => 'fas fa-fw fa-industry',
+            'text'    => 'Marchio',
+            'icon'    => 'fas fa-fw fa-copyright',
             'url'  => 'admin/brand'
         ],
         [
-            'text'    => 'CreateOrder',
-            'icon'    => 'fas fa-fw',
-            'url'  => 'admin/createorder'
+            'text'    => 'Funzioni di test',
+            'icon'    => 'fas fa-fw fa-vial',
+            'submenu' => [
+                [
+                    'text'    => 'Crea Ordine',
+                    'icon'    => 'fas fa-cart-plus',
+                    'url'  => 'admin/createorder'
+                ],
+            ],
         ],
 
     ],

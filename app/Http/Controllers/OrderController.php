@@ -20,7 +20,7 @@ class OrderController extends Controller
             return redirect(route('order.show',$order->id));
             //return view('adminuser.order.cyclinganorder')->with('order',$order);
         }
-        return redirect('admin/panelcontrol')->with('success','The orders are finished.');
+        return redirect('admin/panelcontrol')->with('success','Ordini conclusi.');
         
         
     }
@@ -47,7 +47,7 @@ class OrderController extends Controller
         $order = Order::find($request->idorder);
         $order->delivered = 1;
         $order->save();
-        return redirect('/admin/panelcontrol')->with('success','Order closed');
+        return redirect('/admin/panelcontrol')->with('success','Ordine concluso.');
         //return redirect()->route('panelcontrol')
         
     }
@@ -64,7 +64,7 @@ class OrderController extends Controller
         if ($order) {
             return view('adminuser.order.cyclinganorder',compact('order'));
         }
-        return redirect('/admin/panelcontrol')->with('error','non exist order');
+        return redirect('/admin/panelcontrol')->with('error','Ordine non esistente.');
     }
 
     /**
@@ -88,7 +88,7 @@ class OrderController extends Controller
             return view('adminuser.order.edit_order',compact('orderid','delivered'));
         }
         else{
-            return redirect('/admin/panelcontrol')->with('error','non exist order');
+            return redirect('/admin/panelcontrol')->with('error','Ordine non esistente.');
         }
     }
 

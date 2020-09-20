@@ -3,71 +3,63 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>Create Order</h1>
+<h1><b>Crea Ordine</b></h1>
 @stop
 
 @section('content')
 @include('layouts.alert')
 
-<div class="container text-center" style="background-color: #fff;width: auto;">
-  <h4>Choose product :</h4>
+<div class="container text-center" style="width: auto;">
   <form action="{{ route('createorder.store') }}" method="POST" name="insertorder">
     @csrf
-    &nbsp;
+
+    <h3 class="text-left my-4"><b>Informazioni cliente:</b></h3>
 
 
-    <select class="form-control" required="" name="users" id="users">
-      <option value="">Select User</option>
+    <select class="form-control w-50 float-left" required="" name="users" id="users">
+      <option value="">Utente</option>
       @foreach ($users as $element)
       <option value="{{ $element->id }}">{{ $element->name }}</option>
       @endforeach
     </select>
 
 
-    <select class="form-control" required="" name="umbrella" id="umbrella">
-      <option value="">Umbrella</option>
+    <select class="form-control w-50 float-left mb-5" required="" name="umbrella" id="umbrella">
+      <option value="">Ombrellone</b></option>
       @foreach ($umbrellas as $element)
       <option value="{{ $element->id }}">{{ $element->id }}</option>
       @endforeach
     </select>
 
+    <h3 class="text-left my-4"><b>Prodotto:</h3>
 
-    <select class="form-control" required="" name="product" id="product">
-      <option value="">Select product</option>
+
+    <select class="form-control w-50 float-left" required="" name="product" id="product">
+      <option value="">Prodotto</option>
       @foreach ($products as $element)
       <option value="{{ $element->id }}">{{ $element->name }}</option>
       @endforeach
     </select>
 
 
-    <!-- In base a cosa seleziono sulla select product_id_name -->
-    <select class="form-control" required="" name="quantity" id="quantity">
-      <option value="">Quantity</option>
+    <select class="form-control mb-5 w-50 float-left" required="" name="quantity" id="quantity">
+      <option value="">Quantità (seleziona prima il prodotto)</option>
     </select>
 
+    <h3 class="text-left my-2"><b>Prodotto successivo:</b></h3>
 
-
-    <br>
-    <small>Choose another product or not :</small><br>
-    &nbsp;
-
-    <select class="form-control" name="product2" id="product2">
-      <option value="">Select product</option>
+    <select class="form-control w-50 float-left" name="product2" id="product2">
+      <option value="">Prodotto</option>
       @foreach ($products as $element)
       <option value="{{ $element->id }}">{{ $element->name }}</option>
       @endforeach
     </select>
 
-    <!-- In base a cosa seleziono sulla select product_id_name -->
-    <select class="form-control" name="quantity2" id="quantity2">
-      <option value="">Quantity</option>
+    <select class="form-control w-50 float-left" name="quantity2" id="quantity2">
+      <option value="">Quantità (seleziona prima il prodotto)</option>
     </select>
 
-
-
-    <br>
-    <br>
-    <input type="submit" class="btn btn-primary" name="create" id="create" value="Create">
+    <input type="submit" class="btn btn-primary w-100 float-left my-5" name="create" id="create" value="PIAZZA ORDINE">
   </form>
 
 </div>

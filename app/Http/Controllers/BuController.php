@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\BeachUmbrella;
+use Illuminate\Support\Facades\DB;
 
 class BuController extends Controller
 {
@@ -14,7 +15,8 @@ class BuController extends Controller
      */
     public function index()
     {
-        return view('adminuser.beachumbrella.index');
+        $umbrellas = DB::table('beach_umbrellas')->orderBy('id')->get();
+        return view('adminuser.beachumbrella.index', compact('umbrellas'));
     }
 
     /**
@@ -39,7 +41,7 @@ class BuController extends Controller
         $bu->type = $request->type;
         $bu->save();
         $lastid = BeachUmbrella::orderBy('id','desc')->first();
-        return redirect(route('beachumbrella.index'))->with('success',"Umbrella ".$lastid->id." created");
+        return redirect(route('beachumbrella.index'))->with('success',"Ombrellone numero ".$lastid->id." creato con successo.");
     }
 
     /**
@@ -58,7 +60,7 @@ class BuController extends Controller
             return view('adminuser.beachumbrella.show',compact('bu','theordersumbrella'));
         }
         else{
-            return redirect(route('beachumbrella.index'))->with('error','Umbrella not exist');
+            return redirect(route('beachumbrella.index'))->with('error','Ombrellone non esistente.');
         }
         
     }
@@ -88,7 +90,7 @@ class BuController extends Controller
             $bu->type = $request->type;
             $bu->save();
         }
-        return redirect(route('beachumbrella.show',$id))->with('success','changes made to the user');
+        return redirect(route('beachumbrella.show',$id))->with('success','Dati utente aggiornati con successo.');
     }
 
     /**
@@ -104,14 +106,14 @@ class BuController extends Controller
             $orderumbrella = $bu->orders()->get();
             foreach ($orderumbrella as $key => $value) {
                 if ($value->delivered != 1) {
-                    return redirect(route('beachumbrella.index'))->with('error','Umbrella '.$id.' have order not closed');
+                    return redirect(route('beachumbrella.index'))->with('error',"L'ombrellone numero ".$id." ha ordini non completati");
                 }
             }
             $bu->delete();
-            return redirect(route('beachumbrella.index'))->with('success','Umbrella terminated');
+            return redirect(route('beachumbrella.index'))->with('success','Ombrellone eliminato con successo.');
         }
         else{
-            return redirect(route('beachumbrella.index'))->with('error','Umbrella not exist');
+            return redirect(route('beachumbrella.index'))->with('error','Ombrellone non esistente');
         }
         
     }

@@ -85,7 +85,7 @@ class UserController extends Controller
     }
 
 
-    return redirect(route('user.index'))->with('success','User '.$lastiduser->id.' created');;
+    return redirect(route('user.index'))->with('success','Utente numero '.$lastiduser->id.' creato con successo.');;
 
 }
 
@@ -137,7 +137,7 @@ class UserController extends Controller
         $user->save();
 
 
-        return redirect(route('user.show',$id))->with('success','changes made to the user');
+        return redirect(route('user.show',$id))->with('success','Dati utente aggiornati con successo.');
     }
 
     /**
@@ -150,7 +150,7 @@ class UserController extends Controller
     {
 
         if ($id == 1) {
-            return redirect(route('user.index'))->with('error', 'Impossible to delete the admin user');
+            return redirect(route('user.index'))->with('error', 'Impossibile eliminare un amministratore.');
         }
 
         $user = User::find($id);
@@ -219,24 +219,24 @@ class UserController extends Controller
                 //cancello l'user
                 $user->delete();
 
-                return redirect(route('user.index'))->with('success', 'User terminated');
+                return redirect(route('user.index'))->with('success', 'Utente eliminato con successo.');
             }
             //se risulta un utente con un ordine ancora aperto
             else{
-                return redirect(route('user.index'))->with('error', 'User '.$id.' have order open');
+                return redirect(route('user.index'))->with('error', "L'utente numero '.$id.' ha ordini non completati");
             }
 
         }
         //non c'é nessun user con quell'id:
         else{
-            return redirect(route('user.index'))->with('error', 'no user with that id');
+            return redirect(route('user.index'))->with('error', "Nessun utente con quell'ID");
         }
     }
 
     public function show($id)
     {
         if ($id == 1) {
-            return redirect(route('user.index'))->with('error', 'you are admin');
+            return redirect(route('user.index'))->with('error', "L'utente è un amministratore.");
         }
         $user = User::find($id);
         //$orders = DB::table('orders')->where();
@@ -250,7 +250,7 @@ class UserController extends Controller
             return view('adminuser.user.show',compact('user','orders','subscriptions'));
         }
         else{
-            return redirect(route('user.index'))->with('error', 'no user with that id');
+            return redirect(route('user.index'))->with('error', "Nessun utente esistente con quell'ID.");
         }
     }
 

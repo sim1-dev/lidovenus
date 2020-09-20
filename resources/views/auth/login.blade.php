@@ -7,7 +7,7 @@
             <form class="login100-form validate-form" method="POST" action="{{ route('login') }}">
                 @csrf
                 <div class="container-fluid p-3">
-                    <div class="container p-3" style="min-height:420px;background: url('img/3263.jpg');background-repeat: no-repeat;background-size:cover;"></div>
+                    <div class="container p-3" style="min-height:420px;background: url('img/sun.png');background-repeat: no-repeat;background-size:cover;"></div>
                 </div>
                 <span class="login100-form-title p-b-34">
                     Accedi

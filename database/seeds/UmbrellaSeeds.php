@@ -13,11 +13,11 @@ class UmbrellaSeeds extends Seeder
     {
     	
     	DB::table('beach_umbrellas')->insert([
-    		'type' => 'normal umbrella'
+    		'type' => 'Ombrellone piccolo (2 posti)'
     	]);
 
     	DB::table('beach_umbrellas')->insert([
-    		'type' => 'big umbrella'
+    		'type' => 'Ombrellone grande (4 posti)'
     	]);
     	
     	/*

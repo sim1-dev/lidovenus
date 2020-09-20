@@ -3,7 +3,7 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>CRUD Umbrella</h1>
+<h2 class="my-4"><b>Ombrelloni</b></h2>
 @stop
 
 @section('content')
@@ -16,13 +16,14 @@
     <form id="registerumbrella" class="px-2 py-2" action="{{ route('beachumbrella.store') }}" method="POST">
       @csrf
       <div class="form-group"><br>
-        <label>Create</label><br>
+        <label>Crea Ombrellone</label><br>
         <select class="form-control" name="type">
-          <option value="normal umbrella">normal umbrella</option>
-          <option value="big umbrella">big umbrella</option>
+          <option value="Ombrellone piccolo (2 posti)">Ombrellone piccolo (2 posti)</option>
+          <option value="Ombrellone grande (4 posti)">Ombrellone grande (4 posti)</option>
+          <option value="Palma (5 posti)">Palma (5 posti)</option>
         </select>
       </div>
-      <button type="submit" style="float: right;" class="btn btn-primary">Create</button>
+      <button type="submit" class="btn btn-primary w-100">CREA OMBRELLONE</button>
     </form>
 
   </div>
@@ -32,10 +33,10 @@
     <br>
    <form id="showumbrella" class="px-2 py-2" action="{{ route('beachumbrella.show','') }}" method="GET" onsubmit="$().showumbrella();">
       <div class="form-group">
-        <label>Show / Update</label><br>
+        <label>Visualizza Ombrellone</label><br>
         <input type="text" class="form-control" id="idumbrella" placeholder="Insert id umbrella">
       </div>
-      <button type="submit" style="float: right;" class="btn btn-primary">Show</button>
+      <button type="submit" style="float: right;" class="btn btn-primary">VISUALIZZA OMBRELLONE</button>
     </form>
   </div>
   <!-- 3 -->
@@ -46,11 +47,11 @@
       @method('DELETE')
       @csrf
       <div class="form-group">
-        <label>Delete</label><br>
+        <label>Elimina Ombrellone</label><br>
 
         <input type="text" class="form-control" min="1" id="idumbrelladelete" name="idumbrelladelete" placeholder="Insert id umbrella">
       </div>
-      <button id="buttonumbrelladelete" type="submit" style="float: right;" class="btn btn-primary">Delete</button>
+      <button id="buttonumbrelladelete" type="submit" style="float: right;" class="btn btn-primary">ELIMINA OMBRELLONE</button>
     </form>
   </div>
 </div>
@@ -63,7 +64,42 @@
 
 
 
+<h4 class="my-4"><b>Lista Ombrelloni</b></h4>
 
+<table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Tipo</th>
+        <th scope="col">Data aggiunta</th>
+        <!--<th scope="col">Azioni</th>-->
+      </tr>
+    </thead>
+    <tbody>
+    @foreach ($umbrellas as $umbrella)
+    <tr>
+        <th scope="row">{{ $umbrella->id }}</th>
+        <td>{{ $umbrella->type }}</td>
+        <td>{{ $umbrella->created_at }}</td>
+           {{-- 
+    <td>
+          <form id="showumbrella" action="{{ route('beachumbrella.show','') }}" method="GET" onsubmit="$().showumbrella();">
+            @csrf
+            <input type="number" hidden class="form-control w-50 float-left"id="iduser" name="iduser" placeholder="{{ $umbrella->id }}">
+            <button type="submit" class="btn btn-success">Visualizza</button>
+            </form>
+            <form id="deleteumbrella" action="{{ route('beachumbrella.destroy','') }}" method="POST">
+            @method('DELETE')
+            @csrf
+            <input type="number" hidden class="form-control w-50 float-left" id="iduserdelete" name="iduserdelete" placeholder="{{ $umbrella->id }}">
+            <button type="submit" class="btn btn-danger">Elimina</button>
+            </form>
+        </td>
+    --}}
+      </tr>
+    @endforeach
+    </tbody>
+  </table>
 
 
 

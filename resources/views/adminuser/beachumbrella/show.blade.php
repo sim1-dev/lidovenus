@@ -29,7 +29,7 @@
     <p>This is a <b>{{ $bu->type}}</b> default <br>
       <select class="form-control" name="type">
         @php
-        $typeofumbrella = ['normal umbrella','big umbrella','Palm','gazebo'];
+        $typeofumbrella = ['Ombrellone piccolo (2 posti)','Ombrellone grande (4 posti)','Palma (5 posti)'];
         @endphp
         @foreach ($typeofumbrella as $element)
         @if ($element == $bu->type)

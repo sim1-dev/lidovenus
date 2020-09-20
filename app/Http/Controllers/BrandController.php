@@ -67,7 +67,7 @@ class BrandController extends Controller
 
             $brand->save();
 
-            return redirect(route('brand.index'))->with('success',"brand ".$request->name." created");
+            return redirect(route('brand.index'))->with('success',"Marchio ".$request->name." creato con successo");
         }
 
     /**
@@ -86,7 +86,7 @@ class BrandController extends Controller
             return view('adminuser.brand.show',compact('brand','brandproduct'));
         }
         else{
-            return redirect(route('brand.index'))->with('error','Brand not exist');
+            return redirect(route('brand.index'))->with('error','Marchio inesistente.');
         }
     }
 
@@ -139,7 +139,7 @@ class BrandController extends Controller
         }
 
         $brand->save();
-        return redirect(route('brand.show',$brand->id))->with('success',"brand is updated");
+        return redirect(route('brand.show',$brand->id))->with('success',"Marchio aggiornato con successo.");
     }
 
     /**
@@ -155,13 +155,13 @@ class BrandController extends Controller
             $productonbrand = $brand->products()->get();
             foreach ($productonbrand as $key => $value) {
                 if ($value->id) {
-                    return redirect(route('brand.index'))->with('error','Brand '.$id.' have product');
+                    return redirect(route('brand.index'))->with('error','Alcuni prodotti sono legati al marchio numero '.$id);
                 }
             }
             $brand->delete();
-            return redirect(route('brand.index'))->with('success','Brand terminated');
+            return redirect(route('brand.index'))->with('success','Marchio eliminato con successo.');
         }else{
-            return redirect(route('brand.index'))->with('error','Brand not exist');
+            return redirect(route('brand.index'))->with('error','Marchio inesistente');
         }
         
         

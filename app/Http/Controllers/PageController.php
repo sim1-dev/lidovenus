@@ -22,21 +22,23 @@ class PageController extends Controller
         
         $Orders_this_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y'))->get();
         $Orders_last_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y')-1)->get();
+        $Lastest_completed_orders = DB::table('orders')->where('delivered',"=",1)->orderby('updated_at')->take(5)->get();
+
+
+        //dd($Lastest_completed_orders);
 
         //$Completed_orders_number = DB::table('orders')->selectRaw('*, count(*)')->where('delivered',"=",1)->groupBy('id')->get();
-        $Completed_orders_number = count(DB::table('orders')->where('delivered',"=",1)->get());
-        $Open_orders_number = count(DB::table('orders')->where('delivered',"=",0)->get());
-        $Users_number = count(DB::table('users')->get());
+
+        //$Completed_orders_number = count(DB::table('orders')->where('delivered',"=",1)->get());
+        //$Open_orders_number = count(DB::table('orders')->where('delivered',"=",0)->get());
+        //$Users_number = count(DB::table('users')->get());
+
+        $Completed_orders_number = DB::table('orders')->where('delivered',"=",1)->count();
+        $Open_orders_number = DB::table('orders')->where('delivered',"=",0)->count();               //più veloce con numeri alti e PDO friendly
+        $Users_number = DB::table('users')->count();
         
         
-        return view('adminuser.pagecontrol', compact('Pizzas','Desk','Drinks','Ice_creams','Orders_this_year','Orders_last_year', 'Completed_orders_number', 'Users_number', 'Open_orders_number'));
-        /*
-        $Desk = Product::where('category',"=", 'Desk')->count();
-        $Drinks = Product::where('category',"=", 'Drinks')->count();
-        $Ice_creams = Product::where('category',"=", 'Ice creams')->count();
-        return view('adminuser.pagecontrol')->with(compact($Pizzas,$Desk,$Drinks,$Ice_creams));
-        */
-        //return view('adminuser.pagecontrol')->with(compact('Pizzas'));
+        return view('adminuser.pagecontrol', compact('Pizzas','Desk','Drinks','Ice_creams','Orders_this_year','Orders_last_year', 'Completed_orders_number', 'Users_number', 'Open_orders_number', 'Lastest_completed_orders'));
     }
 
     /**

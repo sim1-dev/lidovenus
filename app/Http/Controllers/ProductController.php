@@ -45,11 +45,11 @@ class ProductController extends Controller
                 'image' => 'nullable|mimes:jpeg,png,jpg|max:50',
             ],
             [
-                'name.required'=>'Insert name product',
-                'name.unique'=>'Same name into db',
-                'name.max'=>'Max 200 character',
-                'price.required' => 'Insert price for product',
-                'image.mimes' => 'type of file accept: jpeg - png - jpg and max size 50mb',
+                'name.required'=>'Inserisci nome prodotto',
+                'name.unique'=>'Stesso nome nel db',
+                'name.max'=>'Max 200 caratteri',
+                'price.required' => 'Inserisci prezzo del prodotto',
+                'image.mimes' => 'Estensioni accettate: jpeg - png - jpg; Dimensione massima file: 50MB',
             ]
         );
 
@@ -71,7 +71,7 @@ class ProductController extends Controller
         $product->save();
 
         $lastid = Product::orderBy('id','desc')->first();
-        return redirect(route('product.index'))->with('success',"Product ".$lastid->id." created");
+        return redirect(route('product.index'))->with('success',"Prodotto numero ".$lastid->id." creato con successo.");
     }
 
     /**
@@ -89,7 +89,7 @@ class ProductController extends Controller
             return view('adminuser.product.show',compact('product','brand'));
         }
         else{
-            return redirect(route('product.index'))->with('error','Product not exist');
+            return redirect(route('product.index'))->with('error','Prodotto inesistente.');
         }
     }
 
@@ -137,7 +137,7 @@ class ProductController extends Controller
         }
 
         $product->save();
-        return redirect(route('product.show',$product->id))->with('success',"product is updated");
+        return redirect(route('product.show',$product->id))->with('success',"Prodotto aggiornato con successo.");
     }
 
     /**
@@ -162,9 +162,9 @@ class ProductController extends Controller
                 }
             }
             $product->delete();
-            return redirect(route('product.index'))->with('success','Product terminated');
+            return redirect(route('product.index'))->with('success','Prodotto eliminato con successo.');
         }else{
-            return redirect(route('product.index'))->with('error','Product not exist');
+            return redirect(route('product.index'))->with('error','Prodotto inesistente');
         }
     }
 }
