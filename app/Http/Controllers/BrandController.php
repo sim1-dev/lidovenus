@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreBrandRequest;
 use App\Http\Requests\UpdateBrandRequest;
 use App\Brand;
+use Illuminate\Support\Facades\DB;
 
 class BrandController extends Controller
 {
@@ -15,7 +16,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        return view('adminuser.brand.index');
+        $brands = DB::table('brands')->orderBy('id')->get();
+        return view('adminuser.brand.index', compact('brands'));
     }
 
     /**
