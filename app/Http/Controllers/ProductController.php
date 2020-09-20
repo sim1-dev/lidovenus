@@ -7,6 +7,7 @@ use App\Product;
 use App\Brand;
 use App\Order;
 use App\Http\Requests\UpdateProductRequest;
+use Illuminate\Support\Facades\DB;
 
 class ProductController extends Controller
 {
@@ -18,7 +19,8 @@ class ProductController extends Controller
     public function index()
     {
         $brand = Brand::all();
-        return view('adminuser.product.index',compact('brand'));
+        $products = DB::table('products')->orderBy('id')->get();
+        return view('adminuser.product.index',compact('brand', 'products'));
     }
 
     /**

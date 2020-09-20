@@ -22,7 +22,7 @@
           <div class="icon">
             <i class="fas fa-user-plus"></i>
           </div>
-          <a href="#" class="small-box-footer">
+          <a href="{{ url('/admin/user') }}" class="small-box-footer">
             Lista utenti <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -37,7 +37,7 @@
           <div class="icon">
             <i class="fas fa-shopping-cart"></i>
           </div>
-          <a href="#" class="small-box-footer">
+          <a href="{{ url('/admin/product') }}" class="small-box-footer">
             Lista prodotti <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -52,7 +52,7 @@
           <div class="icon">
             <i class="fas fa-times-circle"></i>
           </div>
-          <a href="#" class="small-box-footer">
+          <a href="{{ url('/admin/panelcontrol') }}" class="small-box-footer">
             Risolvi ordini <i class="fas fa-arrow-circle-right"></i>
           </a>
         </div>
@@ -153,11 +153,11 @@
         <!-- /.row -->
 
         <!-- Main row -->
-        <div class="row">
+        <div class="row w-100">
           <!-- Left col -->
-          <div class="col-md-8">
+          <div class="col-md-12 p-0">
             <!-- MAP & BOX PANE -->
-            <div class="card">
+            <div class="card ml-3">
               <div class="card-header border-0 bg-dark">
                 <div class="d-flex justify-content-between">
                   <h3 class="card-title">Grafico prodotti venduti per prezzo</h3>
@@ -197,8 +197,8 @@
           
 
           <!-- TABLE: LATEST ORDERS -->
-          <div class="card collapsed-card">
-            <div class="card-header border-transparent">
+          <div class="card ml-3">
+            <div class="card-header border-transparent bg-dark">
               <h3 class="card-title">Ultimi ordini</h3>
 
               <div class="card-tools">
@@ -241,170 +241,21 @@
             <!-- /.card-body -->
             <div class="card-footer clearfix">
               <a href="{{ url('/admin/createorder') }}" class="btn btn-sm btn-info float-left">Crea nuovo ordine</a>
-              <a href="javascript:void(0)" class="btn btn-sm btn-secondary float-right">Visualizza ordini</a>
+              <a href="{{ url('/admin/panelcontrol') }}" class="btn btn-sm btn-secondary float-right">Visualizza ordini</a>
             </div>
             <!-- /.card-footer -->
           </div>
           <!-- /.card -->
         </div>
         <!-- /.col -->
-
-        <div class="col-md-4">
-          <!-- USERS LIST -->
-          <div class="card">
-            <div class="card-header">
-              <h3 class="card-title">Latest Members</h3>
-
-              <div class="card-tools">
-                <span class="badge badge-danger">8 New Members</span>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-            <!-- /.card-header -->
-            <div class="card-body p-0">
-              <ul class="users-list clearfix">
-                <li>
-                  <img src="dist/img/user1-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">Alexander Pierce</a>
-                  <span class="users-list-date">Today</span>
-                </li>
-                <li>
-                  <img src="dist/img/user8-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">Norman</a>
-                  <span class="users-list-date">Yesterday</span>
-                </li>
-                <li>
-                  <img src="dist/img/user7-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">Jane</a>
-                  <span class="users-list-date">12 Jan</span>
-                </li>
-                <li>
-                  <img src="dist/img/user6-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">John</a>
-                  <span class="users-list-date">12 Jan</span>
-                </li>
-                <li>
-                  <img src="dist/img/user2-160x160.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">Alexander</a>
-                  <span class="users-list-date">13 Jan</span>
-                </li>
-                <li>
-                  <img src="dist/img/user5-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">Sarah</a>
-                  <span class="users-list-date">14 Jan</span>
-                </li>
-                <li>
-                  <img src="dist/img/user4-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">Nora</a>
-                  <span class="users-list-date">15 Jan</span>
-                </li>
-                <li>
-                  <img src="dist/img/user3-128x128.jpg" alt="User Image">
-                  <a class="users-list-name" href="#">Nadia</a>
-                  <span class="users-list-date">15 Jan</span>
-                </li>
-              </ul>
-              <!-- /.users-list -->
-            </div>
-            <!-- /.card-body -->
-            <div class="card-footer text-center">
-              <a href="javascript::">View All Users</a>
-            </div>
-            <!-- /.card-footer -->
-          </div>
-          <!--/.card -->
-
-
-
-
-          <!-- inventory last -->
-          <div class="card">
-
-
-            <div class="card-header">
-              <h3 class="card-title">Inventory</h3>
-
-              <div class="card-tools">
-                <span class="badge badge-danger">8 New Members</span>
-                <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-minus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove"><i class="fas fa-times"></i>
-                </button>
-              </div>
-            </div>
-
-            
-
-            <div class="progress-group">
-              Drinks
-              <span class="float-right"><b id="db1"></b></span>
-              <div class="progress progress-sm">
-                <div class="progress-bar bg-primary" id="desk1"></div>
-              </div>
-            </div>
-            <!-- /.progress-group -->
-
-            <div class="progress-group">
-              Pizzas
-              <span class="float-right"><b id="db2"></b></span>
-              <div class="progress progress-sm">
-                <div class="progress-bar bg-danger" id="desk2"></div>
-              </div>
-            </div>
-
-            <!-- /.progress-group -->
-            <div class="progress-group">
-              <span class="progress-text">Ice creams</span>
-              <span class="float-right"><b id="db3"></b></span>
-              <div class="progress progress-sm">
-                <div class="progress-bar bg-success" id="desk3"></div>
-              </div>
-            </div>
-
-            <!-- /.progress-group -->
-            <div class="progress-group">
-              Sandwich
-              <span class="float-right"><b id="db4"></span>
-                <div class="progress progress-sm">
-                  <div class="progress-bar bg-warning" id="desk4"></div>
-                </div>
-              </div>
-              <!-- /.progress-group -->
-
-              <!-- /.col -->
-            </div>
-          </div>
-          <!-- /.col -->
-        </div>
         <!-- /.row -->
         <!--/. container-fluid -->
       </section>
 
 
       <p>
-      @php /*
-    $a = json_decode($Orders_this_year->first()->id_products,true);
-    //print_r($a);
-    foreach ($a as $key => $value) {
-     echo '<br><br><br>';
-     var_dump($key);
-     foreach ($value as $keys => $values) {
-      echo '<br><br><br>';
-      var_dump($keys);
-
-     }
-    }
-*/
-    @endphp
 
   </p>
-
-    <p>{{--  @foreach ($Orders_this_year as $element)
-      {{ $element->id_products }} <br><br>
-    @endforeach--}}</p>
 
     @stop
 
@@ -546,7 +397,7 @@
     datasets: [
     {
       label               : "Quest'anno",
-      backgroundColor     : '#5f9b1b',
+      backgroundColor     : '#c2b280',
       borderColor         : '#000',
       pointRadius          : true,
       pointColor          : '#3b8bba',

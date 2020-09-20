@@ -11,16 +11,17 @@
 
 
 
-<div class="container-fluid">
+<div class="container-fluid w-100">
 <label class="m-2 ml-0" style="font-size:24px">
     Cerca Ordine</label>
     <form id="search" action="{{ route('order.show','') }}" onsubmit="$().showorder();">
         <input class="form-control form-control-md w-25 m-2 ml-0 float-left" id="ordernumber" placeholder="Inserisci ID Ordine">
-        <button type="submit" class="btn btn-primary m-2 ml-0 float-left">Cerca</button>
+        <button type="submit" class="btn btn-primary m-2 ml-0 float-left">CERCA</button>
     </form>
-</div>   
+</div>
+<h3 class="text-left py-4 float-left w-100"><b>Lista Ordini Aperti</b></h3>   
 <table id="tableorders" class="table table-bordered table-hover dataTable table-striped" style="text-align: center;">
-    <thead>
+    <thead class="bg-dark">
         <tr role="row" style="width: 100%">
             <th id="colonna1" style="width:15%;">ID Ordine</th>
             <th id="colonna1" style="width:15%;">ID Utente</th>

@@ -35,7 +35,7 @@
       </div>
 
       <div class="form-group text-left">
-        <h5><b>Seleziona ombrellone</b></h5>
+        <h5><b>Assegna ombrellone</b></h5>
         <select class="form-control" id="umbrella" name="umbrella">
 
           <option selected="" value="">Nessun ombrellone</option>
@@ -320,7 +320,7 @@ var unavailableDates = ["9-9-2020"];
   $('#buttondelete').click(function() {
     var id = $("#iduserdelete").val();
 
-    if (id != 0 && id != '' && confirm('Delete this user ?')) {
+    if (id != 0 && id != '' && confirm('Sei sicuro di voler eliminare questo utente?')) {
       $ciao = $("#deleteuser").attr("action",linkbasic2+"/"+id);
       return true;
     }

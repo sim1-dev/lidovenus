@@ -100,8 +100,8 @@
   </div>
   @else
   <div style="float: right;">
-    <a class="btn btn-info" href="{{ route('panelcontrol') }}">Torna agli ordini</a>&nbsp;
-    <a class="btn btn-light" href="{{ route('order.edit',$order->id) }}">Modifica</a><!-- LANCIO IL CREATE -->
+    <a class="btn btn-secondary" href="{{ route('panelcontrol') }}">Torna agli ordini</a>&nbsp;
+    <a class="btn btn-warning" href="{{ route('order.edit',$order->id) }}">Modifica</a>
   </div>
 
   @endif

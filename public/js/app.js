@@ -2132,8 +2132,7 @@ __webpack_require__.r(__webpack_exports__);
          axios.get('/orderedit' + '&idproduct=' + event.target.id + '&productnumber=' + event.target.name {
           }).then(response => {
             console.log(response);
-            
-        }).catch(error => {
+         }).catch(error => {
             console.log(error);
          });
     },*/
@@ -38369,7 +38368,7 @@ var render = function() {
                       expression: "category_name"
                     }
                   ],
-                  staticStyle: { width: "20%" },
+                  staticClass: "form-control w-50 m-0 float-left",
                   on: {
                     change: function($event) {
                       var $$selectedVal = Array.prototype.filter
@@ -38388,7 +38387,7 @@ var render = function() {
                 },
                 [
                   _c("option", { attrs: { value: "" } }, [
-                    _vm._v("All product")
+                    _vm._v("Tutti i prodotti")
                   ]),
                   _vm._v(" "),
                   _vm._l(_vm.category, function(cat) {
@@ -38414,12 +38413,8 @@ var render = function() {
                     modifiers: { lazy: true }
                   }
                 ],
-                staticStyle: { width: "20%" },
-                attrs: {
-                  type: "text",
-                  name: "",
-                  placeholder: "enter for search"
-                },
+                staticClass: "form-control w-50 m-0 float-left",
+                attrs: { type: "text", name: "", placeholder: "Cerca" },
                 domProps: { value: _vm.search_product },
                 on: {
                   change: function($event) {
@@ -38444,7 +38439,7 @@ var render = function() {
                           }
                         }
                       },
-                      [_vm._v("Name")]
+                      [_vm._v("Nome")]
                     ),
                     _vm._v(" "),
                     this.sort_field == "name" && this.sort_direction == "asc"
@@ -38462,7 +38457,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("th", [
                     _vm._v(
-                      "\n                            QuantityStock\n                        "
+                      "\n                            Quantità\n                        "
                     )
                   ]),
                   _vm._v(" "),
@@ -38494,7 +38489,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Add")]
+                        [_vm._v("Aggiungi al carrello")]
                       )
                     ])
                   ])
@@ -38515,7 +38510,7 @@ var render = function() {
       _c("div", { staticClass: "col-md-4" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
-            _c("h3", { staticClass: "card-title" }, [_vm._v("Cart Order")]),
+            _c("h3", { staticClass: "card-title" }, [_vm._v("Ordine")]),
             _c("br"),
             _vm._v(" "),
             _c("input", {
@@ -38530,10 +38525,10 @@ var render = function() {
             _vm._v(" "),
             _vm.delivered == "0"
               ? _c("label", [
-                  _vm._v("\n              Not Delivered [v]\n          ")
+                  _vm._v("\n              Non Consegnato [v]\n          ")
                 ])
               : _c("label", [
-                  _vm._v("\n              Not Delivered\n          ")
+                  _vm._v("\n              Non Consegnato\n          ")
                 ]),
             _vm._v(" "),
             _c("br"),
@@ -38549,8 +38544,8 @@ var render = function() {
             }),
             _vm._v(" "),
             _vm.delivered == "1"
-              ? _c("label", [_vm._v("\n            Delivered [v]\n        ")])
-              : _c("label", [_vm._v("\n            Delivered \n        ")]),
+              ? _c("label", [_vm._v("\n            Consegnato [v]\n        ")])
+              : _c("label", [_vm._v("\n            Consegnato\n        ")]),
             _vm._v(" "),
             _c("br")
           ]),
@@ -38585,7 +38580,11 @@ var render = function() {
                   _c("td", [
                     _c("input", {
                       staticClass: "btn btn-danger",
-                      attrs: { type: "submit", name: item.id, value: "Delete" },
+                      attrs: {
+                        type: "submit",
+                        name: item.id,
+                        value: "Rimuovi"
+                      },
                       on: {
                         click: function(event) {
                           return _vm.DelProduct(event)
@@ -38600,18 +38599,8 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-footer text-center" }, [
-            _vm._v("\n        Total: " + _vm._s(_vm.cart_total) + " € "),
+            _vm._v("\n        Totale: " + _vm._s(_vm.cart_total) + " € "),
             _c("br"),
-            _vm._v(" "),
-            _c("input", {
-              staticClass: "btn btn-primary",
-              attrs: { type: "submit", value: "Save Status" },
-              on: {
-                click: function($event) {
-                  return _vm.SaveCart()
-                }
-              }
-            }),
             _vm._v(" "),
             _c(
               "a",
@@ -38619,8 +38608,18 @@ var render = function() {
                 staticClass: "btn btn-secondary",
                 attrs: { href: "/admin/order/" + _vm.orderid }
               },
-              [_vm._v("Back, dont save")]
-            )
+              [_vm._v("TORNA INDIETRO")]
+            ),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit", value: "SALVA" },
+              on: {
+                click: function($event) {
+                  return _vm.SaveCart()
+                }
+              }
+            })
           ])
         ]),
         _vm._v(" "),
@@ -38642,19 +38641,19 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("th", [_c("a", [_vm._v("category")])])
+    return _c("th", [_c("a", [_vm._v("Categoria")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("th", [_c("a", [_vm._v("price")])])
+    return _c("th", [_c("a", [_vm._v("Prezzo")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("th", [_c("a", [_vm._v("Action")])])
+    return _c("th", [_c("a", [_vm._v("Azioni")])])
   },
   function() {
     var _vm = this
@@ -38662,13 +38661,13 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("thead", { staticStyle: { width: "auto" } }, [
       _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Product")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Prodotto")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantity")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantità")]),
         _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Price")]),
+        _c("th", { attrs: { scope: "col" } }, [_vm._v("Prezzo")]),
         _vm._v(" "),
-        _c("th", [_vm._v("Action")])
+        _c("th", [_vm._v("Azioni")])
       ])
     ])
   }
@@ -51012,8 +51011,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\Andrei\Desktop\Brif\lidovenus\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\Andrei\Desktop\Brif\lidovenus\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\Utente\Desktop\lidovenus\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\Utente\Desktop\lidovenus\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

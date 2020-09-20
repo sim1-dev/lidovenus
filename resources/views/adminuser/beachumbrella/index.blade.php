@@ -16,7 +16,7 @@
     <form id="registerumbrella" class="px-2 py-2" action="{{ route('beachumbrella.store') }}" method="POST">
       @csrf
       <div class="form-group"><br>
-        <label>Crea Ombrellone</label><br>
+        <h4 class="text-left"><b>Crea Ombrellone</b></h4><br>
         <select class="form-control" name="type">
           <option value="Ombrellone piccolo (2 posti)">Ombrellone piccolo (2 posti)</option>
           <option value="Ombrellone grande (4 posti)">Ombrellone grande (4 posti)</option>
@@ -33,10 +33,10 @@
     <br>
    <form id="showumbrella" class="px-2 py-2" action="{{ route('beachumbrella.show','') }}" method="GET" onsubmit="$().showumbrella();">
       <div class="form-group">
-        <label>Visualizza Ombrellone</label><br>
-        <input type="text" class="form-control" id="idumbrella" placeholder="Insert id umbrella">
+        <h4 class="text-left"><b>Visualizza Ombrellone</b></h4><br>
+        <input type="text" class="form-control" id="idumbrella" placeholder="Inserisci ID Ombrellone">
       </div>
-      <button type="submit" style="float: right;" class="btn btn-primary">VISUALIZZA OMBRELLONE</button>
+      <button type="submit" class="btn btn-success w-100">VISUALIZZA OMBRELLONE</button>
     </form>
   </div>
   <!-- 3 -->
@@ -47,11 +47,11 @@
       @method('DELETE')
       @csrf
       <div class="form-group">
-        <label>Elimina Ombrellone</label><br>
+        <h4 class="text-left"><b>Elimina Ombrellone</b></h4><br>
 
-        <input type="text" class="form-control" min="1" id="idumbrelladelete" name="idumbrelladelete" placeholder="Insert id umbrella">
+        <input type="text" class="form-control" min="1" id="idumbrelladelete" name="idumbrelladelete" placeholder="Inserisci ID Ombrellone">
       </div>
-      <button id="buttonumbrelladelete" type="submit" style="float: right;" class="btn btn-primary">ELIMINA OMBRELLONE</button>
+      <button id="buttonumbrelladelete" type="submit" class="btn btn-danger w-100">ELIMINA OMBRELLONE</button>
     </form>
   </div>
 </div>
@@ -144,7 +144,7 @@
   $('#buttonumbrelladelete').click(function() {
     var id = $("#idumbrelladelete").val();
 
-    if (id != 0 && id != '' && confirm('Delete this umbrella ?')) {
+    if (id != 0 && id != '' && confirm('Sei sicuro di voler eliminare questo ombrellone?')) {
       $ciao = $("#deleteumbrella").attr("action",linkbasic2+"/"+id);
       return true;
     }

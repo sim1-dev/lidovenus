@@ -3,7 +3,7 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>CRUD Product</h1>
+<h1 class="text-left"><b>Prodotti</b></h1>
 @stop
 
 @section('content')
@@ -22,23 +22,18 @@
 
 <div class="row">
   <!-- 1 -->
-  <div class="col-sm-4">
+  <div class="col-md-12">
 
    <form id="registeruser" class="px-2 py-2" enctype="multipart/form-data" action="{{ route('product.store') }}" method="POST">
     @csrf
-    <label>Create</label>
+    <h3 class="text-left"><b>Crea prodotto</b></h3>
     <div class="form-group">
-      <label>Name:</label><br>
-      <input type="text" class="form-control"  name="name" placeholder="name" >
+      <label>Nome Prodotto:</label><br>
+      <input type="text" class="form-control"  name="name" placeholder="Inserisci nome prodotto" >
     </div>
 
     <div class="form-group">
-      Insert Image:<br>
-      <input type="file" name="image" />
-    </div>
-
-    <div class="form-group">
-      Category:<br>
+      <b>Categoria:</b><br>
       <select class="form-control" name="category">
         @php
         $category = ['Drinks','Ice creams','Pizzas','Desk'];
@@ -49,22 +44,30 @@
       </select>
     </div>
 
-    <label>Price:</label>
-    <div class="form-group">
-      <input type="number" class="form-control" step="0.01" name="price" placeholder="price" >
+    <label>Prezzo:</label>
+    <div class="input-group mb-3">
+      <input type="number" class="form-control" step="0.01" name="price" placeholder="Prezzo" aria-describedby="basic-addon2">
+      <div class="input-group-append">
+        <span class="input-group-text" id="basic-addon2">€</span>
+      </div>
     </div>
 
-    <label>Description:</label>
+    <label>Descrizione:</label>
     <div class="form-group">
-      <textarea class="form-control" name="description" placeholder="description"></textarea>
+      <textarea class="form-control" name="description" placeholder="Descrizione"></textarea>
     </div>
 
-    <label>Quantitystock:</label>
+    <label>Quantità:</label>
     <div class="form-group">
-      <input type="number"  class="form-control" min="0" value="0" name="quantitystock" placeholder="quantitystock" >
+      <input type="number"  class="form-control" min="0" value="0" name="quantitystock" placeholder="Quantità in magazzino" >
     </div>
 
-    <label>Brand:</label>
+    <div class="form-group">
+      <b class="w-100">Immagine:</b><br>
+          <input type="file" name="image" />
+    </div>    
+
+    <label>Marchio:</label>
     <div class="form-group">
       <select class="form-control" name="brand">
         @foreach ($brand as $element)
@@ -77,35 +80,35 @@
 
 
 
-    <button type="submit" style="float: right;" class="btn btn-primary">Create</button>
+    <button type="submit" class="btn btn-primary w-100">CREA PRODOTTO</button>
   </form>
 
 </div>
 
 <!-- 2 -->
-<div class="col-sm-4">
+<div class="col-md-6">
   <br>
   <form id="showumbrella" class="px-2 py-2" action="{{ route('product.show','') }}" method="GET" onsubmit="$().showumbrella();">
     <div class="form-group">
-      <label>Show / Update</label><br>
-      <input type="text" class="form-control" id="idumbrella" placeholder="Insert id umbrella">
+      <h3><b>Visualizza Prodotto</b></h3><br>
+      <input type="text" class="form-control" id="idumbrella" placeholder="Inserisci ID Prodotto">
     </div>
-    <button type="submit" style="float: right;" class="btn btn-primary">Show</button>
+    <button type="submit" class="btn btn-success w-100">VISUALIZZA PRODOTTO</button>
   </form>
 </div>
 <!-- 3 -->
-<div class="col-sm-4">
+<div class="col-md-6">
 
   <br>
   <form id="deleteumbrella" class="px-2 py-2" action="{{ route('product.destroy','') }}" method="POST">
     @method('DELETE')
     @csrf
     <div class="form-group">
-      <label>Delete</label><br>
+      <h3><b>Elimina Prodotto</b></h3><br>
 
-      <input type="text" class="form-control" min="1" id="idumbrelladelete" name="idumbrelladelete" placeholder="Insert id umbrella">
+      <input type="text" class="form-control" min="1" id="idumbrelladelete" name="idumbrelladelete" placeholder="Inserisci ID Prodotto">
     </div>
-    <button id="buttonumbrelladelete" type="submit" style="float: right;" class="btn btn-primary">Delete</button>
+    <button id="buttonumbrelladelete" type="submit" class="btn btn-danger w-100">ELIMINA PRODOTTO</button>
   </form>
 </div>
 </div>
@@ -117,13 +120,37 @@
 </div>
 
 
+<br>
 
+<h4 class="my-4"><b>Lista Prodotti</b></h4>
 
+<table class="table table-striped">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nome</th>
+        <th scope="col">Categoria</th>
+        <th scope="col">Prezzo</th>
+        <th scope="col">Quantità</th>
+        <th scope="col">Descrizione</th>
+        <!--<th scope="col">Azioni</th>-->
+      </tr>
+    </thead>
+    <tbody>
+    @foreach ($products as $product)
+      <tr>
+        <th scope="row">{{ $product->id }}</th>
+        <td>{{ $product->name }}</td>
+        <td>{{ $product->category }}</td>
+        <td>{{ $product->price }}</td>
+        <td>{{ $product->quantitystock }}</td>
+        <td>{{ $product->description }}</td>
+      </tr>
+    @endforeach
+    </tbody>
+  </table>
 
-
-
-
-@stop
+  @stop
 
 @section('css')
 
@@ -163,7 +190,7 @@
   $('#buttonumbrelladelete').click(function() {
     var id = $("#idumbrelladelete").val();
 
-    if (id != 0 && id != '' && confirm('Delete this product ?')) {
+    if (id != 0 && id != '' && confirm('Sei sicuro di voler eliminare questo prodotto?')) {
       $ciao = $("#deleteumbrella").attr("action",linkbasic2+"/"+id);
       return true;
     }

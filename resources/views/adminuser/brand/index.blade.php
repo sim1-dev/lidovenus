@@ -132,7 +132,7 @@
   $('#buttonumbrelladelete').click(function() {
     var id = $("#idumbrelladelete").val();
 
-    if (id != 0 && id != '' && confirm('Delete this brand ?')) {
+    if (id != 0 && id != '' && confirm('Sei sicuro di voler eliminare questo marchio?')) {
       $ciao = $("#deleteumbrella").attr("action",linkbasic2+"/"+id);
       return true;
     }

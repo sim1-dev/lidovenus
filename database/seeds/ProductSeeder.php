@@ -17,10 +17,10 @@ class ProductSeeder extends Seeder
         //rand(1, 99)
 
     	DB::table('products')->insert([
-    		'name' => 'Pizza_rossa',
+    		'name' => 'Fetta di pizza rossa',
     		'category' => 'Pizzas',
     		'price' => 1.50,
-    		'description' => 'una bella pizza',
+    		'description' => 'fetta di pizza rossa',
     		'quantitystock' => 45,
     		'brand' => 2,
     		'created_at' => date('2019-03-22')

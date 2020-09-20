@@ -62,7 +62,7 @@ var salesChartCanvas = $('#salesChart').get(0).getContext('2d');
     datasets: [
     {
       label               : 'Sales',
-      backgroundColor     : '#5f9b1b',
+      backgroundColor     : '#c2b280',
       borderColor         : '#000',
       pointRadius          : true,
       pointColor          : '#3b8bba',

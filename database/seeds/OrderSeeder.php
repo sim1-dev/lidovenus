@@ -24,7 +24,7 @@ class OrderSeeder extends Seeder
     			'id_products' => '{
                     "1": {
                         "id": 1,
-                        "name": "Pizza_rossa",
+                        "name": "Fetta di pizza rossa",
                         "price": 1.5,
                         "quantity": 4,
                         "attributes": [],
@@ -62,7 +62,7 @@ class OrderSeeder extends Seeder
              'id_products' => '{
                 "1": {
                     "id": 1,
-                    "name": "Pizza_rossa",
+                    "name": "Fetta di pizza rossa",
                     "price": 1.5,
                     "quantity": 4,
                     "attributes": [],
@@ -99,7 +99,7 @@ class OrderSeeder extends Seeder
           'id_products' => '{
             "1": {
                 "id": 1,
-                "name": "Pizza_rossa",
+                "name": "Fetta di pizza rossa",
                 "price": 1.5,
                 "quantity": 4,
                 "attributes": [],
@@ -139,7 +139,7 @@ class OrderSeeder extends Seeder
               'id_products' => '{
                 "1": {
                     "id": 1,
-                    "name": "Pizza_rossa",
+                    "name": "Fetta di pizza rossa",
                     "price": 1.5,
                     "quantity": 4,
                     "attributes": [],

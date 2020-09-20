@@ -20,34 +20,34 @@
             </div>
 
             <div>
-                <select class="form-control" v-model="category_name" style="width: 20%">
-                    <option value="">All product</option>
+                <select class="form-control w-50 m-0 float-left" v-model="category_name">
+                    <option value="">Tutti i prodotti</option>
                     <option v-for="cat in category" :value="cat.category">
                         {{ cat.category }}
                     </option>
                 </select>
-                <input v-model.lazy="search_product" style="width: 20%;" type="text" name="" placeholder="enter for search">
+                <input v-model.lazy="search_product" class="form-control w-50 m-0 float-left" type="text" name="" placeholder="Cerca">
             </div>
 
             <table class="table">
                 <thead>
                     <tr>
                         <th>
-                            <a href="#" @click.prevent="change_sort('name')" >Name</a>
+                            <a href="#" @click.prevent="change_sort('name')" >Nome</a>
                             <span v-if="this.sort_field == 'name' && this.sort_direction == 'asc'">&uarr;</span>
                             <span v-if="this.sort_field == 'name' && this.sort_direction == 'desc'">&darr;</span>
                         </th>
                         <th>
-                            <a>category</a>
+                            <a>Categoria</a>
                         </th>
                         <th>
-                            <a>price</a>
+                            <a>Prezzo</a>
                         </th>
                         <th>
-                            QuantityStock
+                            Quantità
                         </th>
                         <th>
-                            <a>Action</a>
+                            <a>Azioni</a>
                         </th>
                     </tr>
                 </thead>
@@ -57,7 +57,7 @@
                         <td>{{ prod.category }}</td>
                         <td>{{ prod.price }}€</td>
                         <td>{{ prod.quantitystock }}</td>
-                        <td><button class="btn btn-primary" :value="prod.id" v-on:click="id => add_product_to_cart(id)">Add</button></td>
+                        <td><button class="btn btn-primary" :value="prod.id" v-on:click="id => add_product_to_cart(id)">Aggiungi al carrello</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -74,15 +74,15 @@
     <div class="col-md-4">
         <div class="card">
           <div class="card-header">
-            <h3 class="card-title">Cart Order</h3><br>
+            <h3 class="card-title">Ordine</h3><br>
 
 
             <input type="radio" name="dev" :checked="delivered == '0'" value="0" v-on:click="event => devornot(event)" >
             <label v-if="delivered == '0'">
-              Not Delivered [v]
+              Non Consegnato [v]
           </label>
           <label v-else>
-              Not Delivered
+              Non Consegnato
           </label>
 
 
@@ -90,10 +90,10 @@
           <br>
           <input type="radio" name="dev" :checked="delivered == '1'" value="1" v-on:click="event => devornot(event)">
           <label v-if="delivered == '1'">
-            Delivered [v]
+            Consegnato [v]
         </label>
         <label v-else>
-            Delivered
+            Consegnato
         </label>
         <br>
 
@@ -105,10 +105,10 @@
     <table class="table table-striped">
         <thead style="width: auto;">
             <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Price</th>
-                <th>Action</th>
+                <th scope="col">Prodotto</th>
+                <th scope="col">Quantità</th>
+                <th scope="col">Prezzo</th>
+                <th>Azioni</th>
             </tr>
         </thead>
         <tbody>
@@ -118,14 +118,14 @@
                     <input type="number" :value="item.quantity" :name="item.id"v-on:change="event => AggQProduct(event)" placeholder="press enter to save">
                 </td>
                 <td>{{ item.price }}</td>
-                <td><input type="submit" :name="item.id" v-on:click="event => DelProduct(event)" value="Delete" class="btn btn-danger"></td>
+                <td><input type="submit" :name="item.id" v-on:click="event => DelProduct(event)" value="Rimuovi" class="btn btn-danger"></td>
             </tr>
         </tbody>
     </table>
     <div class="card-footer text-center">
-        Total: {{ cart_total }}&nbsp;€ <br>
-        <input type="submit" v-on:click="SaveCart()" value="Save Status" class="btn btn-primary">
-        <a :href="'/admin/order/'+ orderid"class="btn btn-secondary">Back, dont save</a>
+        Totale: {{ cart_total }}&nbsp;€ <br>
+        <a :href="'/admin/order/'+ orderid"class="btn btn-secondary">TORNA INDIETRO</a>
+        <input type="submit" v-on:click="SaveCart()" value="SALVA" class="btn btn-primary">
     </div>
 
 
