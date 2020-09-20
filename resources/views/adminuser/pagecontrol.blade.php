@@ -13,74 +13,60 @@
   <div class="container-fluid">
     <!-- Info boxes -->
     <div class="row">
-      <div class="col-12 col-sm-6 col-md-3">
-        <div class="info-box">
-          <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-
-          <div class="info-box-content">
-            <span class="info-box-text">Control Panel</span>
-            <span class="info-box-number">
-
-
-            </small>
-          </span>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="small-box bg-gradient-success">
+          <div class="inner">
+            <h3>{{ $Users_number }}</h3>
+            <p>Utenti registrati</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-user-plus"></i>
+          </div>
+          <a href="#" class="small-box-footer">
+            Lista utenti <i class="fas fa-arrow-circle-right"></i>
+          </a>
         </div>
-        <!-- /.info-box-content -->
       </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
 
-        <div class="info-box-content">
-          <span class="info-box-text">Likes</span>
-          <span class="info-box-number">41,410</span>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="small-box bg-gradient-info">
+          <div class="inner">
+          <h3>{{ $Completed_orders_number }}</h3>
+            <p>Prodotti venduti</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-shopping-cart"></i>
+          </div>
+          <a href="#" class="small-box-footer">
+            Lista prodotti <i class="fas fa-arrow-circle-right"></i>
+          </a>
         </div>
-        <!-- /.info-box-content -->
       </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
 
-    <!-- fix for small devices only -->
-    <div class="clearfix hidden-md-up"></div>
-
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-
-        <div class="info-box-content">
-          <span class="info-box-text">Sales today</span>
-          <span class="info-box-number">760</span>
+      <div class="col-12 col-sm-6 col-md-4">
+        <div class="small-box bg-gradient-danger">
+          <div class="inner">
+            <h3>{{ $Open_orders_number }}</h3>
+            <p>Ordini aperti</p>
+          </div>
+          <div class="icon">
+            <i class="fas fa-times-circle"></i>
+          </div>
+          <a href="#" class="small-box-footer">
+            Risolvi ordini <i class="fas fa-arrow-circle-right"></i>
+          </a>
         </div>
-        <!-- /.info-box-content -->
       </div>
-      <!-- /.info-box -->
-    </div>
-    <!-- /.col -->
-    <div class="col-12 col-sm-6 col-md-3">
-      <div class="info-box mb-3">
-        <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
 
-        <div class="info-box-content">
-          <span class="info-box-text">Users</span>
-          <span class="info-box-number">2,000</span>
-        </div>
-        <!-- /.info-box-content -->
-      </div>
-      <!-- /.info-box -->
-    </div>
+
+    </div>    
     <!-- /.col -->
-  </div>
-  <!-- /.row -->
 
   <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header">
-          <h5 class="card-title">Annual reporting</h5>
+        <div class="card-header bg-dark">
+          <h5 class="card-title">Rapporto annuale</h5>
 
           <div class="card-tools">
 
@@ -120,20 +106,14 @@
                 <!-- Destra di annual reporting -->
                 <div class="col-md-4">
 
-                  <p class="text-center">
-                    <strong>Policy</strong><br>
-                    "Le persone non comprano prodotti e servizi, ma relazioni, storie e magia."<br>
-                    (Seth Godin. <small>Imprenditore statunitense</small>)
-                  </p>
-
                   <div class="card-header">
-                    <h3 class="card-title">Reporting</h3>
+                    <h3 class="card-title">Rapporto vendite annuali</h3>
                   </div>
 
                   <ul class="users-list clearfix margin: 1rem" style="margin: 0px;margin-left: 2px">
                     <li style="padding: 0px;">
                       <div class="progress-group">
-                        This Year:&nbsp;&nbsp;<strong id="thisyear" class="text-success"></strong>
+                        2020:&nbsp;&nbsp;<strong id="thisyear" class="text-success"></strong>
                       </div>
                     </li>
 
@@ -144,7 +124,7 @@
 
                     <li style="padding: 0px;">
                       <div class="progress-group" >
-                        Last Year:&nbsp;&nbsp;<strong id="lastyear" class="text-secondary"></strong>
+                        2019:&nbsp;&nbsp;<strong id="lastyear" class="text-secondary"></strong>
                       </div>
                     </li>
 
@@ -598,7 +578,7 @@
     $("#lastyear").html(totlast);
 
 
-    $("#salesyear").html("Sales " + current_year);
+    $("#salesyear").html("Vendite " + current_year);
 
 
   //console.log(monthly);
@@ -608,10 +588,10 @@
   var salesChartCanvas = $('#salesChart').get(0).getContext('2d');
 
   var salesChartData = {
-    labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+    labels  : ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
     datasets: [
     {
-      label               : 'This Year',
+      label               : "Quest'anno",
       backgroundColor     : '#5f9b1b',
       borderColor         : '#000',
       pointRadius          : true,
@@ -623,7 +603,7 @@
         data                : month//intervallo valori
       },
       {
-        label               : 'Last Year',
+        label               : "Anno precedente",
         backgroundColor     : '#cfd0d2',
         borderColor         : '#000',
         pointRadius          : true,
@@ -720,7 +700,7 @@
     var $visitorsChart = $('#visitors-chart')
     var visitorsChart  = new Chart($visitorsChart, {
       data   : {
-        labels  : ['January', 'February', 'March', 'April', 'May', 'June', 'July','August','September','October','November','December'],
+        labels  : ['Gennaio', 'Febbraio', 'Marzo', 'Aprile', 'Maggio', 'Giugno', 'Luglio','Agosto','Settembre','Ottobre','Novembre','Dicembre'],
         datasets: [{
           type                : 'line',
           data                : month_price,

@@ -227,6 +227,7 @@
 
   <script>
      $( document ).ready(function() {
+    $('#tableorders').DataTable();
       $('input').on('input', function() {
         $(this).val($(this).val().replace(/^[^1-9]/g,''));
     });

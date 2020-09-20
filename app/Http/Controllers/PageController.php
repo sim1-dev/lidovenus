@@ -22,8 +22,14 @@ class PageController extends Controller
         
         $Orders_this_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y'))->get();
         $Orders_last_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y')-1)->get();
+
+        //$Completed_orders_number = DB::table('orders')->selectRaw('*, count(*)')->where('delivered',"=",1)->groupBy('id')->get();
+        $Completed_orders_number = count(DB::table('orders')->where('delivered',"=",1)->get());
+        $Open_orders_number = count(DB::table('orders')->where('delivered',"=",0)->get());
+        $Users_number = count(DB::table('users')->get());
         
-        return view('adminuser.pagecontrol', compact('Pizzas','Desk','Drinks','Ice_creams','Orders_this_year','Orders_last_year'));
+        
+        return view('adminuser.pagecontrol', compact('Pizzas','Desk','Drinks','Ice_creams','Orders_this_year','Orders_last_year', 'Completed_orders_number', 'Users_number', 'Open_orders_number'));
         /*
         $Desk = Product::where('category',"=", 'Desk')->count();
         $Drinks = Product::where('category',"=", 'Drinks')->count();

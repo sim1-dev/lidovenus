@@ -31,6 +31,7 @@
     <link href="{{ asset('vendor/select2/select2.min.css') }}" rel="stylesheet">
     <link href="{{ asset('css/themify-icons/themify-icons.css') }}" rel="stylesheet">
     <link href="{{ asset('css/util.css') }}" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.css"/>
     <link href="{{ asset('css/login.css') }}" rel="stylesheet">
     <link href="{{ asset('css/theme_style.css') }}" rel="stylesheet">
 
@@ -119,4 +120,5 @@
 
 </div>
 </body>
+<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
 </html>

@@ -100,7 +100,7 @@
   </div>
   @else
   <div style="float: right;">
-    <a class="btn btn-info" href="{{ route('panelcontrol') }}">Back to the orders</a>&nbsp;
+    <a class="btn btn-info" href="{{ route('panelcontrol') }}">Torna agli ordini</a>&nbsp;
     <a class="btn btn-light" href="{{ route('order.edit',$order->id) }}">Modifica</a><!-- LANCIO IL CREATE -->
   </div>
 
@@ -122,6 +122,7 @@
 @include('construct.badgeorder')
 
 <script type="text/javascript">
+
   $('#nextorder').click(function() {
     if (confirm('Close this order and continue cycling?')) {
       return true;
