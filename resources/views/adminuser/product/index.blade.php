@@ -36,7 +36,7 @@
       <b>Categoria:</b><br>
       <select class="form-control" name="category">
         @php
-        $category = ['Drinks','Ice creams','Pizzas','Desk'];
+        $category = ['Bevande','Gelati','Pizze','Desk'];
         @endphp
         @foreach ($category as $element)
         <option value="{{ $element }}">{{ $element }}</option>

@@ -18,7 +18,7 @@ class ProductSeeder extends Seeder
 
     	DB::table('products')->insert([
     		'name' => 'Fetta di pizza rossa',
-    		'category' => 'Pizzas',
+    		'category' => 'Pizze',
     		'price' => 1.50,
     		'description' => 'fetta di pizza rossa',
     		'quantitystock' => 45,
@@ -31,7 +31,7 @@ class ProductSeeder extends Seeder
     	foreach (range(0,1) as $index) {
     		DB::table('products')->insert([
     			'name' => Str::random(10),
-    			'category' => 'Ice creams',
+    			'category' => 'Gelati',
     			'price' => rand(1, 9999) / 100,
     			'description' => Str::random(20),
     			'quantitystock' => 100,
@@ -45,7 +45,7 @@ class ProductSeeder extends Seeder
     	foreach (range(1,2) as $index) {
     		DB::table('products')->insert([
     			'name' => Str::random(10),
-    			'category' => 'Drinks',
+    			'category' => 'Bevande',
     			'price' => rand(1, 9999) / 100,
     			'description' => Str::random(20),
     			'quantitystock' => 100,
@@ -58,7 +58,7 @@ class ProductSeeder extends Seeder
     	foreach (range(1,2) as $index) {
     		DB::table('products')->insert([
     			'name' => Str::random(10),
-    			'category' => 'Pizzas',
+    			'category' => 'Pizze',
     			'price' => rand(1, 9999) / 100,
     			'description' => Str::random(20),
     			'quantitystock' => 100,

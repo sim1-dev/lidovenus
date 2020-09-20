@@ -71,7 +71,7 @@
 			Category:<br>
 			<select class="form-control" name="category">
 				@php
-				$category = ['Drinks','Ice creams','Pizzas','Desk'];
+				$category = ['Bevande','Gelati','Pizze','Desk'];
 				@endphp
 				@foreach ($category as $element)
 				@if ($element == $product->category)

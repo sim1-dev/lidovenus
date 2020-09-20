@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 $factory->define(Product::class, function (Faker $faker) {
     return [
 		'name' => Str::random(10),
-		'category' => 'Drinks',
+		'category' => 'Bevande',
 		'price' => rand(1, 9999) / 100,
 		'description' => Str::random(20),
 		'quantitystock' => rand(1, 99),

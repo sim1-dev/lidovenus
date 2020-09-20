@@ -15,10 +15,10 @@ class PageController extends Controller
     public function index()
     {
         
-        $Pizzas = DB::table('products')->where('category',"=","Pizzas")->get();  
+        $Pizze = DB::table('products')->where('category',"=","Pizze")->get();  
         $Desk = DB::table('products')->where('category',"=","Desk")->get();
-        $Drinks = DB::table('products')->where('category',"=","Drinks")->get();
-        $Ice_creams = DB::table('products')->where('category',"=","Ice creams")->get();
+        $Bevande = DB::table('products')->where('category',"=","Bevande")->get();
+        $Ice_creams = DB::table('products')->where('category',"=","Gelati")->get();
         
         $Orders_this_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y'))->get();
         $Orders_last_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y')-1)->get();
@@ -38,7 +38,7 @@ class PageController extends Controller
         $Users_number = DB::table('users')->count();
         
         
-        return view('adminuser.pagecontrol', compact('Pizzas','Desk','Drinks','Ice_creams','Orders_this_year','Orders_last_year', 'Completed_orders_number', 'Users_number', 'Open_orders_number', 'Lastest_completed_orders'));
+        return view('adminuser.pagecontrol', compact('Pizze','Desk','Bevande','Ice_creams','Orders_this_year','Orders_last_year', 'Completed_orders_number', 'Users_number', 'Open_orders_number', 'Lastest_completed_orders'));
     }
 
     /**

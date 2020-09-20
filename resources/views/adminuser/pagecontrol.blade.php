@@ -277,10 +277,10 @@
     {{-- INVENTORY: --}}
     <script>
       $(document).ready(function() {
-        {{-- var ciao = {!! json_encode($Pizzas->toArray()) !!}; --}}
+        {{-- var ciao = {!! json_encode($Pizze->toArray()) !!}; --}}
         {{-- $("i:eq(0)").text($.inArray("Jupiter", planets)); // search array for Jupiter --}}
         var number = 0;
-        var obj = {!! $Drinks !!};
+        var obj = {!! $Bevande !!};
 
         $.each(obj, function(key,value) {
           //console.log(value.name);
@@ -296,7 +296,7 @@
 
       $(document).ready(function() {
         var number = 0;
-        var obj = {!! $Pizzas !!};
+        var obj = {!! $Pizze !!};
 
         $.each(obj, function(key,value) {
 
