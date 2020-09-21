@@ -18,7 +18,6 @@ class prova extends Controller
     public function index()
     {
         $user = User::find(2);
-        //tra subscription e user
         $subs = $user->subscriptions()->get();
         foreach ($subs as $key => $value) {
             dd($value->id);
@@ -39,7 +38,7 @@ class prova extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\Request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -55,8 +54,6 @@ class prova extends Controller
      */
     public function show($id)
     {
-        //ho gli abbonamenti che corrispondono allo stesso anno corrente
-        //e all'id dell'ombrellone inserito
         $subs = Subscription::where('idumbrella', $id)->whereYear('from', date('Y'))->get();
         dd($subs);
     }

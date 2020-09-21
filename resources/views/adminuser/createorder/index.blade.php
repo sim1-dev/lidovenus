@@ -80,7 +80,6 @@
 <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 <script type="text/javascript">
   $( document ).ready(function() {
-    //resetto tutti i pulsanti
     $("#insertorder").trigger("reset");
     $("#product").val("");
     $("#product2").val("");
@@ -89,18 +88,15 @@
 
   $("#product").change(function(){
     $val = $(this).val();
-    //console.log($val);
     if ($val != '') {
       $idproduct = $('#product').val();
       axios.get('/admin/createorder/'+ $idproduct, {
       }).then(response => {
-        //console.log(response.data.product);
         $quantity = response.data.product.quantitystock;
         for (var i = 0; i < $quantity; i++) {
           var tot = parseInt(i) + 1;
           $('#quantity').append('<option value='+tot+'>'+tot+'</option>');
         }
-        //console.log(response);
       }).catch(function (error) {
 
         console.log(error);
@@ -112,7 +108,6 @@
 
   $("#product2").change(function(){
     $val = $(this).val();
-    //console.log($val);
     if ($val != '') {
       $("#product2").prop('required',true);
       $("#users2").prop('required',true);
@@ -128,7 +123,6 @@
           var tot = parseInt(i) + 1;
           $('#quantity2').append('<option value='+tot+'>'+tot+'</option>');
         }
-        //$('#quantity').append('<option value="test1">test1</option>');
         console.log(response);
       }).catch(function (error) {
 

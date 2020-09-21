@@ -77,14 +77,14 @@
   <label class="float-left w-100 mb-3">Totale: {{ $pricetotal }} €</label><br>
 
   @if (!$order->delivered)
-  <a class="btn btn-warning" style="float: left;" href="{{ route('order.edit',$order->id) }}">Modifica Ordine</a>
+  <a class="btn btn-warning mb-5" href="{{ route('order.edit',$order->id) }}">MODIFICA ORDINE</a>
   <div style="float: right;">
-    <a class="btn btn-danger" href="{{ route('panelcontrol') }}">Torna al riepilogo ordini</a>
+    <a class="btn btn-danger" href="{{ route('panelcontrol') }}">TORNA AL RIEPILOGO ORDINI</a>
     <form action="{{ route('order.store') }}" style="display:inline;" method="POST">
       @csrf
       @method('POST')
       <input type="hidden" name="idorder" value="{{ $order->id }}">
-      <input id="backtopanel"  class="btn btn-info" type="submit"  value="Chiudi ordine e torna al riepilogo">
+      <input id="backtopanel"  class="btn btn-info" type="submit"  value="CHIUDI ORDINE E TORNA AL RIEPILOGO">
     </form>
 
 
@@ -92,7 +92,7 @@
       @csrf
       @method('PUT')
       <input type="hidden" name="delivered" value="1">
-      <input id="nextorder"  class="btn btn-success" type="submit" value="Chiudi ordine e passa al successivo">
+      <input id="nextorder"  class="btn btn-success" type="submit" value="CHIUDI ORDINE E PASSA AL SUCCESSIVO">
     </form>
 
   </div>

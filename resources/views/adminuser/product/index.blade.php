@@ -172,9 +172,7 @@
 </script>
 
 <script>
-  //Show
   var linkbasic = $("#showumbrella").attr("action");
-  //console.log(linkbasic);
   (function( $ ){
    $.fn.showumbrella = function() {
     var id = $("#idumbrella").val();
@@ -186,9 +184,7 @@
 </script>
 
 <script>
-  //Delete
   var linkbasic2 = $("#deleteumbrella").attr("action");
-  //console.log(linkbasic2);
   $('#buttonumbrelladelete').click(function() {
     var id = $("#idumbrelladelete").val();
 

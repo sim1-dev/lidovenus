@@ -22,13 +22,6 @@ class UserController extends Controller
      */
     public function index()
     {
-        //qui prendo solo gli id che non sono come chiave esterna ad un utente
-        //ma l'ho fatto funzionare diversamente
-        /*
-        $umbr_busy = DB::table('users')->whereNotNull('idumbrella')->pluck('idumbrella');
-        $umbrella = DB::table('beach_umbrellas')->whereNotIn('id', $umbr_busy )->get();
-        */
-
         $umbrellas = BeachUmbrella::orderBy('id','ASC')->get();
         $users = User::orderBy('id','ASC')->get();
         return view('adminuser.user.index',compact('umbrellas', 'users'));
@@ -64,7 +57,7 @@ class UserController extends Controller
        $user->name = $request->name;
        $user->surname = $request->surname;
        $user->email = $request->email;
-       $user->password = Hash::make(strtolower($request->name.$request->surname));
+       $user->password = Hash::make($request->password);
        $user->save();
        unset($user);
        $lastiduser = User::orderBy('id','desc')->first();
@@ -122,11 +115,9 @@ class UserController extends Controller
         $user->name = $req->name;
         $user->updated_at = now();
 
-        //change orders umbrella:
         if ($user->idumbrella != $req->umbrella) {
             $user->idumbrella = $req->umbrella;
             $orders = $user->orders()->get();
-            //dd($orders);
             if ($orders) {
                 foreach ($orders as $key => $value) {
                     $order = Order::find($value->id);
@@ -160,8 +151,6 @@ class UserController extends Controller
             $orderusers = $user->orders()->get();
 
             foreach ($orderusers as $key) {
-                //echo $key->id; HO l'id ordine
-                //vedo se negli ordini dell'utente c'é un ordine non chiuso
                 $orders = Order::find($key->id);
                 if ($orders->delivered != 1) {
                     $safety_catch = 0;
@@ -169,11 +158,6 @@ class UserController extends Controller
             }
 
             if ($safety_catch) {
-                //se tutti gli ordini dell'utente sono chiusi provvedo ad eliminarli
-                //prima di fare ciò, inserisco l'ordine nella tabella degli ordini eliminati
-                //per avere la contabilità di questi ordini a breve cancellati
-
-                //inserisco gli ordini della tabella degli ordini eliminati
 
                 foreach ($orderusers as $key) {
                     $orders = Order::find($key->id);
@@ -185,49 +169,48 @@ class UserController extends Controller
                         ]
                     ]);
 
-                    //prendo l'ordine appena inserito nella tabella order eliminata
+
                     $lastid = DB::table('order_deletes')->latest('id')->first();
                     $orderdelete = OrderDelete::find($lastid->id);
-                    //prendo i suoi prodotti per inserirli nella relazione n a n con prodotti
+
                     $listaprodottinellordine = json_decode($orderdelete->id_products, true);
                     foreach ($listaprodottinellordine as $key =>$value) {
                         $prodottoid = Product::find($value['id']);
                         $orderdelete->products()->attach($prodottoid,['quantity' => $value['quantity']]);
                     }
-                    //una volta completato l'inserimento provvedo alla cancellazione:
 
-                    //tra order e product
+
+
                     $orders->products()->detach();
-                    //tra order e umbrella
+
                     $orders->umbrellas()->detach();
-                    //tra ordini e user
+
                     $orders->users()->detach();
-                    //cancello quest'ordine
+
                     $orders->delete();
 
 
                 }
 
-                //tra subscription e user
-                //forse il detach ha qualche problemino
+
                 $subs = $user->subscriptions()->get();
                 foreach ($subs as $key => $value) {
                     $sub = Subscription::find($value->id);
                     $sub->users()->detach();
                     $sub->delete();
                 }
-                //cancello l'user
+
                 $user->delete();
 
                 return redirect(route('user.index'))->with('success', 'Utente eliminato con successo.');
             }
-            //se risulta un utente con un ordine ancora aperto
+
             else{
                 return redirect(route('user.index'))->with('error', "L'utente numero '.$id.' ha ordini non completati");
             }
 
         }
-        //non c'é nessun user con quell'id:
+
         else{
             return redirect(route('user.index'))->with('error', "Nessun utente con quell'ID");
         }
@@ -239,14 +222,9 @@ class UserController extends Controller
             return redirect(route('user.index'))->with('error', "L'utente è un amministratore.");
         }
         $user = User::find($id);
-        //$orders = DB::table('orders')->where();
         if ($user) {
             $orders = $user->orders()->orderBy('created_at', 'desc')->paginate(7);
             $subscriptions = $user->subscriptions()->paginate(5);
-            /*
-            $umbr_busy = DB::table('users')->whereNotNull('idumbrella')->pluck('idumbrella');
-            $umbrellass = DB::table('beach_umbrellas')->whereNotIn('id', $umbr_busy )->get();
-            */
             return view('adminuser.user.show',compact('user','orders','subscriptions'));
         }
         else{

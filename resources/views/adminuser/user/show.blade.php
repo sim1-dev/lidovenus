@@ -197,9 +197,7 @@
 @include('construct.badgeorder')
 
 <script>
-  //Show
   var linkbasic = $("#search").attr("action");
-  //console.log(linkbasic);
   (function( $ ){
    $.fn.showorder = function() {
     var id = $("#ordernumber").val();

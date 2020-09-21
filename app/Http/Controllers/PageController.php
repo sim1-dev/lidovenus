@@ -14,30 +14,21 @@ class PageController extends Controller
      */
     public function index()
     {
-        
-        $Pizze = DB::table('products')->where('category',"=","Pizze")->get();  
+
+        $Pizze = DB::table('products')->where('category',"=","Pizze")->get();
         $Desk = DB::table('products')->where('category',"=","Desk")->get();
         $Bevande = DB::table('products')->where('category',"=","Bevande")->get();
         $Ice_creams = DB::table('products')->where('category',"=","Gelati")->get();
-        
+
         $Orders_this_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y'))->get();
         $Orders_last_year = DB::table('orders')->where('delivered',"=",1)->whereYear('created_at', date('Y')-1)->get();
         $Lastest_completed_orders = DB::table('orders')->where('delivered',"=",1)->orderby('updated_at')->take(5)->get();
 
-
-        //dd($Lastest_completed_orders);
-
-        //$Completed_orders_number = DB::table('orders')->selectRaw('*, count(*)')->where('delivered',"=",1)->groupBy('id')->get();
-
-        //$Completed_orders_number = count(DB::table('orders')->where('delivered',"=",1)->get());
-        //$Open_orders_number = count(DB::table('orders')->where('delivered',"=",0)->get());
-        //$Users_number = count(DB::table('users')->get());
-
         $Completed_orders_number = DB::table('orders')->where('delivered',"=",1)->count();
         $Open_orders_number = DB::table('orders')->where('delivered',"=",0)->count();               //più veloce con numeri alti e PDO friendly
         $Users_number = DB::table('users')->count();
-        
-        
+
+
         return view('adminuser.pagecontrol', compact('Pizze','Desk','Bevande','Ice_creams','Orders_this_year','Orders_last_year', 'Completed_orders_number', 'Users_number', 'Open_orders_number', 'Lastest_completed_orders'));
     }
 

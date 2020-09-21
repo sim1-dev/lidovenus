@@ -18,11 +18,10 @@ class OrderController extends Controller
         $order = Order::orderBy('created_at','ASC')->where('delivered',"!=", 1)->first();
         if ($order) {
             return redirect(route('order.show',$order->id));
-            //return view('adminuser.order.cyclinganorder')->with('order',$order);
         }
         return redirect('admin/panelcontrol')->with('success','Ordini conclusi.');
-        
-        
+
+
     }
 
     /**
@@ -48,8 +47,7 @@ class OrderController extends Controller
         $order->delivered = 1;
         $order->save();
         return redirect('/admin/panelcontrol')->with('success','Ordine concluso.');
-        //return redirect()->route('panelcontrol')
-        
+
     }
 
     /**
@@ -76,15 +74,14 @@ class OrderController extends Controller
     public function edit($id)
     {
         \Cart::clear();
-        \Cart::session(1)->clear();//cart default
-        \Cart::session(2)->clear();//cart for alteration
+        \Cart::session(1)->clear();
+        \Cart::session(2)->clear();
 
         $order = Order::find($id);
         if ($order) {
-            //$carrello =json_decode($order->id_products, true);
             $orderid = $order->id;
             $delivered = $order->delivered;
-            
+
             return view('adminuser.order.edit_order',compact('orderid','delivered'));
         }
         else{
@@ -104,7 +101,7 @@ class OrderController extends Controller
         $order = Order::find($id);
         $order->delivered = $request->delivered;
         $order->save();
-        return redirect()->route('order.index');//return redirect()->route('order.index');
+        return redirect()->route('order.index');
     }
 
     /**

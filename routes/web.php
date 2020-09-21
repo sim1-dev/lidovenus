@@ -19,22 +19,21 @@ use Illuminate\Http\Request;
 
 
 
-/* Route Users: */
+// Route Users:
 Route::get('/home', 'HomeController@index')->name('home')->middleware('is_user');
 
 Route::get('/index', function () {
 	return view('welcome');
 })->name('index');
 
-/* Redirect sul panel control: */
-/* Route Admin: */
+// Route Admin:
 Route::get('/', function () {
 	return redirect('admin/panelcontrol');
 })->name('panelcontrol');
 
 Route::get('admin/panelcontrol','HomeController@adminHome')->name('admin.home')->middleware('is_admin');
 
-/* I controller: */
+// Controllers:
 Route::resource('admin/product','ProductController')->middleware('is_admin');
 Route::resource('admin/order','OrderController')->middleware('is_admin');//controller order
 Route::resource('admin/user','UserController')->middleware('is_admin');
@@ -46,10 +45,8 @@ Route::resource('admin/brand','BrandController')->middleware('is_admin');
 Route::resource('admin/beachumbrellaresult','Api\BeachUmbrellaResult')->middleware('is_admin');
 Route::resource('admin/createorder','CreateOrderController')->middleware('is_admin');
 
-//prova
 Route::resource('prova/api','prova')->middleware('is_admin');
 
-//pagina di controllo:
 Route::resource('admin/pagecontrol','PageController')->middleware('is_admin');
 
 Auth::routes([
@@ -58,9 +55,8 @@ Auth::routes([
 
 Route::get('caricacarello', function() {
 
-    $product = Product::find(1);// assuming you have a Product model with id, name, description & price
-	$rowId = $product->id; // generate a unique() row ID
-	 // the user ID to bind the cart contents
+    $product = Product::find(1);
+	$rowId = $product->id;
 
 	\Cart::clear();
 	\Cart::add(array(
@@ -68,18 +64,15 @@ Route::get('caricacarello', function() {
 		'name' => $product->name,
 		'price' => $product->price,
 		'quantity' => 4,
-		//'attributes' => array(),
 		'associatedModel' => 'Product'
 	));
 	$cart = \Cart::getContent();
 
 	$carrello = $cart->toJson();
 
-	//\Cart::session($user->id)->remove(3);
 	\Cart::clear();
 
 	$user = User::find(2);
-	//$userID = $user->id;
 	$user->cart = $carrello;
 	$user->save();
 

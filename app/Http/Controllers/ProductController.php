@@ -153,13 +153,11 @@ class ProductController extends Controller
         $product = Product::find($id);
         if ($product) {
             $productonorder = $product->orders()->get();
-            //dd($productonorder);
             foreach ($productonorder as $key => $value) {
                 $order = Order::find($value->id);
 
 
                 if ($order->delivered != 1) {
-                    //dd($order);
                     return redirect(route('product.index'))->with('error','This Product is into another order not closed, Order:'.$order->id);
                 }
             }

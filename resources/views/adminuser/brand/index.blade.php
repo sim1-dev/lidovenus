@@ -32,7 +32,7 @@
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control"  name="address" placeholder="Indirizzo">
+        <input type="text" class="form-control"  name="address" placeholder="Indirizzo" required>
       </div>
 
       <div class="form-group">
@@ -139,9 +139,7 @@
 </script>
 
 <script>
-  //Show
   var linkbasic = $("#showumbrella").attr("action");
-  //console.log(linkbasic);
   (function( $ ){
    $.fn.showumbrella = function() {
     var id = $("#idumbrella").val();
@@ -153,9 +151,7 @@
 </script>
 
 <script>
-  //Delete
   var linkbasic2 = $("#deleteumbrella").attr("action");
-  //console.log(linkbasic2);
   $('#buttonumbrelladelete').click(function() {
     var id = $("#idumbrelladelete").val();
 

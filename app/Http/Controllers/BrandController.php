@@ -51,7 +51,10 @@ class BrandController extends Controller
 
             $brand = new Brand;
             $brand->name = $request->name;
-            $brand->address = $request->address;
+            if(!is_null($request->address)) {
+                $brand->address = $request->address;
+            }
+            else $brand->address = '';
             $brand->description = $request->description;
             $brand->created_at = now();
             $brand->updated_at = now();
@@ -112,20 +115,6 @@ class BrandController extends Controller
      */
     public function update(UpdateBrandRequest $request, Brand $brand)
     {
-        /*request()->validate(
-            [
-                'name' => 'required|max:200|unique:brands',
-                'address' => 'required',
-                'image' => 'nullable|mimes:jpeg,png,jpg|max:5000000',
-            ],
-            [
-                'name.required'=>'Insert name brand',
-                'name.unique'=>'Same name into db',
-                'name.max'=>'Max 200 character',
-                'address.required' => 'Insert address brand',
-                'image.mimes' => 'type of file accept: jpeg - png - jpg and max size 50mb',
-            ]
-        );*/
         $brand = Brand::find($brand->id);
         $brand->name = $request->name;
         $brand->address = $request->address;

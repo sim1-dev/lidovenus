@@ -10,7 +10,7 @@
         <div class="row" style="width: 100%">
 
           <!-- Left col -->
-          <div class="col-md-8">
+          <div class="col-md-7">
             <!-- MAP & BOX PANE -->
             <div class="card" >
               <div class="card-header border-0">
@@ -71,7 +71,7 @@
     </div>
     <!-- /.col -->
 
-    <div class="col-md-4">
+    <div class="col-md-5">
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Ordine</h3><br>

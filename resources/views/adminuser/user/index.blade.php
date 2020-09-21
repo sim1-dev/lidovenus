@@ -30,8 +30,9 @@
         <input type="text" class="form-control w-50 float-left" required="" name="name" placeholder="Nome">
         <input type="text" class="form-control w-50 float-left" required="" name="surname" placeholder="Cognome">
       </div>
-      <div class="form-group" style="padding-top:38px;padding-bottom:22px">
-        <input type="email" class="form-control" required="" name="email" placeholder="E-mail">
+      <div class="form-group" style="padding-top:38px;padding-bottom:59px">
+        <input type="email" class="form-control w-50 float-left" required="" name="email" placeholder="E-mail">
+        <input type="password" class="form-control w-50 float-left" required="" name="password" placeholder="Password">
       </div>
 
       <div class="form-group text-left">
@@ -147,7 +148,6 @@
   src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
   integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
   crossorigin="anonymous"></script>
-  {{-- <script src="{{ asset('node_modules\axios\dist\axios.js') }}"></script> --}}
 
 
   <script type="text/javascript">
@@ -165,28 +165,16 @@
         $("#dateinputdal").prop('required',true);
         $("#dateinputal").prop('required',true);
 
-      //prendo l'id dell'ombrellone
       $idumbrella = $('#umbrella').val();
-      //console.log($idumbrella);
-      //const axios = require('axios');
       axios.get('/admin/beachumbrellaresult/'+ $idumbrella, {
 
 
       }).then(response => {
-        //console.log(response);
 
-
-          // array to hold the range
           dateRange = [];
-          //devo usare l'array adesso:
 
           $.each(response, function(key,value) {
             $.each(value.subs, function(keys,values) {
-              //console.log(values.id);
-              //console.log(values.from);
-              //console.log(values.to);
-
-              // populate the array
               for (var d = new Date(values.from); d <= new Date(values.to); d.setDate(d.getDate() + 1)) {
                 dateRange.push($.datepicker.formatDate('yy-mm-dd', d));
               }
@@ -198,7 +186,7 @@
           $('dateinputal').datepicker('setDate', null);
           $('#dateinputdal').datepicker({
 
-            // use this array
+
             beforeShowDay: function (date) {
               var dateString = jQuery.datepicker.formatDate('yy-mm-dd', date);
               return [dateRange.indexOf(dateString) == -1];
@@ -208,7 +196,7 @@
 
           $('#dateinputal').datepicker({
 
-            // use this array
+
             beforeShowDay: function (date) {
               var dateString = jQuery.datepicker.formatDate('yy-mm-dd', date);
               return [dateRange.indexOf(dateString) == -1];
@@ -245,13 +233,11 @@ var unavailableDates = ["9-9-2020"];
 
 
 
-//INIZIO LAVORO SUL CALENDAR
         var minDate = new Date();
-        var startDate = "2020-07-10", // some start date
-        endDate  = "2020-09-09",  // some end date
-        dateRange = [];           // array to hold the range
+        var startDate = "2020-07-10",
+        endDate  = "2020-09-09",
+        dateRange = [];
 
-        // populate the array
         for (var d = new Date(startDate); d <= new Date(endDate); d.setDate(d.getDate() + 1)) {
           dateRange.push($.datepicker.formatDate('yy-mm-dd', d));
         }

@@ -38349,7 +38349,7 @@ var render = function() {
     _c("div", { staticClass: "col-md-12" }),
     _vm._v(" "),
     _c("div", { staticClass: "row", staticStyle: { width: "100%" } }, [
-      _c("div", { staticClass: "col-md-8" }, [
+      _c("div", { staticClass: "col-md-7" }, [
         _c(
           "div",
           { staticClass: "card" },
@@ -38507,7 +38507,7 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "col-md-4" }, [
+      _c("div", { staticClass: "col-md-5" }, [
         _c("div", { staticClass: "card" }, [
           _c("div", { staticClass: "card-header" }, [
             _c("h3", { staticClass: "card-title" }, [_vm._v("Ordine")]),

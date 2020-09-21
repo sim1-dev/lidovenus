@@ -42,7 +42,6 @@ class CreateOrderController extends Controller
     public function store(Request $request)
     {
 
-        //product users quantity umbrella
         $array1 =  array (
             array(
                 'product' => $request->product,
@@ -54,7 +53,7 @@ class CreateOrderController extends Controller
             )
         );
 
-        
+
 
         \Cart::clear();
         $order = new Order;
@@ -68,7 +67,6 @@ class CreateOrderController extends Controller
                 'name' => $product->name,
                 'price' => $product->price,
                 'quantity' => $request->quantity,
-                //'attributes' => array(),
                 'associatedModel' => 'Product'
             ));
             $createdcart = \Cart::getContent();
@@ -83,16 +81,14 @@ class CreateOrderController extends Controller
                     'name' => $product->name,
                     'price' => $product->price,
                     'quantity' => $request->quantity2,
-                //'attributes' => array(),
                     'associatedModel' => 'Product'
                 ));
                 $createdcart = \Cart::getContent();
                 $cart = $createdcart->toJson();
             }
-            
-            
+
+
         }
-        //dd($cart);
 
         foreach ($array1 as $key => $value ) {
             $user = User::find($value['users']);
@@ -115,12 +111,12 @@ class CreateOrderController extends Controller
         }
 
         return redirect(route('admin.home'))->with('success','Order created');
-        
-        
-        
 
-        
-        
+
+
+
+
+
 
     }
 

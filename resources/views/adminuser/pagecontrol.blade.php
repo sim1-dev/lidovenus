@@ -59,7 +59,7 @@
       </div>
 
 
-    </div>    
+    </div>
     <!-- /.col -->
 
   <div class="row">
@@ -103,7 +103,6 @@
                 </div>
                 <!-- /.col -->
 
-                <!-- Destra di annual reporting -->
                 <div class="col-md-4">
 
                   <div class="card-header">
@@ -134,8 +133,8 @@
 
 
 
-                  
-                  
+
+
 
 
 
@@ -194,7 +193,7 @@
               </div>
             </div>
           </div>
-          
+
 
           <!-- TABLE: LATEST ORDERS -->
           <div class="card ml-3">
@@ -283,12 +282,10 @@
         var obj = {!! $Bevande !!};
 
         $.each(obj, function(key,value) {
-          //console.log(value.name);
           number += value.quantitystock;
         });
 
         $("#db1").html(number);
-    //$("#db2").attr("value", number);
     var tot = number/500*100;
     $('#desk1').css({'width': tot+'%'});
   });
@@ -304,7 +301,6 @@
         });
 
         $("#db2").html(number);
-    //$("#db2").attr("value", number);
     var tot = number/500*100;
     $('#desk2').css({'width': tot+'%'});
   });
@@ -319,7 +315,6 @@
         });
 
         $("#db3").html(number);
-    //$("#db2").attr("value", number);
     var tot = number/500*100;
     $('#desk3').css({'width': tot+'%'});
   });
@@ -335,14 +330,13 @@
         });
 
         $("#db4").html(number);
-    //$("#db2").attr("value", number);
     var tot = number/500*100;
     $('#desk4').css({'width': tot+'%'});
   });
 
 
 
-      
+
 
 </script>
 {{-- ANNUAL REPORTING: --}}
@@ -352,14 +346,13 @@
 
     var month = [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]];
     var ordersy = {!! $Orders_this_year !!};
-    var current_year;//variabile per la scritta Sales 2020
+    var current_year;
 
     var tot = 0;
     $.each(ordersy, function(key,value) {
       var y = new Date(value.created_at);
 
-      current_year = y.getFullYear();//variabile per la scritta Sales 2020
-      //console.log(y.getMonth());
+      current_year = y.getFullYear();
       month[y.getMonth()] = [parseInt(month[y.getMonth()])+1];
       tot++;
 
@@ -376,7 +369,6 @@
     var totlast = 0;
     $.each(ordersly, function(key,value) {
       var y = new Date(value.created_at);
-      //console.log(y.getMonth());
       monthly[y.getMonth()] = [parseInt(monthly[y.getMonth()])+1];
       totlast++;
     });
@@ -386,7 +378,6 @@
     $("#salesyear").html("Vendite " + current_year);
 
 
-  //console.log(monthly);
 
 
 
@@ -405,7 +396,7 @@
       pointHighlightFill  : '#fff',
       pointHighlightStroke: '#c2b280',
       borderWidth: 1.5,
-        data                : month//intervallo valori
+        data                : month
       },
       {
         label               : "Anno precedente",
@@ -417,7 +408,7 @@
         pointHighlightFill  : '#fff',
         pointHighlightStroke: 'rgba(60,141,188,1)',
         borderWidth: 1.5,
-        data                : monthly//intervallo valori
+        data                : monthly
       }
       ]
     }
@@ -446,9 +437,9 @@
     }
 
   // This will get the first returned node in the jQuery collection.
-  var salesChart = new Chart(salesChartCanvas, { 
-    type: 'bar', 
-    data: salesChartData, 
+  var salesChart = new Chart(salesChartCanvas, {
+    type: 'bar',
+    data: salesChartData,
     options: salesChartOptions
   }
   )
@@ -462,7 +453,7 @@
 
 <script>
   //MONTH PRICE
-  
+
   $(document).ready(function() {
     var month_price = [[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0],[0]];
     var ordersy = {!! $Orders_this_year !!};
