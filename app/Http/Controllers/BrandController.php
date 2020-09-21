@@ -116,7 +116,7 @@ class BrandController extends Controller
             [
                 'name' => 'required|max:200|unique:brands',
                 'address' => 'required',
-                'image' => 'nullable|mimes:jpeg,png,jpg|max:50',
+                'image' => 'nullable|mimes:jpeg,png,jpg|max:5000000',
             ],
             [
                 'name.required'=>'Insert name brand',
@@ -165,7 +165,7 @@ class BrandController extends Controller
         }else{
             return redirect(route('brand.index'))->with('error','Marchio inesistente');
         }
-        
-        
+
+
     }
 }

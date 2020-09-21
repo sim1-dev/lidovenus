@@ -3,18 +3,18 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>Show / Update</h1>
+<h1 class="text-left"><b>Utente {{ $user->id }} - {{ $user->name }}  {{ $user->surname }} - Registrato il {{ $user->created_at}}</b></h1>
 @stop
 
 @section('content')
 @include('layouts.alert')
 
-<label>
+<!-- <label>
   Search number order
   <form id="search" action="{{ route('order.show','') }}" onsubmit="$().showorder();">
     <input class="form-control form-control-sm" id="ordernumber" placeholder="Enter for search">
   </form>
-</label>
+</label> -->
 
 @if ($errors->any())
 <div class="alert alert-danger">
@@ -26,48 +26,43 @@
 </div>
 @endif
 
-<div class="container" style="background-color: #fff;width: auto;text-align: center;">
-  <p> User id: {{ $user->id }}</p>
-  <hr>
-  <p> Data Registrazione: {{ $user->created_at}}</p>
-
-
+<div class="container-fluid">
   <form action="{{ route('user.update',$user->id) }}" method="POST">
     @csrf
     @method('PUT')
-    <label>Nomw:</label>
-    <input class="form-control" type="text" name="name" value="{{ $user->name }}">
-    <label>Cognome:</label>
-    <input class="form-control" type="text" name="surname" value="{{ $user->surname }}"><br>
-    <label>Email:</label><br>
-    <input class="form-control" type="text" name="email"  value="{{ $user->email }}"><br>
-    <label>Comune:</label><br>
+    <h3 class="text-left w-100 my-4"><b>Nome:</b></h3>
+    <input class="form-control" type="text" name="name" value="{{ $user->name }}" required>
+    <h3 class="text-left w-100 my-4"><b>Cognome:</b></h3>
+    <input class="form-control" type="text" name="surname" value="{{ $user->surname }}" required><br>
+    <h3 class="text-left w-100 my-4"><b>Email:</b></h3>
+    <input class="form-control" type="text" name="email"  value="{{ $user->email }}" required><br>
+    <h3 class="text-left w-100 my-4"><b>Comune:</b></h3>
     <input class="form-control" type="text" name="municipality"  value="{{ $user->municipality }}"><br>
-    <label>CAP:</label><br>
+    <h3 class="text-left w-100 my-4"><b>CAP:</b></h3>
     <input class="form-control" type="text" name="cap" value="{{ $user->cap }}"><br>
-    <label>Indirizzo:</label><br>
+    <h3 class="text-left w-100 my-4"><b>Indirizzo:</b></h3>
     <input class="form-control" type="text" name="address"  value="{{ $user->address }}"><br>
 
 
 
 
 
-    <input type="submit" style="float: right;" class="btn btn-info" value="Aggiorna">
+    <input type="submit" class="btn btn-primary w-100 my-4 py-2" value="AGGIORNA UTENTE">
   </form>
   <p></p>
 
   @if (!empty($orders[0]))
-  <table id="tableorders" class="table table-bordered table-hover dataTable" style="text-align: center;background-color: #fff">
-    <h3 style="float: left;">Orders of user {{ $user->id }} :</h3>
-    <thead>
+  <table id="tableorders" class="table table-bordered table-striped table-hover dataTable">
+    <h3 class="text-left my-4"><b>Ordini di {{ $user->name }}  {{ $user->surname }}:</b></h3>
+    <thead class="bg-dark">
       <tr role="row" style="width: 100%">
-        <th id="colonna1" style="width:5%;">Order id</th>
-        <th id="colonna2" style="width:10%;">Umbrella</th>
-        <th id="colonna2" style="width:45%;">Products</th>
-        <th id="colonna3" style="width:10%;">Total number of product</th>
-        <th id="colonna4" style="width:5%;">Total € Order</th>
-        <th id="timestamp" style="width: 10%;" class="header headerSortDown">Time stamp</th>
-        <th id="action" style="width:5%;">Action</th>
+        <th id="colonna1">#</th>
+        <th id="colonna2">ID Ombrellone</th>
+        <th id="colonna2">Prodotti</th>
+        <th id="colonna3">Quantità Totale Prodotti</th>
+        <th id="colonna4">Totale in €</th>
+        <th id="timestamp" class="header headerSortDown">Data Ordine</th>
+        <th id="action">Azioni</th>
       </tr>
     </thead>
     <tbody>
@@ -97,7 +92,7 @@
             foreach ($items as $key=>$value) {
               $productNumber += $value->quantity;
               $totalOrder = $value->quantity * $value->price;
-              echo $value->name."(".$value->quantity.")";
+              echo $value->name." <b>x".$value->quantity."</b> ";
             }
             @endphp
 
@@ -106,7 +101,7 @@
           <td>
             {{ $productNumber }}
           </td>
-          <td style="border: 1px solid #819AD4; text-align: center;">{{ $totalOrder }} €</td>
+          <td style="background-color:#DDDDDD;">{{ $totalOrder }} €</td>
           <td>{{ $element->created_at }}</td>
 
           <td class="text-center"><a style="display:inline;float:left" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}"></a>
@@ -143,19 +138,19 @@
 
 
   @else
-  <h3 style="float: left">No Order</h3>
+  <h3 class="text-left w-100"><b>Nessun ordine</b></h3>
   @endif
   @if (!empty($subscriptions[0]))
 
-  <table id="tableorders" class="table table-bordered table-hover dataTable" style="text-align: center;background-color: #fff">
-    <h3 style="float: left;">Subscription of this user:</h3>
-    <thead>
-      <tr role="row" style="width: 100%">
-        <th id="colonna1" style="width:10%;">id</th>
-        <th id="colonna2" style="width:10%;">Umbrella</th>
-        <th id="colonna2" style="width:30%;">From</th>
-        <th id="colonna3" style="width:30%;">To</th>
-        <th id="action" style="width:10%;">Action</th>
+  <table id="tableorders" class="table table-bordered table-striped table-hover dataTable">
+    <h3 class="text-left w-100 my-4"><b>Abbonamenti di {{ $user->name }}  {{ $user->surname }}:</b></h3>
+    <thead class="bg-dark">
+      <tr role="row">
+        <th id="colonna1">#</th>
+        <th id="colonna2">ID Ombrellone</th>
+        <th id="colonna2">Data Inizio</th>
+        <th id="colonna3">Data Fine</th>
+        <th id="action">Azioni</th>
       </tr>
     </thead>
     <tbody>

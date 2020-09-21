@@ -74,13 +74,12 @@
 
     </tbody>
   </table>
-  <label>Totale: {{ $pricetotal }} €</label><br><br>
+  <label class="float-left w-100 mb-3">Totale: {{ $pricetotal }} €</label><br>
 
   @if (!$order->delivered)
   <a class="btn btn-warning" style="float: left;" href="{{ route('order.edit',$order->id) }}">Modifica Ordine</a>
   <div style="float: right;">
     <a class="btn btn-danger" href="{{ route('panelcontrol') }}">Torna al riepilogo ordini</a>
-    &nbsp;
     <form action="{{ route('order.store') }}" style="display:inline;" method="POST">
       @csrf
       @method('POST')
@@ -88,7 +87,6 @@
       <input id="backtopanel"  class="btn btn-info" type="submit"  value="Chiudi ordine e torna al riepilogo">
     </form>
 
-    &nbsp;
 
     <form action="{{ route('order.update',$order->id) }}" style="display:inline;" method="POST">
       @csrf
@@ -100,8 +98,8 @@
   </div>
   @else
   <div style="float: right;">
-    <a class="btn btn-secondary" href="{{ route('panelcontrol') }}">Torna agli ordini</a>&nbsp;
-    <a class="btn btn-warning" href="{{ route('order.edit',$order->id) }}">Modifica</a>
+    <a class="btn btn-danger" href="{{ route('panelcontrol') }}">TORNA AGLI ORDINI</a>&nbsp;
+    <a class="btn btn-success" href="{{ route('order.edit',$order->id) }}">MODIFICA ORDINE</a>
   </div>
 
   @endif

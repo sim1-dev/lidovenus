@@ -27,9 +27,9 @@ class UpdateBrandRequest extends FormRequest
 
             'name' => 'required|max:200|unique:brands,name,'.$this->brand->id,
             'address' => 'required',
-            'image' => 'nullable|mimes:jpeg,png,jpg|max:50'
+            'image' => 'nullable|mimes:jpeg,png,jpg|max:5000000'
 
         ];
-        
+
     }
 }

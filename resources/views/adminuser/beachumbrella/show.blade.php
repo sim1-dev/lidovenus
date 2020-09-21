@@ -3,7 +3,7 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>Show / Update</h1>
+<h1 class="text-left my-4"><b>Ombrellone {{ $bu->id }} - {{ $bu->type}} - Creato il {{ $bu->created_at}}</b></h1>
 @stop
 
 @section('content')
@@ -21,12 +21,11 @@
 </div>
 @endif
 
-<div class="container" style="background-color: #fff;width: auto;text-align: center;">
+<div class="container">
   <form action="{{ route('beachumbrella.update',$bu->id) }}" method="POST">
     @csrf
     @method('PUT')
-    <p> Umbrella id: {{ $bu->id}}</p>
-    <p>This is a <b>{{ $bu->type}}</b> default <br>
+    <h3 class="text-left my-4"><b>Tipo Ombrellone:</b></h3>
       <select class="form-control" name="type">
         @php
         $typeofumbrella = ['Ombrellone piccolo (2 posti)','Ombrellone grande (4 posti)','Palma (5 posti)'];
@@ -40,29 +39,27 @@
         @endforeach
       </select>
     </p>
-    <p> Umbrella created_at: {{ $bu->created_at}}</p>
-    <p> Umbrella updated_at: {{ $bu->updated_at}}</p>
 
-    <input type="submit" class="btn btn-info" style="float: right;" value="Update">
+    <input type="submit" class="btn btn-primary float-right" value="AGGIORNA OMBRELLONE">
   </form>
-  <a type="button" style="float: right" href="{{ route('beachumbrella.index') }}" class="btn btn-link">Back to crud</a>
+  <a type="button" href="{{ route('beachumbrella.index') }}" class="btn btn-danger float-right mx-2">TORNA INDIETRO</a>
 </div>
 <br><br><br><br>
 
-<div class="container" style="background-color: #fff;width: auto;text-align: center;">
+<div class="container">
 
   @if (empty($theordersumbrella[0]))
   <div style="text-align: center;">
-    No order umbrella
+    Nessun ordine per questo ombrellone
   </div>
   @else
-  <table class="table table-bordered table-hover dataTable">
-    <thead>
-      <tr role="row" style="width: 100%">
-        <th id="colonna1">Order id</th>
-        <th id="colonna2">Created at</th>
-        <th id="colonna2">Updated at</th>
-        <th id="colonna2">Delivered</th>
+  <table class="table table-bordered bg-striped table-hover dataTable">
+    <thead class="bg-dark">
+      <tr role="row">
+        <th id="colonna1">ID Ordine</th>
+        <th id="colonna2">Creato il</th>
+        <th id="colonna2">Aggiornato il</th>
+        <th id="colonna2">Consegnato</th>
       </tr>
     </thead>
     <tbody>

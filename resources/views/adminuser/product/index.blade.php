@@ -64,8 +64,8 @@
 
     <div class="form-group">
       <b class="w-100">Immagine:</b><br>
-          <input type="file" name="image" />
-    </div>    
+          <input type="file" name="img"/>
+    </div>
 
     <label>Marchio:</label>
     <div class="form-group">
@@ -133,6 +133,7 @@
         <th scope="col">Prezzo</th>
         <th scope="col">Quantità</th>
         <th scope="col">Descrizione</th>
+        <th scope="col">Immagine</th>
         <!--<th scope="col">Azioni</th>-->
       </tr>
     </thead>
@@ -145,6 +146,7 @@
         <td>{{ $product->price }}</td>
         <td>{{ $product->quantitystock }}</td>
         <td>{{ $product->description }}</td>
+        <td> <img src="{{ url('images_products/'.$product->img)}}" width="100px" height="100px"> </td>
       </tr>
     @endforeach
     </tbody>

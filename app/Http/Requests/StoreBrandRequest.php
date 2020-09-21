@@ -27,8 +27,8 @@ class StoreBrandRequest extends FormRequest
 
                 'name' => 'required|max:200|unique:brands',
                 'address' => 'required',
-                'image' => 'nullable|mimes:jpeg,png,jpg|max:50',
-                
+                'image' => 'nullable|mimes:jpeg,png,jpg|max:5000000',
+
 
             ];
     }

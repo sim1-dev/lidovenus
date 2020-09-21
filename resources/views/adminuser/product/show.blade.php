@@ -3,7 +3,7 @@
 @section('title', 'Order')
 
 @section('content_header')
-<h1>Show / Update</h1>
+<h1 class="text-left w-100 my-4"><b>Prodotto {{ $product->id }} - {{ $product->name}} - {{ $product->brand }} - {{ $product->price}}€ / cad. - Aggiunto il {{ $product->created_at}}</b></h1>
 @stop
 
 @section('content')
@@ -21,40 +21,30 @@
 </div>
 @endif
 
-<div class="container" style="background-color: #fff;width: auto;text-align: center;">
-	<form action="{{ route('product.update',$product->id) }}" method="POST">
+<div class="container-fluid">
+	<form action="{{ route('product.update',$product->id) }}" method="POST" enctype="multipart/form-data">
 		@csrf
-		@method('PUT')
-		<label>Product id:</label>
-		<div class="form-group">
-			{{ $product->id}}
-		</div>
+        @method('PUT')
 
-		<label>Name:</label>
-		<div class="form-group">
-			<input type="text" name="name" value="{{ $product->name}}">
-		</div>
+		<h3 class="text-left w-100 my-4"><b>Nome:</b></h3>
+		<input type="text" class="form-control" name="name" value="{{ $product->name}}">
 
-		<label>Description:</label>
-		<div class="form-group">
-			<textarea name="description">{{ $product->description}}</textarea>
-		</div>
+		<h3 class="text-left w-100 my-4"><b>Descrizione:</b></h3>
+			<textarea class="form-control" name="description">{{ $product->description}}</textarea>
 
-		<label>Change Image:</label>
-		<div class="form-group">
+            <h3 class="text-left w-100 my-4"><b>Immagine:</b></h3>
+			<img src="{{ url('images_products/'.$product->img) }}" width="100px" height="100px">
+			<input type="file" name="img">
 
-			<img src="{{ url('images_products/',$product->img) }} " width="100px" height="100px">
-			<input type="file" name="image">
-		</div>
+		<h3 class="text-left w-100 my-4"><b>Prezzo:</b></h3>
+			<input type="number" class="form-control" step="0.01" name="price" value="{{ $product->price}}">
 
-		<label>Price:</label>
-		<div class="form-group">
-			<input type="number" step="0.01" name="price" value="{{ $product->price}}">
-		</div>
+        <h3 class="text-left w-100 my-4"><b>Quantità in magazzino:</b></h3>
+			<input type="number" class="form-control" step="0.01" name="quantitystock" value="{{ $product->quantitystock}}">
 
-		<label>Brand:</label>
+
+		<h3 class="text-left w-100 my-4"><b>Marchio:</b></h3>
 		<div class="form-group">
-			Default brand: <a href="{{ route('brand.show',$product->brand) }}">{{ $product->brand }}</a><br>
 			<select class="form-control" name="brand">
 				@foreach ($brand as $element)
 				@if ($element->id == $product->brand)
@@ -68,7 +58,7 @@
 		</div>
 
 		<div class="form-group">
-			Category:<br>
+			<h3 class="text-left w-100 my-4"><b>Categoria:</b></h3>
 			<select class="form-control" name="category">
 				@php
 				$category = ['Bevande','Gelati','Pizze','Desk'];
@@ -84,27 +74,11 @@
 			</select>
 		</div>
 
-		<label>Timestamp:</label>
-		<div class="form-group">
-			<b>created_at:</b>&nbsp;&nbsp;{{ $product->created_at}}<br>
-			<b>updated_at:</b>&nbsp;&nbsp;{{ $product->updated_at}}
-		</div>
 
 
-
-		<input type="submit" class="btn btn-info" style="float: right;" value="Update">
-	</form>
-	<a type="button" style="float: right" href="{{ route('product.index') }}" class="btn btn-link">Back to crud</a>
-</div>
-<br><br><br><br>
-
-<div class="container" style="background-color: #fff;width: auto;text-align: center;">
-
-
-
-
-
-
+        <input type="submit" class="btn btn-primary w-25 float-right" value="AGGIORNA">
+        <a href="{{ route('product.index') }}" class="btn btn-danger w-25">TORNA INDIETRO</a>
+    </form>
 
 </div>
 

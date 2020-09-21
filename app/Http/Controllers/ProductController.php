@@ -44,7 +44,7 @@ class ProductController extends Controller
         request()->validate(
             [
                 'name' => 'required|max:200|unique:products',
-                'image' => 'nullable|mimes:jpeg,png,jpg|max:50',
+                'image' => 'nullable|mimes:jpeg,png,jpg|max:5000000',
             ],
             [
                 'name.required'=>'Inserisci nome prodotto',
@@ -57,9 +57,9 @@ class ProductController extends Controller
 
         $product = new Product;
         $product->name = $request->name;
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $imageName = time().'.'.$request->image->extension();
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $imageName = time().'.'.$request->img->extension();
             $file->move(public_path('images_products'), $imageName);
             $product->img = $imageName;
 
@@ -126,15 +126,15 @@ class ProductController extends Controller
         if ($request->price) {
             $product->price = $request->price;
         }
-         
+
         $product->brand = $request->brand;
         $product->updated_at = now();
 
-        if ($request->hasFile('image')) {
-            $file = $request->file('image');
-            $imageName = time().'.'.$request->image->extension();
+        if ($request->hasFile('img')) {
+            $file = $request->file('img');
+            $imageName = time().'.'.$request->img->extension();
             $file->move(public_path('images_products'), $imageName);
-            $product->image = $imageName;
+            $product->img = $imageName;
 
         }
 

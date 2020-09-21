@@ -21,23 +21,23 @@
 
 
 <div class="row">
-  <!-- 1 -->   
+  <!-- 1 -->
   <div class="col-sm-4">
 
      <form id="registeruser" class="px-2 py-2" enctype="multipart/form-data" action="{{ route('brand.store') }}" method="POST">
       @csrf
       <div class="form-group"><br>
         <h3><b>Crea Marchio</b></h3><br>
-        <input type="text" class="form-control"  name="name" placeholder="Nome" >
+        <input type="text" class="form-control"  name="name" placeholder="Nome" required>
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control"  name="address" placeholder="Indirizzo" >
+        <input type="text" class="form-control"  name="address" placeholder="Indirizzo">
       </div>
 
       <div class="form-group">
-        <input type="text" class="form-control" name="description" placeholder="Descrizione" >
-        
+        <input type="text" class="form-control" name="description" placeholder="Descrizione" required>
+
       </div>
 
       <div class="form-group">
@@ -45,10 +45,10 @@
         <input type="file" name="image" />
       </div>
 
-      
+
       <button type="submit" class="btn btn-primary w-100">CREA MARCHIO</button>
-    </form> 
-    
+    </form>
+
  </div>
 
  <!-- 2 -->
@@ -78,7 +78,7 @@
   </form>
 </div>
 </div>
-</div> 
+</div>
 <br>
 
 <div class="row">
@@ -147,7 +147,7 @@
     var id = $("#idumbrella").val();
     $ciao = $("#showumbrella").attr("action",linkbasic+"/"+id);
 
-  }; 
+  };
 })( jQuery );
 
 </script>
@@ -168,7 +168,7 @@
     }
   });
 
-  
+
 
 
 
