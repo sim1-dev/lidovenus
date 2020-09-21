@@ -199,37 +199,58 @@
           <div class="card ml-3">
             <div class="card-header border-transparent bg-dark">
               <h3 class="card-title">Ultimi ordini</h3>
-
-              <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                  <i class="fas fa-plus"></i>
-                </button>
-                <button type="button" class="btn btn-tool" data-card-widget="remove">
-                  <i class="fas fa-times"></i>
-                </button>
-              </div>
             </div>
             <!-- /.card-header -->
             <div class="card-body p-0">
-              <div class="table-responsive">
+              <div class="table-responsive table-striped">
                 <table class="table m-0">
-                  <thead>
-                    <tr>
-                      <th>Order ID</th>
-                      <th>Item</th>
-                      <th>Status</th>
-                      <th>Popularity</th>
-                    </tr>
-                  </thead>
+                    <thead>
+                        <tr role="row">
+                            <th id="colonna1">ID Ordine</th>
+                            <th id="colonna1">ID Utente</th>
+                            <th id="colonna2">ID Ombrellone</th>
+                            <th id="colonna2">Prodotti</th>
+                            <th id="colonna3">Quantità</th>
+                            <th id="colonna4">Prezzo</th>
+                            <th id="timestamp" class="header headerSortDown">Data</th>
+                        </tr>
+                    </thead>
                   <tbody>
-                    @foreach ($Lastest_completed_orders as $orders)
-                    <tr>
-                      <td> {{$orders->id}} </td>
-                      <td>{{$orders->id}} </td>
-                      <td><span class="badge badge-success">Shipped</span></td>
-                      <td>
-                        <div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-                      </td>
+                    @foreach ($Lastest_completed_orders as $element)
+
+                    <tr role="row">
+
+
+                            <td>{{ $element->id }}</td>
+                        <td>
+                            @php
+                            $idorder = \App\Order::find($element->id);
+                            @endphp
+                            @foreach ($idorder->users as $elements)
+                            {{ $elements->id }}
+                            @endforeach
+                        </td>
+                        <td>
+                            @foreach ($idorder->umbrellas as $elementss)
+                            {{ $elementss->id }}
+                            @endforeach
+                        </td>
+
+                        <td>
+                            @php
+                            $items = json_decode($element->id_products);
+                            $productNumber = 0;
+                            $totalOrder = 0;
+                            foreach ($items as $key => $value) {
+                                $productNumber++;
+                                $totalOrder += $value->quantity * $value->price;
+                                echo $value->name."<strong> x".$value->quantity."</strong>".'&ensp;';
+                            }
+                            @endphp
+                        </td>
+                        <td >{{ $productNumber }}</td>
+                        <td>{{ $totalOrder }} €</td>@php @endphp
+                        <td>{{ $element->created_at }} </td>
                     </tr>
                     @endforeach
                   </tbody>
@@ -239,8 +260,8 @@
             </div>
             <!-- /.card-body -->
             <div class="card-footer clearfix">
-              <a href="{{ url('/admin/createorder') }}" class="btn btn-sm btn-info float-left">Crea nuovo ordine</a>
-              <a href="{{ url('/admin/panelcontrol') }}" class="btn btn-sm btn-secondary float-right">Visualizza ordini</a>
+              <a href="{{ url('/admin/createorder') }}" class="btn btn-sm btn-primary float-left">CREA NUOVO ORDINE</a>
+              <a href="{{ url('/admin/panelcontrol') }}" class="btn btn-sm btn-success float-right">VISUALIZZA TUTTI GLI ORDINI</a>
             </div>
             <!-- /.card-footer -->
           </div>

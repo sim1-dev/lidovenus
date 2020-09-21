@@ -110,7 +110,7 @@ class CreateOrderController extends Controller
             $umbrella->orders()->attach($lastorder->id);
         }
 
-        return redirect(route('admin.home'))->with('success','Order created');
+        return redirect(route('admin.home'))->with('success','Ordine '.$lastorder->id.' creato con successo.');
 
 
 
