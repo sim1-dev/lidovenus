@@ -95,7 +95,7 @@
 
   </div>
   @else
-  <div style="float: right;">
+  <div class="container">
     <a class="btn btn-danger" href="{{ route('panelcontrol') }}">TORNA AGLI ORDINI</a>&nbsp;
     <a class="btn btn-success" href="{{ route('order.edit',$order->id) }}">MODIFICA ORDINE</a>
   </div>

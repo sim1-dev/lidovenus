@@ -74,7 +74,7 @@
             <td >{{ $productNumber }}</td>
             <td><b>{{ $totalOrder }} €</b></td>@php @endphp
             <td>{{ $element->created_at }} </td>
-            <td class="text-center"><a style="display:inline;float:left" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}" data-toggle="tooltip" data-placement="top" title="Visualizza ordine"></a>
+            <td class="text-center"><a style="display:inline;float:left;margin-bottom:5px" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}" data-toggle="tooltip" data-placement="top" title="Visualizza ordine"></a>
 
                 <form style="display:inline;float:right" action="{{ route('order.store') }}" method="POST">
                     @csrf

@@ -104,7 +104,7 @@
           <td style="background-color:#DDDDDD;">{{ $totalOrder }} €</td>
           <td>{{ $element->created_at }}</td>
 
-          <td class="text-center"><a style="display:inline;float:left" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}"></a>
+          <td class="text-center"><a style="display:inline;float:left;margin-bottom:5px" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}"></a>
             @if ($element->delivered)
 
             @else
@@ -166,7 +166,7 @@
 
           <td class="text-center">
             <a style="display:inline;float:left" href="">
-              <img width="20px" height="20px" src="{{ asset('img/search.png') }}">
+              <img width="20px" style="margin-bottom:5px" height="20px" src="{{ asset('img/search.png') }}">
             </a>
 
           </td>

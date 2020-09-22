@@ -7,8 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 class BeachUmbrella extends Model
 {
     public function orders()
-    {                                                       
-                                                //prima id classe                                     
+    {
+
         return $this->belongsToMany('App\Order', 'orders_umbrellas', 'id_umbrella', 'id_order');
     }
 
@@ -16,7 +16,7 @@ class BeachUmbrella extends Model
     {
         return $this->hasMany('App\Subscription');
 
-        
+
     }
 
 }

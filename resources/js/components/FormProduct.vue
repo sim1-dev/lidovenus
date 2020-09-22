@@ -176,7 +176,6 @@ export default {
         });
 
         this.deliveredornot = this.delivered;
-        //console.log(this.deliveredornot);
 
         this.loadCartConstruct();
         //this.loadCart();
@@ -219,7 +218,6 @@ export default {
 
             axios.get('/orderedit/create?orderid=' + this.orderid, {
             }).then(response => {
-                //console.log(response);
                 this.cartorder = response.data.cart;
                 this.cart_total = response.data.cart_total;
             }).catch(error => {
@@ -228,38 +226,14 @@ export default {
             });
         },
 
-
-
-
-
-         //index
-        /*checkMaxQuantity: function(event){
-
-            axios.get('/orderedit' + '&idproduct=' + event.target.id + '&productnumber=' + event.target.name {
-
-
-            }).then(response => {
-                console.log(response);
-
-            }).catch(error => {
-                console.log(error);
-
-            });
-        },*/
-
-
-
         //post store
         add_product_to_cart(id){
-            //console.log(id.target.value);
-
             axios.post('/orderedit', {
                 product:id.target.value,
-                //orderid:this.orderid,
+
 
 
             }).then(response => {
-                //console.log(response);
                 this.cartorder = response.data.cart;
                 this.cart_total = response.data.cart_total;
                 this.getResults();
@@ -269,7 +243,7 @@ export default {
 
             });
         },
-        //Update
+        //update
         AggQProduct: function(event){
 
             axios.put('/orderedit/'+ event.target.name, {
@@ -297,7 +271,6 @@ export default {
             axios.post('/deleteproduct/'+ event.target.name, {
                 orderid:this.orderid,
             }).then(response => {
-                //console.log(response);
                 this.cartorder = response.data.cart;
                 this.cart_total = response.data.cart_total;
                 this.getResults();
@@ -322,7 +295,6 @@ export default {
                 delivered:this.deliveredornot,
 
             }).then(response => {
-                //console.log(response);
                 window.location.href = '/admin/order/'+this.orderid+'/edit';
 
 

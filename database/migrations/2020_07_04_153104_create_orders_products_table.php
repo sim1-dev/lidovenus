@@ -21,7 +21,6 @@ class CreateOrdersProductsTable extends Migration
         });
 
         Schema::table('orders_products', function($table) {
-            //->onDelete('cascade')
             $table->foreign('id_order')->references('id')->on('orders');
             $table->foreign('id_product')->references('id')->on('products');
         });

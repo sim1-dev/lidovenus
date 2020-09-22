@@ -158,7 +158,7 @@ class ProductController extends Controller
 
 
                 if ($order->delivered != 1) {
-                    return redirect(route('product.index'))->with('error','This Product is into another order not closed, Order:'.$order->id);
+                    return redirect(route('product.index'))->with('error','Questo prodotto si trova in un ordine non ancora concluso (ID Ordine: '.$order->id.')');
                 }
             }
             $product->delete();

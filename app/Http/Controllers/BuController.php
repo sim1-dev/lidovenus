@@ -100,7 +100,7 @@ class BuController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
-    {//controllo se ci sono gli ordini collegati aperti su questo ombrellone, se non ci sono li elimino
+    {
         $bu = BeachUmbrella::find($id);
         if ($bu) {
             $orderumbrella = $bu->orders()->get();

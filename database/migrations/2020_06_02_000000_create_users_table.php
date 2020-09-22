@@ -26,14 +26,12 @@ class CreateUsersTable extends Migration
             $table->string('cap')->nullable();
             $table->string('password');
             $table->rememberToken();
-            //$table->unsignedBigInteger('idumbrella')->nullable();
 
 
             $table->timestamps();
         });
 
         Schema::table('users', function($table) {
-            //$table->foreign('idumbrella')->references('id')->on('beach_umbrellas');
         });
 
     }

@@ -23,7 +23,6 @@ class OrdersdeleteProducts extends Migration
         });
 
         Schema::table('orders_delete_products', function($table) {
-            //->onDelete('cascade')
             $table->foreign('id_order')->references('id')->on('order_deletes');
             $table->foreign('id_product')->references('id')->on('products');
         });

@@ -37,15 +37,13 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    //N A N
     public function orders()
-    {                                                                                                  
+    {
         return $this->belongsToMany('App\Order', 'orders_users', 'id_user', 'id_order');
     }
 
     public function subscriptions()
-    {                                                       
-        //prima id classe                                     
+    {
         return $this->belongsToMany('App\Subscription', 'users_subscriptions', 'id_users', 'id_subsc');
     }
 }

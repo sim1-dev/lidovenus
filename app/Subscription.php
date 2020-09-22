@@ -12,8 +12,7 @@ class Subscription extends Model
     }
 
     public function users()
-    {                                                       
-        //prima id classe                                     
+    {
         return $this->belongsToMany('App\User', 'users_subscriptions', 'id_subsc', 'id_users');
     }
 }

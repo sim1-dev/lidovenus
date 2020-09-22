@@ -39,16 +39,6 @@ class BrandController extends Controller
     public function store(StoreBrandRequest $request)
     {
 
-
-        /*[
-                'name.required'=>'Insert name brand',
-                'name.unique'=>'Same name into db',
-                'name.max'=>'Max 200 character',
-                'address.required' => 'Insert address brand',
-                'image.mimes' => 'type of file accept: jpeg - png - jpg and max size 50mb',
-            ]*/
-
-
             $brand = new Brand;
             $brand->name = $request->name;
             if(!is_null($request->address)) {
