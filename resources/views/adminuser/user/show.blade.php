@@ -155,7 +155,7 @@
     </thead>
     <tbody>
       <ul>
-        @foreach ($subscriptions as $element){{-- Avere l'id users && Id ombrellone --}}
+        @foreach ($subscriptions as $element)
 
         <tr role="row">
           <td>{{ $element->id }}</td>

@@ -10,16 +10,14 @@
 
 
 <div class="container" style="width: auto;">
-  <h4><b>ID Ombrellone:</b> {{ $order->id }}</h4>
-  <hr>
-
+  {{-- <h4><b>ID Ombrellone:</b> {{ $order->id }}</h4> --}}
   @foreach ($order->umbrellas as $element)
   <h4><b>ID Ombrellone:</b> {{ $element->id }}</h4>
   @endforeach
   <hr>
 
   @foreach ($order->users as $element)
-  <h4><b>ID Utente:</b> {{ $element->id }}</h4>
+  <h4><b>Utente:</b> {{ $element->name }} {{ $element->surname }}</h4>
   @endforeach
 
   <hr>
