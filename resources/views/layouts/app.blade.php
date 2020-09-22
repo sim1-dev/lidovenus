@@ -76,15 +76,15 @@
                   <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
                     <ul class="nav navbar-nav menu_nav">
                     <li class="nav-item active"><a class="nav-link" href="{{ url('/index') }}">Home</a></li>
-                      <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
-                      <li class="nav-item"><a class="nav-link" href="properties.html">Properties</a></li>
-                      <li class="nav-item"><a class="nav-link" href="gallery.html">Gallery</a></li>
+                      <li class="nav-item"><a class="nav-link" href="about.html">Chi Siamo</a></li>
+                      <li class="nav-item"><a class="nav-link" href="properties.html">Servizi</a></li>
+                      <li class="nav-item"><a class="nav-link" href="gallery.html">Galleria</a></li>
                       <li class="nav-item submenu dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                         aria-expanded="false">Blog</a>
                         <ul class="dropdown-menu">
                           <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
-                          <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog Details</a></li>
+                          <li class="nav-item"><a class="nav-link" href="blog-single.html">Blog 2</a></li>
                         </ul>
                       </li>
                     <li class="nav-item"><a class="nav-link" href="{{ url('login') }}">Login</a></li>
