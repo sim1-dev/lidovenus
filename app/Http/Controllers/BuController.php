@@ -15,7 +15,7 @@ class BuController extends Controller
      */
     public function index()
     {
-        $umbrellas = DB::table('beach_umbrellas')->orderBy('id')->get();
+        $umbrellas = DB::table('beach_umbrellas')->orderBy('id')->paginate(5);
         return view('adminuser.beachumbrella.index', compact('umbrellas'));
     }
 
@@ -62,7 +62,7 @@ class BuController extends Controller
         else{
             return redirect(route('beachumbrella.index'))->with('error','Ombrellone non esistente.');
         }
-        
+
     }
 
     /**
@@ -85,7 +85,7 @@ class BuController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $bu = BeachUmbrella::find($id); 
+        $bu = BeachUmbrella::find($id);
         if ($bu->type != $request->type) {
             $bu->type = $request->type;
             $bu->save();
@@ -115,6 +115,6 @@ class BuController extends Controller
         else{
             return redirect(route('beachumbrella.index'))->with('error','Ombrellone non esistente');
         }
-        
+
     }
 }

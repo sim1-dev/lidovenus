@@ -61,7 +61,7 @@
 			<h3 class="text-left w-100 my-4"><b>Categoria:</b></h3>
 			<select class="form-control" name="category">
 				@php
-				$category = ['Bevande','Gelati','Pizze','Desk'];
+				$category = ['Bevande','Gelati','Pizze','Panini'];
 				@endphp
 				@foreach ($category as $element)
 				@if ($element == $product->category)

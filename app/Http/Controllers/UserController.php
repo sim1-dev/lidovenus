@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index()
     {
         $umbrellas = BeachUmbrella::orderBy('id','ASC')->get();
-        $users = User::orderBy('id','ASC')->get();
+        $users = User::orderBy('id','ASC')->paginate(5);
         return view('adminuser.user.index',compact('umbrellas', 'users'));
     }
 

@@ -71,7 +71,7 @@ class ProductSeeder extends Seeder
     	foreach (range(1,7) as $index) {
     		DB::table('products')->insert([
     			'name' => Str::random(10),
-    			'category' => 'Desk',
+    			'category' => 'Panini',
     			'price' => rand(1, 9999) / 100,
     			'description' => Str::random(20),
     			'quantitystock' => 100,
@@ -81,7 +81,7 @@ class ProductSeeder extends Seeder
     		]);
     	}
 
-        
+
 
 
     }

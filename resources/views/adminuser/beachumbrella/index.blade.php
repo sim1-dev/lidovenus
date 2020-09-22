@@ -81,7 +81,7 @@
         <th scope="row">{{ $umbrella->id }}</th>
         <td>{{ $umbrella->type }}</td>
         <td>{{ $umbrella->created_at }}</td>
-           {{-- 
+           {{--
     <td>
           <form id="showumbrella" action="{{ route('beachumbrella.show','') }}" method="GET" onsubmit="$().showumbrella();">
             @csrf
@@ -101,7 +101,9 @@
     </tbody>
   </table>
 
-
+  <div class="d-flex justify-content-center">
+    {{ $umbrellas->links() }}
+</div>
 
 
 @stop

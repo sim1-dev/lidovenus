@@ -16,7 +16,7 @@ class PageController extends Controller
     {
 
         $Pizze = DB::table('products')->where('category',"=","Pizze")->get();
-        $Desk = DB::table('products')->where('category',"=","Desk")->get();
+        $Desk = DB::table('products')->where('category',"=","Panini")->get();
         $Bevande = DB::table('products')->where('category',"=","Bevande")->get();
         $Ice_creams = DB::table('products')->where('category',"=","Gelati")->get();
 

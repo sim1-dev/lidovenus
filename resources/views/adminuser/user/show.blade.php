@@ -181,7 +181,7 @@
     {{ $subscriptions->links() }}
   </div>
   @else
-  <h3 style="float: left">No Order</h3>
+  <h3 class="text-left">Nessun abbonamento collegato</h3>
   @endif
 </div>
 @stop

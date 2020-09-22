@@ -36,7 +36,7 @@
       <b>Categoria:</b><br>
       <select class="form-control" name="category">
         @php
-        $category = ['Bevande','Gelati','Pizze','Desk'];
+        $category = ['Bevande','Gelati','Pizze','Panini'];
         @endphp
         @foreach ($category as $element)
         <option value="{{ $element }}">{{ $element }}</option>
@@ -124,7 +124,7 @@
 
 <h4 class="my-4"><b>Lista Prodotti</b></h4>
 
-<table class="table table-striped">
+<table id="dataTable" class="table table-striped DataTable">
     <thead class="table-dark">
       <tr>
         <th scope="col">#</th>
@@ -151,6 +151,10 @@
     @endforeach
     </tbody>
   </table>
+
+  <div class="d-flex justify-content-center">
+    {{ $products->links() }}
+</div>
 
   @stop
 
@@ -182,8 +186,8 @@
 })( jQuery );
 
 </script>
-
 <script>
+  //$('#dataTable').DataTable();
   var linkbasic2 = $("#deleteumbrella").attr("action");
   $('#buttonumbrelladelete').click(function() {
     var id = $("#idumbrelladelete").val();

@@ -16,7 +16,7 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brands = DB::table('brands')->orderBy('id')->get();
+        $brands = DB::table('brands')->orderBy('id')->paginate(5);
         return view('adminuser.brand.index', compact('brands'));
     }
 

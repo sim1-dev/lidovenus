@@ -19,7 +19,7 @@ class ProductController extends Controller
     public function index()
     {
         $brand = Brand::all();
-        $products = DB::table('products')->orderBy('id')->get();
+        $products = DB::table('products')->orderBy('id')->paginate(5);
         return view('adminuser.product.index',compact('brand', 'products'));
     }
 

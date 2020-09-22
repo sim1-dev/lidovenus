@@ -22,7 +22,7 @@
 
 <div class="row">
   <!-- 1 -->
-  <div class="col-sm-4">
+  <div class="col-md-6">
 
      <form id="registeruser" class="px-2 py-2" enctype="multipart/form-data" action="{{ route('brand.store') }}" method="POST">
       @csrf
@@ -41,7 +41,7 @@
       </div>
 
       <div class="form-group">
-        <h3><b>Logo:</b></h3><br>
+        <h3><b>Logo</b></h3><br>
         <input type="file" name="image" />
       </div>
 
@@ -51,8 +51,7 @@
 
  </div>
 
- <!-- 2 -->
- <div class="col-sm-4">
+ <div class="col-md-6">
   <br>
   <form id="showumbrella" class="px-2 py-2" action="{{ route('brand.show','') }}" method="GET" onsubmit="$().showumbrella();">
     <div class="form-group">
@@ -61,21 +60,19 @@
     </div>
     <button type="submit" class="btn btn-success w-100">VISUALIZZA MARCHIO</button>
   </form>
-</div>
-<!-- 3 -->
-<div class="col-sm-4">
 
   <br>
   <form id="deleteumbrella" class="px-2 py-2" action="{{ route('brand.destroy','') }}" method="POST">
     @method('DELETE')
     @csrf
-    <div class="form-group">
+    <div class="form-group pt-4">
       <h3><b>Elimina Marchio</b></h3><br>
 
       <input type="text" class="form-control" min="1" id="idumbrelladelete" name="idumbrelladelete" placeholder="Inserisci ID Marchio">
     </div>
     <button id="buttonumbrelladelete" type="submit" class="btn btn-danger w-100">ELIMINA MARCHIO</button>
   </form>
+
 </div>
 </div>
 </div>
@@ -118,6 +115,10 @@
     @endforeach
     </tbody>
   </table>
+
+  <div class="d-flex justify-content-center">
+    {{ $brands->links() }}
+</div>
 
 @stop
 

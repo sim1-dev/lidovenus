@@ -1646,7 +1646,9 @@ button {
 
 .page-link {
   background: transparent;
-  font-weight: 400; }
+  font-weight: 400;
+    color: #000 !important;
+}
 
 .blog-pagination .page-item.active .page-link {
   background-color: #c2b280;
@@ -1899,4 +1901,9 @@ button {
 
 .sidebar-wrapper {
      background-color: #c2b280 !important;
+}
+
+.page-item-active .page-link {
+    background-color:#383f45 !important;
+    border-color:#383f45 !important;
 }

@@ -12,8 +12,7 @@
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="{{ asset('js/login.js') }}" defer></script>
-    <script
-    src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"
     integrity="sha256-0YPKAwZP7Mp3ALMRVB2i8GXeEndvCq3eSl/WsAl1Ryk="
     crossorigin="anonymous"></script>
 
@@ -120,5 +119,4 @@
 
 </div>
 </body>
-<script type="text/javascript" src="https://cdn.datatables.net/v/bs4/dt-1.10.22/datatables.min.js"></script>
 </html>
