@@ -122,7 +122,7 @@
 <script type="text/javascript">
 
   $('#nextorder').click(function() {
-    if (confirm('Close this order and continue cycling?')) {
+    if (confirm('Risolvere questo ordine e passare al successivo?')) {
       return true;
     }
     else{
@@ -133,7 +133,7 @@
 
 <script type="text/javascript">
   $('#backtopanel').click(function() {
-    if (confirm('Close this order and return on panel?')) {
+    if (confirm("Risolvere quest'ordine e tornare al pannello?")) {
       return true;
     }
     else{

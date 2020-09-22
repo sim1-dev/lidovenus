@@ -19,18 +19,18 @@
         <button type="submit" class="btn btn-primary m-2 ml-0 float-left">CERCA</button>
     </form>
 </div>
-<h3 class="text-left py-4 float-left w-100"><b>Lista Ordini Aperti</b></h3>   
+<h3 class="text-left py-4 float-left w-100"><b>Lista Ordini Aperti</b></h3>
 <table id="tableorders" class="table table-bordered table-hover dataTable table-striped" style="text-align: center;">
     <thead class="bg-dark">
         <tr role="row" style="width: 100%">
-            <th id="colonna1" style="width:15%;">ID Ordine</th>
-            <th id="colonna1" style="width:15%;">ID Utente</th>
-            <th id="colonna2" style="width:10%;">ID Ombrellone</th>
-            <th id="colonna2" style="width:25%;">Prodotti</th>
-            <th id="colonna3" style="width:10%;">Quantità</th>
-            <th id="colonna4" style="width:10%;">Prezzo</th>
-            <th id="timestamp" style="width: 10%;" class="header headerSortDown">Data</th>
-            <th id="action" style="width:5%;">Azioni</th>
+            <th id="colonna1">ID Ordine</th>
+            <th id="colonna1">Utente</th>
+            <th id="colonna2">ID Ombrellone</th>
+            <th id="colonna2">Prodotti</th>
+            <th id="colonna3">Quantità</th>
+            <th id="colonna4">Prezzo</th>
+            <th id="timestamp" class="header headerSortDown">Data</th>
+            <th id="action">Azioni</th>
         </tr>
     </thead>
     <tbody>
@@ -50,7 +50,7 @@
                 $idorder = \App\Order::find($element->id);
                 @endphp
                 @foreach ($idorder->users as $elements)
-                {{ $elements->id }}
+                {{ $elements->name }} {{ $elements->surname }}
                 @endforeach
             </td>
             <td>
@@ -72,7 +72,7 @@
                 @endphp
             </td>
             <td >{{ $productNumber }}</td>
-            <td>{{ $totalOrder }} €</td>@php @endphp
+            <td><b>{{ $totalOrder }} €</b></td>@php @endphp
             <td>{{ $element->created_at }} </td>
             <td class="text-center"><a style="display:inline;float:left" href="{{ route('order.show',$element->id) }}"><img width="20px" height="20px" src="{{ asset('img/search.png') }}" data-toggle="tooltip" data-placement="top" title="Visualizza ordine"></a>
 
@@ -239,7 +239,7 @@
 
 <script type="text/javascript">
   $('.ordercompleted').click(function() {
-    if (confirm('Close this order ?')) {
+    if (confirm('Risolvere questo ordine?')) {
       return true;
   }
   else{

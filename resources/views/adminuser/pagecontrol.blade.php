@@ -112,7 +112,7 @@
                   <ul class="users-list clearfix margin: 1rem" style="margin: 0px;margin-left: 2px">
                     <li style="padding: 0px;">
                       <div class="progress-group">
-                        2020:&nbsp;&nbsp;<strong id="thisyear" class="text-success"></strong>
+                        2020:&nbsp;&nbsp;<strong id="thisyear" style="color:#c2b280"></strong>
                       </div>
                     </li>
 
@@ -207,7 +207,7 @@
                     <thead>
                         <tr role="row">
                             <th id="colonna1">ID Ordine</th>
-                            <th id="colonna1">ID Utente</th>
+                            <th id="colonna1">Utente</th>
                             <th id="colonna2">ID Ombrellone</th>
                             <th id="colonna2">Prodotti</th>
                             <th id="colonna3">Quantità</th>
@@ -227,7 +227,7 @@
                             $idorder = \App\Order::find($element->id);
                             @endphp
                             @foreach ($idorder->users as $elements)
-                            {{ $elements->id }}
+                            {{ $elements->name }} {{ $elements->surname }}
                             @endforeach
                         </td>
                         <td>
@@ -249,7 +249,7 @@
                             @endphp
                         </td>
                         <td >{{ $productNumber }}</td>
-                        <td>{{ $totalOrder }} €</td>@php @endphp
+                        <td><b>{{ $totalOrder }} €</b></td>@php @endphp
                         <td>{{ $element->created_at }} </td>
                     </tr>
                     @endforeach
