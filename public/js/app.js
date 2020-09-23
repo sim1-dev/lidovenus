@@ -2082,8 +2082,7 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/product').then(function (response) {
       _this.product = response.data;
     });
-    this.deliveredornot = this.delivered; //console.log(this.deliveredornot);
-
+    this.deliveredornot = this.delivered;
     this.loadCartConstruct(); //this.loadCart();
   },
   watch: {
@@ -2119,33 +2118,19 @@ __webpack_require__.r(__webpack_exports__);
       var _this3 = this;
 
       axios.get('/orderedit/create?orderid=' + this.orderid, {}).then(function (response) {
-        //console.log(response);
         _this3.cartorder = response.data.cart;
         _this3.cart_total = response.data.cart_total;
       })["catch"](function (error) {
         console.log(error);
       });
     },
-    //index
-
-    /*checkMaxQuantity: function(event){
-         axios.get('/orderedit' + '&idproduct=' + event.target.id + '&productnumber=' + event.target.name {
-          }).then(response => {
-            console.log(response);
-         }).catch(error => {
-            console.log(error);
-         });
-    },*/
     //post store
     add_product_to_cart: function add_product_to_cart(id) {
       var _this4 = this;
 
-      //console.log(id.target.value);
       axios.post('/orderedit', {
-        product: id.target.value //orderid:this.orderid,
-
+        product: id.target.value
       }).then(function (response) {
-        //console.log(response);
         _this4.cartorder = response.data.cart;
         _this4.cart_total = response.data.cart_total;
 
@@ -2154,7 +2139,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
-    //Update
+    //update
     AggQProduct: function AggQProduct(event) {
       var _this5 = this;
 
@@ -2178,7 +2163,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('/deleteproduct/' + event.target.name, {
         orderid: this.orderid
       }).then(function (response) {
-        //console.log(response);
         _this6.cartorder = response.data.cart;
         _this6.cart_total = response.data.cart_total;
 
@@ -2198,7 +2182,6 @@ __webpack_require__.r(__webpack_exports__);
       axios.put('/saveCart/' + this.orderid, {
         delivered: this.deliveredornot
       }).then(function (response) {
-        //console.log(response);
         window.location.href = '/admin/order/' + _this7.orderid + '/edit';
       })["catch"](function (error) {
         console.log(error);
@@ -38425,7 +38408,7 @@ var render = function() {
             ]),
             _vm._v(" "),
             _c("table", { staticClass: "table" }, [
-              _c("thead", [
+              _c("thead", { staticClass: "thead-light" }, [
                 _c("tr", [
                   _c("th", [
                     _c(
@@ -38489,7 +38472,7 @@ var render = function() {
                             }
                           }
                         },
-                        [_vm._v("Aggiungi al carrello")]
+                        [_vm._v("AGGIUNGI AL CARRELLO")]
                       )
                     ])
                   ])
@@ -38561,6 +38544,7 @@ var render = function() {
                   _vm._v(" "),
                   _c("td", [
                     _c("input", {
+                      staticClass: "form-control",
                       attrs: {
                         type: "number",
                         name: item.id,
@@ -38583,7 +38567,7 @@ var render = function() {
                       attrs: {
                         type: "submit",
                         name: item.id,
-                        value: "Rimuovi"
+                        value: "RIMUOVI"
                       },
                       on: {
                         click: function(event) {
@@ -38599,7 +38583,8 @@ var render = function() {
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "card-footer text-center" }, [
-            _vm._v("\n        Totale: " + _vm._s(_vm.cart_total) + " € "),
+            _vm._v("\n        Totale: "),
+            _c("b", [_vm._v(_vm._s(_vm.cart_total) + " € ")]),
             _c("br"),
             _vm._v(" "),
             _c(
@@ -38659,17 +38644,21 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("thead", { staticStyle: { width: "auto" } }, [
-      _c("tr", [
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Prodotto")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantità")]),
-        _vm._v(" "),
-        _c("th", { attrs: { scope: "col" } }, [_vm._v("Prezzo")]),
-        _vm._v(" "),
-        _c("th", [_vm._v("Azioni")])
-      ])
-    ])
+    return _c(
+      "thead",
+      { staticClass: "thead-light", staticStyle: { width: "auto" } },
+      [
+        _c("tr", [
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Prodotto")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Quantità")]),
+          _vm._v(" "),
+          _c("th", { attrs: { scope: "col" } }, [_vm._v("Prezzo")]),
+          _vm._v(" "),
+          _c("th", [_vm._v("Azioni")])
+        ])
+      ]
+    )
   }
 ]
 render._withStripped = true

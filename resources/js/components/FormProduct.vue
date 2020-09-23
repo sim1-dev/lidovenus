@@ -30,7 +30,7 @@
             </div>
 
             <table class="table">
-                <thead>
+                <thead class="thead-light">
                     <tr>
                         <th>
                             <a href="#" @click.prevent="change_sort('name')" >Nome</a>
@@ -57,7 +57,7 @@
                         <td>{{ prod.category }}</td>
                         <td>{{ prod.price }}€</td>
                         <td>{{ prod.quantitystock }}</td>
-                        <td><button class="btn btn-primary" :value="prod.id" v-on:click="id => add_product_to_cart(id)">Aggiungi al carrello</button></td>
+                        <td><button class="btn btn-primary" :value="prod.id" v-on:click="id => add_product_to_cart(id)">AGGIUNGI AL CARRELLO</button></td>
                     </tr>
                 </tbody>
             </table>
@@ -103,7 +103,7 @@
 
     <!-- TABELLA CART -->
     <table class="table table-striped">
-        <thead style="width: auto;">
+        <thead class="thead-light"  style="width: auto;">
             <tr>
                 <th scope="col">Prodotto</th>
                 <th scope="col">Quantità</th>
@@ -115,15 +115,15 @@
             <tr v-for="item in cartorder">
                 <td>{{ item.name }}</td>
                 <td>
-                    <input type="number" :value="item.quantity" :name="item.id"v-on:change="event => AggQProduct(event)" placeholder="press enter to save">
+                    <input type="number" class="form-control" :value="item.quantity" :name="item.id"v-on:change="event => AggQProduct(event)" placeholder="press enter to save">
                 </td>
                 <td>{{ item.price }}</td>
-                <td><input type="submit" :name="item.id" v-on:click="event => DelProduct(event)" value="Rimuovi" class="btn btn-danger"></td>
+                <td><input type="submit" :name="item.id" v-on:click="event => DelProduct(event)" value="RIMUOVI" class="btn btn-danger"></td>
             </tr>
         </tbody>
     </table>
     <div class="card-footer text-center">
-        Totale: {{ cart_total }}&nbsp;€ <br>
+        Totale: <b>{{ cart_total }}&nbsp;€ </b><br>
         <a :href="'/admin/order/'+ orderid"class="btn btn-secondary">TORNA INDIETRO</a>
         <input type="submit" v-on:click="SaveCart()" value="SALVA" class="btn btn-primary">
     </div>
