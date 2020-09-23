@@ -206,7 +206,7 @@ class UserController extends Controller
             }
 
             else{
-                return redirect(route('user.index'))->with('error', "L'utente numero '.$id.' ha ordini non completati");
+                return redirect(route('user.index'))->with('error', "L'utente numero $id ha ordini non completati");
             }
 
         }
